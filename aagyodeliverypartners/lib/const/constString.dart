@@ -1,13 +1,8 @@
 
 //home
-const String orders = "assets/home/allcustomer.png";
-const String totalSales = "assets/home/orders.png";
-const String allCustomers = "assets/home/totalproducts.png";
-const String totalProducts = "assets/home/totalsales.png";
-const String nonveg = "assets/home/Non Veg.png";
-const String veg = "assets/home/Veg.png";
-const String Deliveryboy = "assets/home/Deliveryboy.png";
-const String vaccine = "assets/home/vaccine.png";
+const String completed = "assets/home/completed.png";
+const String pending = "assets/home/pending.png";
+const String ruppess = "assets/home/ruppess.png";
 
 
 //home/icons

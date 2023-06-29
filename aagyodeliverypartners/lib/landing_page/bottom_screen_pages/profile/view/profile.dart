@@ -63,7 +63,7 @@ class _ProfileState extends State<Profile> {
                   backgroundColor: Colors.white,
                   backgroundImage: imageFile != null
                       ? FileImage(imageFile!)
-                      : AssetImage(Deliveryboy) as ImageProvider,
+                      : AssetImage(splash) as ImageProvider,
                 ),
               ),
             ),

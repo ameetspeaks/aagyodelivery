@@ -1,3 +1,4 @@
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/views/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../colors/colors_const.dart';
@@ -14,7 +15,7 @@ class Bottom_Page extends StatefulWidget {
 class _Bottom_PageState extends State<Bottom_Page> {
   int _currentindex = 0;
   final Screen = [
-    Center(child: Text("Home")),
+    const HomeScreen(),
     Center(child: Text("Order")),
     Center(child: Text("Add")),
     Center(child: Text("Menu")),

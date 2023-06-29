@@ -1,3 +1,4 @@
+import 'package:aagyodeliverypartners/bottom_sheet.dart';
 import 'package:aagyodeliverypartners/const/constString.dart';
 import 'package:aagyodeliverypartners/landing_page/auth/controllers/auth_controller.dart';
 import 'package:aagyodeliverypartners/landing_page/auth/views/welcomeScreen.dart';
@@ -6,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'colors/colors_const.dart';
+
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,12 +52,10 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(height: 140,),
           Text(
-            'AAGYO !',
+            'AAGYO Delivery Partner!',
             style: AppTextStyles.kHeading1TextStyle.copyWith(
               color: AppColors.primary700,
               fontSize: 32,

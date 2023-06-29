@@ -53,8 +53,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
               SizedBox(
                 child: Image.asset(
-                  welcome,
-                  fit: BoxFit.cover,
+                  splash,height:200,width:200
                 ),
               ),
               const Text(
