@@ -170,7 +170,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                   TextSpan(
                       text: 'Resend Code',
                       style: AppTextStyles.kSmall10RegularTextStyle
-                          .copyWith(color: AppColors.primary700, fontSize: 12)),
+                          .copyWith(color: AppColors.primary, fontSize: 12)),
                   TextSpan(
                     text: ' ($_secondsRemaining Sec)',
                     style: AppTextStyles.kCaption12SemiboldTextStyle
@@ -211,7 +211,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                 Text(
                   'Get OTP on Call',
                   style: AppTextStyles.kBody15SemiboldTextStyle
-                      .copyWith(color: AppColors.primary700),
+                      .copyWith(color: AppColors.primary),
                 ),
                 const SizedBox(
                   width: 5,

@@ -15,18 +15,15 @@ class AppColors {
   static const Color white100 = Color.fromRGBO(15, 26, 42, 1);
 
   // primary
-  static const Color primary400 = Color.fromRGBO(250, 220, 225, 1);
-  static const Color primary600 = Color.fromRGBO(241, 170, 171, 1);
-  static const Color primary = Color.fromRGBO(226, 62, 87, 1);
-  static const Color primary900 = Color.fromRGBO(163, 45, 63, 1);
-  static const Color primary700 = Color.fromRGBO(226, 62, 87, 1);
+  static const Color primary1 = Color.fromRGBO(28, 102, 131, 1);
+  static const Color primary = Color.fromRGBO(1, 98, 140, 1);
+
 
   //secondary
-  static const Color secondary400 = Color.fromRGBO(131, 119, 140, 1);
-  static const Color secondary500 = Color(0xff27364B);
-  static const Color secondary600 = Color.fromRGBO(49, 29, 63, 1);
-  static const Color secondary = Color.fromRGBO(39, 23, 50, 1);
-  static const Color secondary700 = Color.fromRGBO(39, 23, 50, 1);
+  static const Color secondary = Color.fromRGBO(216, 32, 30, 1);
+  static const Color secondary1 = Color.fromRGBO(220, 29, 45, 1);
+  static const Color secondary2 = Color.fromRGBO(215, 33, 37, 1);
+
 
   //success
   static const Color success10 = Color.fromRGBO(232, 252, 241, 1);
@@ -34,7 +31,7 @@ class AppColors {
   static const Color success40 = Color.fromRGBO(65, 158, 106, 1);
   static const Color success60 = Color.fromRGBO(0, 99, 43, 1);
   static const Color success80 = Color.fromRGBO(0, 64, 28, 1);
-  static const Color sucess100 = Color.fromRGBO(0, 38, 17, 1);
+  static const Color sucess100 = Color.fromRGBO(1, 102, 0, 1);
 
   //info
   static const Color info10 = Color.fromRGBO(211, 225, 254, 1);

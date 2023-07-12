@@ -23,7 +23,7 @@ class _SignInUpButtonWidgetState extends State<SignInUpButtonWidget> {
         width: size.width * 0.85,
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary700,
+                backgroundColor: AppColors.primary,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(7))),
             onPressed: widget.onpressed,

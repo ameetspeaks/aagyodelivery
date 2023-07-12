@@ -57,7 +57,7 @@ class _ProfileState extends State<Profile> {
               },
               child: CircleAvatar(
                 radius: 52,
-                backgroundColor: AppColors.primary700,
+                backgroundColor: AppColors.primary,
                 child: CircleAvatar(
                   radius: 50,
                   backgroundColor: Colors.white,

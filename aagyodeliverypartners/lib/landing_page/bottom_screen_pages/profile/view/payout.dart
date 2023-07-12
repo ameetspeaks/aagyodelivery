@@ -20,7 +20,7 @@ class _WalletPageScreenState extends State<WalletPageScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: AppColors.primary700,
+        backgroundColor: AppColors.primary,
         leading: IconButton(
           onPressed: () {
             // Get.back();
@@ -59,7 +59,7 @@ class _WalletPageScreenState extends State<WalletPageScreen> {
                   height: size.height * 0.22,
                   width: size.width,
                   decoration: const BoxDecoration(
-                    color: AppColors.primary700,
+                    color: AppColors.primary,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10, top: 10),
@@ -100,7 +100,7 @@ class _WalletPageScreenState extends State<WalletPageScreen> {
                         child: Text(
                           'view all',
                           style: AppTextStyles.kCaption12RegularTextStyle
-                              .copyWith(color: AppColors.primary700),
+                              .copyWith(color: AppColors.primary),
                         ),
                       )
                     ],

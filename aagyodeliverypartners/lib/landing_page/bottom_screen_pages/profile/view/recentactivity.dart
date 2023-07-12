@@ -79,7 +79,7 @@ class _RecentActivityState extends State<RecentActivity> {
               width: size.width * 0.85,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary700),
+                      backgroundColor: AppColors.primary),
                   onPressed: () {},
                   child: Text(
                     'Withdraw',
@@ -124,7 +124,7 @@ class _RecentActivityState extends State<RecentActivity> {
 //           child: Container(
 //             padding: const EdgeInsets.all(10),
 //             decoration: BoxDecoration(
-//               color: isSelected ? AppColors.primary700 : Colors.grey[300],
+//               color: isSelected ? AppColors.primary : Colors.grey[300],
 //               borderRadius: BorderRadius.circular(50),
 //             ),
 //             child: Text(

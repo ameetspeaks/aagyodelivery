@@ -1,8 +1,15 @@
 import 'package:aagyodeliverypartners/colors/colors_const.dart';
-import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/widgets/const_gridview.dart';
+import 'package:aagyodeliverypartners/const/constContainer.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/widgets/const_switch.dart';
 import 'package:aagyodeliverypartners/styles/textstyle_const.dart';
+import 'package:dots_indicator/dots_indicator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../../../const/constString.dart';
+import '../../../../const/const_dropdown.dart';
+import '../../../../testing.dart';
+import '../widgets/accept_reject_order.dart';
+import '../widgets/const_tab_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,21 +19,267 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String selectedValue1 = "Today";
+  String selectedValue2 = "Choose Date";
+  final _numPages = 3;
+  final PageController _pageController = PageController();
+  double _currentPage = 0;
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(
-             elevation: 0,
-        backgroundColor: AppColors.white10,
-        centerTitle: true,
-        title: Text("Aagyo Delivery Partner",style: AppTextStyles.kBody17RegularTextStyle.copyWith(color: AppColors.primary700),),
-        actions: [
-          SwitchScreen(),
-        ],
-      ),
-      body: Column(
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.primary,
+          automaticallyImplyLeading: true,
+          title: ConstText(),
+          actions: [
+            Image.asset(
+              alarm,
+              height: 20,
+              width: 22,
+              color: AppColors.secondary1,
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Icon(
+              Icons.help_outline_outlined,
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Icon(
+              Icons.notifications_rounded,
+            ),
+            SizedBox(
+              width: 5,
+            ),
+          ],
+        ),
+        body: SingleChildScrollView(
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  Container(
+                    height: size.height * 0.36,
+                    width: size.width,
+                    decoration: BoxDecoration(
+                        color: AppColors.primary1,
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(400),
+                            bottomRight: Radius.circular(400))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.asset(
+                            currentlocation,
+                            height: 25,
+                            width: 25,
+                            color: AppColors.white,
+                          ),
+                          Text(
+                            "Jankipuram Tedhi Puliya,\nLucknow",
+                            style: AppTextStyles.kBody15RegularTextStyle
+                                .copyWith(color: AppColors.white),
+                          ),
+                          Spacer(),
+                          ConstantContainer(
+                            height: size.height * .05,
+                            width: size.width * .3,
+                            color: AppColors.secondary2,
+                            radiusBorder: 15,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Image.asset(
+                                  updatelocation,
+                                  height: 25,
+                                  width: 25,
+                                  color: AppColors.white,
+                                ),
+                                Text(
+                                  "Update\nLocation",
+                                  style: AppTextStyles.kBody15RegularTextStyle
+                                      .copyWith(color: AppColors.white),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  ConstantContainer(
+                    height: size.height * 0.05,
+                    color: AppColors.primary1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            "Overview",
+                            style: AppTextStyles.kBody15SemiboldTextStyle
+                                .copyWith(color: AppColors.white),
+                          ),
+                          Spacer(),
+                          ConstantDropdown(
+                            dropdownColor: AppColors.primary1,
+                            textColor: AppColors.white,
+                            iconColor: AppColors.white,
+                            options: ['Today', 'Yesturday', 'Choose Date'],
+                            selectedOption: selectedValue1,
+                            onChanged: (newValue) {
+                              setState(() {
+                                selectedValue1 = newValue;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      balanceWigets(
+                          "Remaining\nBalance", "₹ 2000.88", "Recharge"),
+                      balanceWigets("Today's\nEarning", "₹ 2000.88", "Payout"),
+                      balanceWigets("Cash\nCollected", "₹ 200.88", "Orders"),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        "Recent Orders",
+                        style: AppTextStyles.kBody15SemiboldTextStyle
+                            .copyWith(color: AppColors.white100),
+                      ),
+                      ConstantDropdown(
+                        dropdownColor: AppColors.white,
+                        textColor: AppColors.white70,
+                        iconColor: AppColors.white70,
+                        options: ['Today', 'Yesturday', 'Choose Date'],
+                        selectedOption: selectedValue2,
+                        onChanged: (newValue) {
+                          setState(() {
+                            selectedValue2 = newValue;
+                          });
+                        },
+                      ),
+                      Text(
+                        "View All",
+                        style: AppTextStyles.kBody15SemiboldTextStyle
+                            .copyWith(color: AppColors.white70),
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 15,
+                      ),
+                    ],
+                  ),
+                  Container(height: size.height, child: ConstTabBar())
+                ],
+              ),
+              Positioned(
+                  left: 40,
+                  top: 60,
+                  child: ConstantContainer(
+                    height: size.height * .3,
+                    width: size.width * .8,
+                    color: AppColors.white,
+                    shadowColor: AppColors.white80,
+                    radiusBorder: 10,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: PageView(
+                            controller: _pageController,
+                            onPageChanged: (int page) {
+                              setState(() {
+                                _currentPage = page.toDouble();
+                              });
+                            },
+                            children: [
+                              AcceptRejectOrder(),
+                              AcceptRejectOrder(),
+                              AcceptRejectOrder(),
+                            ],
+                          ),
+                        ),
+                        DotsIndicator(
+                          dotsCount: _numPages,
+                          position: _currentPage,
+                          decorator: DotsDecorator(
+                            color: Colors.grey, // Inactive dot color
+                            activeColor: Colors.blue, // Active dot color
+                          ),
+                        ),
+                      ],
+                    ),
+                  )),
+            ],
+          ),
+        ));
+  }
+
+  Widget balanceWigets(heading, money, subhead) {
+    Size size = MediaQuery.of(context).size;
+    return ConstantContainer(
+      height: size.height * .15,
+      width: size.width * .3,
+      color: AppColors.white,
+      shadowColor: AppColors.white80,
+      radiusBorder: 10,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ConstGridView()
+          SizedBox(
+            height: 5,
+          ),
+          Text(
+            heading,
+            style: AppTextStyles.kBody17SemiboldTextStyle
+                .copyWith(color: AppColors.primary1),
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Text(
+            money,
+            style: AppTextStyles.kBody20SemiboldTextStyle
+                .copyWith(color: AppColors.white100),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                subhead,
+                style: AppTextStyles.kBody17RegularTextStyle
+                    .copyWith(color: AppColors.white70),
+              ),
+              Icon(
+                Icons.arrow_forward_ios,
+                color: AppColors.white70,
+                size: 15,
+              )
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
         ],
       ),
     );

@@ -1,24 +1,28 @@
 
 //home
-const String completed = "assets/home/completed.png";
 const String pending = "assets/home/pending.png";
 const String ruppess = "assets/home/ruppess.png";
 
+//bottom nav bar
+const String home = "assets/bottom_nav_bar/home.png";
+const String rupee = "assets/bottom_nav_bar/rupee.png";
+const String wallet = "assets/bottom_nav_bar/wallet.png";
+const String applogo = "assets/bottom_nav_bar/app.png";
+
 
 //home/icons
-const String call = "assets/home/icons/call.png";
-const String help = "assets/home/icons/help.png";
-const String print = "assets/home/icons/print.png";
+const String truck = "assets/home/icons/truck.png";
+const String truck1 = "assets/home/icons/truck1.gif";
+const String alarm = "assets/home/icons/alarm.png";
+const String currentlocation = "assets/home/icons/currentlocation.png";
+const String orderlocation = "assets/home/icons/orderlocation.png";
+const String updatelocation = "assets/home/icons/updatelocation.png";
+
 
 
 //menu
 const String chawal = "assets/menu/chawal.png";
-const String milk = "assets/menu/milk.png";
-const String mother = "assets/menu/mother.png";
-const String grocery = "assets/menu/grocery.png";
-const String grocery1 = "assets/menu/grocery1.png";
-const String grocery2 = "assets/menu/grocery2.png";
-const String addproduct = "assets/menu/addproduct.png";
+
 
 
 //profile

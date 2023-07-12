@@ -42,6 +42,7 @@ dependencies:
   firebase_auth: ^4.6.3
   pinput:
   google_sign_in: ^6.1.0
+  dots_indicator: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -70,10 +71,12 @@ flutter:
     - assets/
     - assets/splash/
     - assets/home/
+    - assets/home/icons/
     - assets/auth/
-    - assets/menu/
+    - assets/bottom_nav_bar/
+#    - assets/menu/
     - assets/profile/Icons/
-    - assets/add/icons/
+#    - assets/add/icons/
 
 
   #   - images/a_dot_ham.jpeg

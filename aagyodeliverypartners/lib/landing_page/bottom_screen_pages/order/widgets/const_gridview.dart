@@ -1,5 +1,6 @@
 import 'package:aagyodeliverypartners/colors/colors_const.dart';
 import 'package:aagyodeliverypartners/const/constString.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../styles/textstyle_const.dart';
 
@@ -10,10 +11,11 @@ class ConstGridView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     List <String> img = [
-      pending,
-      completed,
-      ruppess,
-      splash
+      truck1,
+      truck,
+      truck,
+      truck,
+
     ];
     List <String> name = [
       "Pending Orders",
@@ -32,7 +34,7 @@ class ConstGridView extends StatelessWidget {
       crossAxisCount: 2,
       crossAxisSpacing: 0,
       mainAxisSpacing: 4,
-      childAspectRatio: 1.35,
+      childAspectRatio: 1.29,
       shrinkWrap: true,
       children: List.generate(4, (index) {
         return Padding(
@@ -50,12 +52,14 @@ class ConstGridView extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Center(child: Image.asset(img[index],height: 100,width: 100,)),
+                    Center(child: Image.asset(img[index],height: 50,width: 50,)),
+                    // Icon(Icons.emoji_transportation),
+                    Text(name[index],style:AppTextStyles.kBody15SemiboldTextStyle),
                     const Text("12",style:AppTextStyles.kHeading3TextStyle),
-                    Text(name[index],style:AppTextStyles.kBody15SemiboldTextStyle)
                   ],
                 ),
               ),
+
             ),
           ),
         );

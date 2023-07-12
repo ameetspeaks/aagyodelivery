@@ -19,7 +19,7 @@ class _ConstDropDownProfileState extends State<ConstDropDownProfile> {
       radiusBorder: 5,
       borderColor: AppColors.neutralBorder,
       borderWidth: .5,
-      widget: Padding(
+      child: Padding(
         padding: const EdgeInsets.all(8.0),
         child:  DropdownButtonHideUnderline(
           child: DropdownButton(

@@ -1,4 +1,5 @@
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/views/home_screen.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/order/views/order_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../colors/colors_const.dart';
@@ -16,9 +17,9 @@ class _Bottom_PageState extends State<Bottom_Page> {
   int _currentindex = 0;
   final Screen = [
     const HomeScreen(),
-    Center(child: Text("Order")),
-    Center(child: Text("Add")),
-    Center(child: Text("Menu")),
+    Center(child: Text("Payout")),
+    const OrderScreen(),
+    Center(child: Text("Recharge")),
     Profile(),
   ];
 
@@ -28,29 +29,29 @@ class _Bottom_PageState extends State<Bottom_Page> {
       body: Screen[_currentindex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentindex,
-        // type: BottomNavigationBarType.shifting,
-        fixedColor: AppColors.primary700,
+        fixedColor: AppColors.primary,
+        unselectedFontSize: 10,
         unselectedItemColor: AppColors.neutralLightFonts,
         showUnselectedLabels: true,
         enableFeedback: false,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
+            icon: Image.asset(home,height: 25,width: 25,),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.unfold_more, size: 20,),
+            icon: Image.asset(rupee,height: 25,width: 25,),
+            label: 'Payout',
+            // backgroundColor:ConstantColor.bottomnav
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(applogo,height: 30,width: 30,),
             label: 'Order',
             // backgroundColor:ConstantColor.bottomnav
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_box_outlined),
-            label: 'Add',
-            // backgroundColor:ConstantColor.bottomnav
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.menu_book_outlined),
-            label: 'Menu',
+            icon: Image.asset(wallet,height: 25,width: 25,),
+            label: 'Recharge',
             // backgroundColor:ConstantColor.bottomnav
           ),
           BottomNavigationBarItem(

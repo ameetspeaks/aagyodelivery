@@ -46,7 +46,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 child: Text(
                   'Welcome to AAGYO !',
                   style: AppTextStyles.kHeading1TextStyle.copyWith(
-                    color: AppColors.primary700,
+                    color: AppColors.primary,
                     fontSize: 32,
                   ),
                 ),

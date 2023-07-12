@@ -1,32 +1,34 @@
 import 'package:aagyodeliverypartners/colors/colors_const.dart';
+import 'package:aagyodeliverypartners/styles/textstyle_const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../../styles/textstyle_const.dart';
 
-class SwitchScreen extends StatefulWidget {
+class ConstText extends StatefulWidget {
+  const ConstText({Key? key}) : super(key: key);
+
   @override
-  SwitchClass createState() => new SwitchClass();
+  State<ConstText> createState() => _ConstTextState();
 }
 
-class SwitchClass extends State {
-  bool isSwitched = false;
-  var textValue = 'Offline';
+class _ConstTextState extends State<ConstText> {
+  bool ispressed = false;
+  var textValue = '🤨';
 
   void toggleSwitch(bool value) {
 
-    if(isSwitched == false)
+    if(ispressed == false)
     {
       setState(() {
-        isSwitched = true;
-        textValue = 'Online';
+        ispressed = true;
+        textValue = '😎';
       });
 
     }
     else
     {
       setState(() {
-        isSwitched = false;
-        textValue = 'Offline';
+        ispressed = false;
+        textValue = '🤨';
       });
 
     }
@@ -34,19 +36,20 @@ class SwitchClass extends State {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children:[
-          Text('$textValue',style:AppTextStyles.kBody15SemiboldTextStyle.copyWith(color:!isSwitched? Colors.red:Colors.green)),
-          Transform.scale(
-            scale: 0.58,
-            child: CupertinoSwitch(
-              onChanged: toggleSwitch,
-              value: isSwitched,
-              // activeColor: Colors.green,
-              thumbColor: Colors.white,
-              // activeTrackColor: Colors.white,
+      children: [
+        Text('$textValue',style:AppTextStyles.kHeading1TextStyle),
+        InkWell(onTap: (){
+          setState(() {
+            toggleSwitch(true);
+          });
+        }, child: Container(
+            height: 50,
+            decoration: BoxDecoration(
+                color: !ispressed?AppColors.secondary1:AppColors.sucess100,
+                shape: BoxShape.circle
             ),
-          ),
-        ]);
+            child: Center(child: Text(!ispressed?"Offline":"Online",style: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color: AppColors.white),))))
+      ],
+    );
   }
 }
