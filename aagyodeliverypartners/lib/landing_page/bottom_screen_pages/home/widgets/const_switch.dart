@@ -3,14 +3,14 @@ import 'package:aagyodeliverypartners/styles/textstyle_const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ConstText extends StatefulWidget {
-  const ConstText({Key? key}) : super(key: key);
+class ConstSwitch extends StatefulWidget {
+  const ConstSwitch({Key? key}) : super(key: key);
 
   @override
-  State<ConstText> createState() => _ConstTextState();
+  State<ConstSwitch> createState() => _ConstSwitchState();
 }
 
-class _ConstTextState extends State<ConstText> {
+class _ConstSwitchState extends State<ConstSwitch> {
   bool ispressed = false;
   var textValue = '🤨';
 
@@ -43,10 +43,12 @@ class _ConstTextState extends State<ConstText> {
             toggleSwitch(true);
           });
         }, child: Container(
-            height: 50,
+            height: 30,
+            width: 50,
             decoration: BoxDecoration(
                 color: !ispressed?AppColors.secondary1:AppColors.sucess100,
-                shape: BoxShape.circle
+                border: Border.all(color: AppColors.white),
+              borderRadius: BorderRadius.circular(5)
             ),
             child: Center(child: Text(!ispressed?"Offline":"Online",style: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color: AppColors.white),))))
       ],

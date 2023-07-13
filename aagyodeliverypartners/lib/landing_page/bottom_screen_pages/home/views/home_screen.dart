@@ -1,5 +1,9 @@
 import 'package:aagyodeliverypartners/colors/colors_const.dart';
 import 'package:aagyodeliverypartners/const/constContainer.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/views/action_screens/help.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/views/action_screens/notifications.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/views/action_screens/sos.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/views/update_location.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/widgets/const_switch.dart';
 import 'package:aagyodeliverypartners/styles/textstyle_const.dart';
 import 'package:dots_indicator/dots_indicator.dart';
@@ -7,7 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../const/constString.dart';
 import '../../../../const/const_dropdown.dart';
-import '../../../../testing.dart';
+import '../../../../utils/Utils.dart';
 import '../widgets/accept_reject_order.dart';
 import '../widgets/const_tab_bar.dart';
 
@@ -22,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String selectedValue1 = "Today";
   String selectedValue2 = "Choose Date";
   final _numPages = 3;
-  final PageController _pageController = PageController();
+   PageController _pageController = PageController();
   double _currentPage = 0;
   @override
   Widget build(BuildContext context) {
@@ -31,26 +35,33 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           backgroundColor: AppColors.primary,
           automaticallyImplyLeading: true,
-          title: ConstText(),
+          title: ConstSwitch(),
           actions: [
-            Image.asset(
+            IconButton(onPressed: (){
+              Utils.goTo(context, SOS());
+            }, icon:  Image.asset(
               alarm,
               height: 20,
               width: 22,
               color: AppColors.secondary1,
-            ),
+            ),),
             SizedBox(
               width: 5,
             ),
-            Icon(
+            IconButton(onPressed: (){
+              Utils.goTo(context, Help());
+            }, icon: Icon(
               Icons.help_outline_outlined,
-            ),
+            ),),
             SizedBox(
               width: 5,
             ),
-            Icon(
+            IconButton(onPressed: (){
+              Utils.goTo(context, NotificationPage());
+            }, icon:Icon(
               Icons.notifications_rounded,
-            ),
+            ),),
+
             SizedBox(
               width: 5,
             ),
@@ -87,26 +98,31 @@ class _HomeScreenState extends State<HomeScreen> {
                                 .copyWith(color: AppColors.white),
                           ),
                           Spacer(),
-                          ConstantContainer(
-                            height: size.height * .05,
-                            width: size.width * .3,
-                            color: AppColors.secondary2,
-                            radiusBorder: 15,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Image.asset(
-                                  updatelocation,
-                                  height: 25,
-                                  width: 25,
-                                  color: AppColors.white,
-                                ),
-                                Text(
-                                  "Update\nLocation",
-                                  style: AppTextStyles.kBody15RegularTextStyle
-                                      .copyWith(color: AppColors.white),
-                                )
-                              ],
+                          InkWell(
+                            onTap: (){
+                              Utils.goTo(context, UpdateLocation());
+                            },
+                            child: ConstantContainer(
+                              height: size.height * .05,
+                              width: size.width * .3,
+                              color: AppColors.secondary2,
+                              radiusBorder: 10,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Image.asset(
+                                    updatelocation,
+                                    height: 25,
+                                    width: 25,
+                                    color: AppColors.white,
+                                  ),
+                                  Text(
+                                    "Update\nLocation",
+                                    style: AppTextStyles.kBody15RegularTextStyle
+                                        .copyWith(color: AppColors.white),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -134,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             dropdownColor: AppColors.primary1,
                             textColor: AppColors.white,
                             iconColor: AppColors.white,
-                            options: ['Today', 'Yesturday', 'Choose Date'],
+                            options: ['Today', 'Yesterday', 'Choose Date'],
                             selectedOption: selectedValue1,
                             onChanged: (newValue) {
                               setState(() {
@@ -170,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         dropdownColor: AppColors.white,
                         textColor: AppColors.white70,
                         iconColor: AppColors.white70,
-                        options: ['Today', 'Yesturday', 'Choose Date'],
+                        options: ['Today', 'Yesterday', 'Choose Date'],
                         selectedOption: selectedValue2,
                         onChanged: (newValue) {
                           setState(() {
@@ -196,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   left: 40,
                   top: 60,
                   child: ConstantContainer(
-                    height: size.height * .3,
+                    height: size.height * .28,
                     width: size.width * .8,
                     color: AppColors.white,
                     shadowColor: AppColors.white80,

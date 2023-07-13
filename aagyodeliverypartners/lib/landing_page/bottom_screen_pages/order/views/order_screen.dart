@@ -20,95 +20,99 @@ class _OrderScreenState extends State<OrderScreen>
     TabController tabController = TabController(length: 4, vsync: this);
 
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            TabBar(
-              indicatorSize: TabBarIndicatorSize.label,
-              indicator: BoxDecoration(
-                border: Border.all(color: AppColors.sucess100,width: 2),
-                  borderRadius: BorderRadius.circular(10)
+      appBar: AppBar(
+        backgroundColor: AppColors.primary,
+        centerTitle: true,
+        title: Text("Order",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),),
+      ),
+      body: Column(
+        children: [
+          SizedBox(height: 10,),
+          TabBar(
+            indicatorSize: TabBarIndicatorSize.label,
+            indicator: BoxDecoration(
+              border: Border.all(color: AppColors.sucess100,width: 2),
+                borderRadius: BorderRadius.circular(10)
+            ),
+            indicatorColor: Colors.black,
+            isScrollable: true,
+            controller: tabController,
+            tabs: [
+              ConstantContainer(
+                height: size.height * .035,
+                color: AppColors.primary1,
+                radiusBorder: 10,
+                child: Center(
+                  child: Tab(
+                    child: Text(
+                      "  20 | All  ",
+                      style: AppTextStyles.kBody15SemiboldTextStyle
+                          .copyWith(color: AppColors.white),
+                    ),
+                  ),
+                ),
               ),
-              indicatorColor: Colors.black,
-              isScrollable: true,
+              ConstantContainer(
+                // width: size.width*.2,
+                height: size.height * .035,
+                color: AppColors.primary1,
+                radiusBorder: 10,
+                child: Center(
+                  child: Tab(
+                    child: Text(
+                      " 07 | Ready to Pick ",
+                      style: AppTextStyles.kBody15SemiboldTextStyle
+                          .copyWith(color: AppColors.white),
+                    ),
+                  ),
+                ),
+              ),
+              ConstantContainer(
+                // width: size.width*.2,
+                height: size.height * .035,
+                color: AppColors.primary1,
+                radiusBorder: 10,
+                child: Center(
+                  child: Tab(
+                    child: Text(
+                      " 07 | On the Way ",
+                      style: AppTextStyles.kBody15SemiboldTextStyle
+                          .copyWith(color: AppColors.white),
+                    ),
+                  ),
+                ),
+              ),
+              ConstantContainer(
+                // width: size.width*.2,
+                height: size.height * .035,
+                color: AppColors.primary1,
+                radiusBorder: 10,
+                child: Center(
+                  child: Tab(
+                    child: Text(
+                      " 07 | Delivered ",
+                      style: AppTextStyles.kBody15SemiboldTextStyle
+                          .copyWith(color: AppColors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Expanded(
+            child: TabBarView(
+              physics:  ScrollPhysics(),
               controller: tabController,
-              tabs: [
-                ConstantContainer(
-                  height: size.height * .035,
-                  color: AppColors.primary1,
-                  radiusBorder: 10,
-                  child: Center(
-                    child: Tab(
-                      child: Text(
-                        "  20 | All  ",
-                        style: AppTextStyles.kBody15SemiboldTextStyle
-                            .copyWith(color: AppColors.white),
-                      ),
-                    ),
-                  ),
-                ),
-                ConstantContainer(
-                  // width: size.width*.2,
-                  height: size.height * .035,
-                  color: AppColors.primary1,
-                  radiusBorder: 10,
-                  child: Center(
-                    child: Tab(
-                      child: Text(
-                        " 07 | Ready to Pick ",
-                        style: AppTextStyles.kBody15SemiboldTextStyle
-                            .copyWith(color: AppColors.white),
-                      ),
-                    ),
-                  ),
-                ),
-                ConstantContainer(
-                  // width: size.width*.2,
-                  height: size.height * .035,
-                  color: AppColors.primary1,
-                  radiusBorder: 10,
-                  child: Center(
-                    child: Tab(
-                      child: Text(
-                        " 07 | On the Way ",
-                        style: AppTextStyles.kBody15SemiboldTextStyle
-                            .copyWith(color: AppColors.white),
-                      ),
-                    ),
-                  ),
-                ),
-                ConstantContainer(
-                  // width: size.width*.2,
-                  height: size.height * .035,
-                  color: AppColors.primary1,
-                  radiusBorder: 10,
-                  child: Center(
-                    child: Tab(
-                      child: Text(
-                        " 07 | Delivered ",
-                        style: AppTextStyles.kBody15SemiboldTextStyle
-                            .copyWith(color: AppColors.white),
-                      ),
-                    ),
-                  ),
-                ),
+              children: [
+                AllOrder(),
+                ReadyToPickOrder(),
+                OnTheWayOrder(),
+                DeliveredOrder(),
+
               ],
             ),
-            Expanded(
-              child: TabBarView(
-                physics:  ScrollPhysics(),
-                controller: tabController,
-                children: [
-                  AllOrder(),
-                  ReadyToPickOrder(),
-                  OnTheWayOrder(),
-                  DeliveredOrder(),
-
-                ],
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

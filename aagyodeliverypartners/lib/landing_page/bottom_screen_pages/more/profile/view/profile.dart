@@ -1,20 +1,17 @@
-
-
 import 'dart:io';
 
-import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/profile/view/payout.dart';
-import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/profile/view/profileview.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/payout.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/profileview.dart';
+import 'package:aagyodeliverypartners/utils/Utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../../../../colors/colors_const.dart';
-import '../../../../const/constString.dart';
-import '../../../../styles/textstyle_const.dart';
-import '../../../auth/views/welcomeScreen.dart';
+import '../../../../../colors/colors_const.dart';
+import '../../../../../const/constString.dart';
+import '../../../../../styles/textstyle_const.dart';
+import '../../../../auth/views/welcomeScreen.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -71,12 +68,11 @@ class _ProfileState extends State<Profile> {
           SizedBox(
             height: 50,
           ),
-          ConstantListTile("Profile Details",profile,() {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileDetails()));
+          ConstantListTile("Personal Details",profile,() {
+            Utils.goTo(context, ProfileDetails());
           },),
-          ConstantListTile("Contact Us Details",contact,() {
+          ConstantListTile("Insurance Details",contact,() {},),
 
-          },),
           ConstantListTile("Sound Setting",sound,() {
             showDialog(context: context, builder: (context){
               return AlertDialog(
@@ -104,11 +100,8 @@ class _ProfileState extends State<Profile> {
             });
           },),
           ConstantListTile("Payout",payout,() {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>WalletPageScreen()));
-          },),
-          ConstantListTile("Stop Reminder",stop,() {
-
-          },),
+            Utils.goTo(context, WalletPageScreen());},),
+          ConstantListTile("Stop Reminder",stop,() {},),
           ConstantListTile("Logout",logout,() {
             show(AlertDialog(
               content: Text('Do you really want to logout ?'),
@@ -127,8 +120,6 @@ class _ProfileState extends State<Profile> {
                 ),
               ],
             ));
-
-            // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>WelcomeScreen()));
           },),
         ],
       ),
@@ -140,34 +131,25 @@ class _ProfileState extends State<Profile> {
     final String leading,
     final VoidCallback ontap,
   ) {
-    return Column(
-      children: [
-        InkWell(
-          onTap: ontap,
-          child: ListTile(
-            leading: CircleAvatar(
-                backgroundColor: AppColors.neutral20,
-                child: Image.asset(
-                  leading,
-                )),
-            title: Text(
-              title,
-              style: AppTextStyles.kCaption12RegularTextStyle
-                  .copyWith(color: AppColors.neutralDark),
-            ),
-            trailing: Icon(
-              Icons.arrow_forward_ios,
-              color: AppColors.neutral50,
-              size: 20,
-            ),
-          ),
+    return InkWell(
+      onTap: ontap,
+      child: ListTile(
+        leading: CircleAvatar(
+            backgroundColor: AppColors.neutral20,
+            child: Image.asset(
+              leading,
+            )),
+        title: Text(
+          title,
+          style: AppTextStyles.kBody17RegularTextStyle
+              .copyWith(color: AppColors.neutralDark),
         ),
-        // Padding(
-        //   padding: const EdgeInsets.fromLTRB(25, 0, 8, 0),
-        //   child: ConstantContainer(height: 0.0008, width: MediaQuery.of(context).size.width*0.9, radiusBorder: 0, borderWidth: 0, widget: Text("data"), borderColor: AppColors.neutralBackground,color: AppColors.neutralBorder,),
-        // )
-
-      ],
+        trailing: Icon(
+          Icons.arrow_forward_ios,
+          color: AppColors.neutral50,
+          size: 20,
+        ),
+      ),
     );
   }
 
@@ -200,8 +182,6 @@ class _ProfileState extends State<Profile> {
       },
     );
   }
-
-
 
  void show(
      Widget widgets

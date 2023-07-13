@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../../../../colors/colors_const.dart';
-import '../../../../styles/textstyle_const.dart';
+import '../../../../../styles/textstyle_const.dart';
 
 class RecentActivity extends StatefulWidget {
   const RecentActivity({Key? key}) : super(key: key);
