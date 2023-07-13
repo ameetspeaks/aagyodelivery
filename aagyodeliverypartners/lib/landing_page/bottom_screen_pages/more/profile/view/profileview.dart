@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../colors/colors_const.dart';
-import '../../../../styles/textstyle_const.dart';
+import '../../../../../colors/colors_const.dart';
+import '../../../../../styles/textstyle_const.dart';
 
 class ProfileDetails extends StatefulWidget {
   const ProfileDetails({Key? key}) : super(key: key);

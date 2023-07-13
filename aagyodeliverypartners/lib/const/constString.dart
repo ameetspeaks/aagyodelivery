@@ -8,6 +8,7 @@ const String home = "assets/bottom_nav_bar/home.png";
 const String rupee = "assets/bottom_nav_bar/rupee.png";
 const String wallet = "assets/bottom_nav_bar/wallet.png";
 const String applogo = "assets/bottom_nav_bar/app.png";
+const String moreicon = "assets/bottom_nav_bar/moreicon.png";
 
 
 //home/icons

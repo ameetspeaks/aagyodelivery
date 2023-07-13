@@ -1,10 +1,11 @@
-import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/profile/view/recentactivity.dart';
-import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/profile/view/viewall.dart';
+
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/recentactivity.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/viewall.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../colors/colors_const.dart';
-import '../../../../const/constString.dart';
-import '../../../../styles/textstyle_const.dart';
+import '../../../../../colors/colors_const.dart';
+import '../../../../../const/constString.dart';
+import '../../../../../styles/textstyle_const.dart';
 
 class WalletPageScreen extends StatefulWidget {
   const WalletPageScreen({super.key});

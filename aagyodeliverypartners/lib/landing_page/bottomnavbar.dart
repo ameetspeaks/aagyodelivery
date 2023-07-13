@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../colors/colors_const.dart';
 import '../const/constString.dart';
-import 'bottom_screen_pages/profile/view/profile.dart';
+import 'bottom_screen_pages/more/more.dart';
+import 'bottom_screen_pages/payout/views/payout.dart';
 
 class Bottom_Page extends StatefulWidget {
   const Bottom_Page({Key? key}) : super(key: key);
@@ -17,10 +18,11 @@ class _Bottom_PageState extends State<Bottom_Page> {
   int _currentindex = 0;
   final Screen = [
     const HomeScreen(),
-    Center(child: Text("Payout")),
+    const PayoutScreen(),
     const OrderScreen(),
     Center(child: Text("Recharge")),
-    Profile(),
+    const MoreScreen(),
+
   ];
 
   @override
@@ -33,7 +35,7 @@ class _Bottom_PageState extends State<Bottom_Page> {
         unselectedFontSize: 10,
         unselectedItemColor: AppColors.neutralLightFonts,
         showUnselectedLabels: true,
-        enableFeedback: false,
+        enableFeedback: true,
         items: [
           BottomNavigationBarItem(
             icon: Image.asset(home,height: 25,width: 25,),
@@ -42,22 +44,18 @@ class _Bottom_PageState extends State<Bottom_Page> {
           BottomNavigationBarItem(
             icon: Image.asset(rupee,height: 25,width: 25,),
             label: 'Payout',
-            // backgroundColor:ConstantColor.bottomnav
           ),
           BottomNavigationBarItem(
             icon: Image.asset(applogo,height: 30,width: 30,),
             label: 'Order',
-            // backgroundColor:ConstantColor.bottomnav
           ),
           BottomNavigationBarItem(
             icon: Image.asset(wallet,height: 25,width: 25,),
             label: 'Recharge',
-            // backgroundColor:ConstantColor.bottomnav
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.profile_circled),
-            label: 'Profile',
-            // backgroundColor:ConstantColor.bottomnav
+            icon: Image.asset(moreicon,height: 25,width: 25,),
+            label: 'More',
           ),
         ],
         onTap: (index) =>
