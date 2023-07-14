@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import '../../../../../colors/colors_const.dart';
 import '../../../../../styles/textstyle_const.dart';
 
-class ProfileDetails extends StatefulWidget {
-  const ProfileDetails({Key? key}) : super(key: key);
+class PersonalDetails extends StatefulWidget {
+  const PersonalDetails({Key? key}) : super(key: key);
   @override
-  State<ProfileDetails> createState() => _ProfileDetailsState();
+  State<PersonalDetails> createState() => _PersonalDetailsState();
 }
-class _ProfileDetailsState extends State<ProfileDetails> {
+class _PersonalDetailsState extends State<PersonalDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back_ios,color: AppColors.neutralDark,)),
-        title: Text("Profile Details",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.neutralDark),),
+        backgroundColor: AppColors.primary,
+        title: Text("Profile Details",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),),
         centerTitle: true,
       ),
       body: Column(

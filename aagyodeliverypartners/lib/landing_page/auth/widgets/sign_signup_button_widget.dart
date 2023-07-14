@@ -28,7 +28,7 @@ class _SignInUpButtonWidgetState extends State<SignInUpButtonWidget> {
                     borderRadius: BorderRadius.circular(7))),
             onPressed: widget.onpressed,
             child: Center(
-              child: widget.text == 'Get Otp'||widget.text=='Verify & Proceed'
+              child: widget.text == 'Get OTP'||widget.text=='Verify & Proceed'
                   ? Text(
                       widget.text,
                       style: AppTextStyles.kBody15SemiboldTextStyle

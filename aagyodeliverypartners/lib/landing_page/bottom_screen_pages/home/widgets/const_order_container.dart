@@ -4,12 +4,14 @@ import '../../../../colors/colors_const.dart';
 import '../../../../const/constContainer.dart';
 import '../../../../const/constString.dart';
 import '../../../../styles/textstyle_const.dart';
+import '../../../../utils/Utils.dart';
 
 class ConstOrderContainer extends StatelessWidget {
   final String text;
+  final String messagealert;
   final Color color;
   final Color textColor;
-  const ConstOrderContainer({Key? key, required this.text, required this.color, required this.textColor}) : super(key: key);
+  const ConstOrderContainer({Key? key, required this.text, required this.color, required this.textColor, required this.messagealert}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -91,33 +93,45 @@ class ConstOrderContainer extends StatelessWidget {
                 children: [
                   Image.asset(
                     orderlocation,
-                    height: 20,
-                    width: 20,
+                    height: 30,
+                    width: 30,
                   ),
-                  Icon(Icons.phone_in_talk_outlined),
+                  Icon(Icons.phone_in_talk_outlined,size: 30,),
                   Spacer(),
                   Image.asset(
                     orderlocation,
-                    height: 20,
-                    width: 20,
+                    height: 30,
+                    width: 30,
                   ),
-                  Icon(Icons.phone_in_talk_outlined),
+                  Icon(Icons.phone_in_talk_outlined,size: 30,),
                 ],
               ),
               Row(
                 children: [
                   Column(
                     children: [
-                      ConstantContainer(
-                        height: size.height * .035,
-                        width: size.width * .3,
-                        color: color,
-                        radiusBorder: 10,
-                        child: Center(
-                          child: Text(
-                            text,
-                            style: AppTextStyles.kBody15SemiboldTextStyle
-                                .copyWith(color:textColor),
+                      InkWell(
+                        onTap: (){
+                          Utils.DialogBox(context,messagealert, "",
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary1),
+                              child: Text('Confirm'),
+                              onPressed: () {
+                              },
+                            ),
+                          );
+                        },
+                        child: ConstantContainer(
+                          height: size.height * .035,
+                          width: size.width * .3,
+                          color: color,
+                          radiusBorder: 10,
+                          child: Center(
+                            child: Text(
+                              text,
+                              style: AppTextStyles.kBody15SemiboldTextStyle
+                                  .copyWith(color:textColor),
+                            ),
                           ),
                         ),
                       ),

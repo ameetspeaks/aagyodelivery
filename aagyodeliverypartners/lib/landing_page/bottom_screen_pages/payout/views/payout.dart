@@ -17,53 +17,59 @@ class PayoutScreen extends StatelessWidget {
           centerTitle: true,
           title: Text("Payout"),
         ),
-        body: ListView.builder(
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              if (index == 0) {
-               return Padding(
-                 padding: const EdgeInsets.all(8.0),
-                 child: ConstPayoutContainer(
-                   ontap1: (){
-                     Utils.goTo(context, WeekEarning());
-                   },
-                   ontap2: (){
-                     Utils.goTo(context, PayoutHistory());
-                   },
-                    color1: AppColors.primary1,
-                    color2: AppColors.white30,
-                    date: "22 Jun-02 Jul",
-                    price: "₹4582",
-                    time: "67h37m",
-                    color3: AppColors.secondary1,
-                    contText: "  New  ",
-                    subText: "This week's earning",
-                    subTextColor: AppColors.white,
-                  ),
-               );
-              } else {
-              return  Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ConstPayoutContainer(
-                  ontap1: (){
-                    Utils.goTo(context, WeekEarning());
-                  },
-                  ontap2: (){
-                    Utils.goTo(context, PayoutHistory());
-                  },
-                    color1: AppColors.white80,
-                    color2: AppColors.white40,
-                    date: "12 Jun-20 Jun",
-                    price: "₹3582",
-                    time: "27h37m",
-                    color3: AppColors.white20,
-                    contText: "",
-                    subText: "Last week earning",
-                    subTextColor: AppColors.white50,
-                  ),
-              );
-              }
-            }));
+        body:  NotificationListener<OverscrollIndicatorNotification>(
+          onNotification: (notification){
+            notification.disallowIndicator();
+            return true;
+          },
+          child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                if (index == 0) {
+                 return Padding(
+                   padding: const EdgeInsets.all(8.0),
+                   child: ConstPayoutContainer(
+                     ontap1: (){
+                       Utils.goTo(context, WeekEarning());
+                     },
+                     ontap2: (){
+                       Utils.goTo(context, PayoutHistory());
+                     },
+                      color1: AppColors.white60,
+                      color2: AppColors.white30,
+                      date: "22 Jun-02 Jul",
+                      price: "₹4582",
+                      time: "67h37m",
+                      color3: AppColors.secondary1,
+                      contText: "  New  ",
+                      subText: "This week's earning",
+                      subTextColor: AppColors.white,
+                    ),
+                 );
+                } else {
+                return  Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ConstPayoutContainer(
+                    ontap1: (){
+                      Utils.goTo(context, WeekEarning());
+                    },
+                    ontap2: (){
+                      Utils.goTo(context, PayoutHistory());
+                    },
+                      color1: AppColors.primary,
+                      color2: AppColors.white40,
+                      date: "12 Jun-20 Jun",
+                      price: "₹3582",
+                      time: "27h37m",
+                      color3: AppColors.white20,
+                      contText: "",
+                      subText: "Last week earning",
+                      subTextColor: AppColors.white50,
+                    ),
+                );
+                }
+              }),
+        ));
   }
 }
 

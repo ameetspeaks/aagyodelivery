@@ -28,6 +28,7 @@ class MoreScreen extends StatelessWidget {
           }),
           ConstantListTile(Icons.money, "Way to Earn", () {}),
           ConstantListTile(Icons.message, "Message Center", () {}),
+          ConstantListTile(Icons.people_alt_outlined, "Refer a Friend", () {}),
           ConstantListTile(Icons.report, "Wrong Action Report", () {}),
         ],
       ),

@@ -18,6 +18,8 @@ const String alarm = "assets/home/icons/alarm.png";
 const String currentlocation = "assets/home/icons/currentlocation.png";
 const String orderlocation = "assets/home/icons/orderlocation.png";
 const String updatelocation = "assets/home/icons/updatelocation.png";
+const String ambulance = "assets/home/icons/ambulance.png";
+const String policeman = "assets/home/icons/policeman.png";
 
 
 
@@ -25,6 +27,13 @@ const String updatelocation = "assets/home/icons/updatelocation.png";
 const String chawal = "assets/menu/chawal.png";
 
 
+//profile
+
+const String qr = "assets/profile/qr.png";
+const String bankaccount = "assets/profile/bankaccount.png";
+const String insurance = "assets/profile/insurance.png";
+const String people = "assets/profile/people.png";
+const String idcard = "assets/profile/id-card.png";
 
 //profile
   //Icons
@@ -49,4 +58,4 @@ const String google = "assets/auth/google.png";
 
 //splash
 const String splash = "assets/splash/splash.png";
-// const String splash = "assets/splash/splash.gif";
+const String splashgif = "assets/splash/splash.gif";

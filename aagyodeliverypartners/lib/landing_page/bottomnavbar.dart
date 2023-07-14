@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../colors/colors_const.dart';
 import '../const/constString.dart';
+import 'bottom_screen_pages/earning/views/earning.dart';
 import 'bottom_screen_pages/more/more.dart';
 import 'bottom_screen_pages/payout/views/payout.dart';
 
@@ -20,7 +21,7 @@ class _Bottom_PageState extends State<Bottom_Page> {
     const HomeScreen(),
     const PayoutScreen(),
     const OrderScreen(),
-    Center(child: Text("Recharge")),
+    const EarningScreen(),
     const MoreScreen(),
 
   ];
@@ -28,6 +29,9 @@ class _Bottom_PageState extends State<Bottom_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Text("ss"),
+      ),
       body: Screen[_currentindex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentindex,
@@ -51,7 +55,7 @@ class _Bottom_PageState extends State<Bottom_Page> {
           ),
           BottomNavigationBarItem(
             icon: Image.asset(wallet,height: 25,width: 25,),
-            label: 'Recharge',
+            label: 'Earning',
           ),
           BottomNavigationBarItem(
             icon: Image.asset(moreicon,height: 25,width: 25,),

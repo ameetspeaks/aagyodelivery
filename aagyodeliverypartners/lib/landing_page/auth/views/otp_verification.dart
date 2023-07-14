@@ -4,6 +4,7 @@ import 'package:aagyodeliverypartners/colors/colors_const.dart';
 import 'package:aagyodeliverypartners/landing_page/auth/views/sign_signup_button_widget.dart';
 import 'package:aagyodeliverypartners/landing_page/auth/views/welcomeScreen.dart';
 import 'package:aagyodeliverypartners/styles/textstyle_const.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart'as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -134,7 +135,8 @@ class _OtpVerificationState extends State<OtpVerification> {
                             smsCode: code);
                     // Sign the user in (or link) with the credential
                     await auth.signInWithCredential(credential);
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Bottom_Page()));
+                    // Get.offAll(Bottom_Page());
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Bottom_Page()));
                     setState(() {
                       _loading = false;
                     });

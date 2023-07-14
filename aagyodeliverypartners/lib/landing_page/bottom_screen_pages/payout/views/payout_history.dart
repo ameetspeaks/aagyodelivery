@@ -71,21 +71,21 @@ class PayoutHistory extends StatelessWidget {
               child: InkWell(
                 onTap: (){},
                 child: ConstantContainer(
-                  color: AppColors.white50,
-                  borderColor: AppColors.white80,
+                  color: AppColors.primary,
+                  radiusBorder: 5,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 20,
+                          height: 15,
                         ),
                         Row(
                           children: [
                             Text(
                               "Mon 26 Jun",
-                              style: AppTextStyles.kBody15RegularTextStyle
-                                  .copyWith(color: AppColors.white100),
+                              style: AppTextStyles.kBody17RegularTextStyle
+                                  .copyWith(color: AppColors.white20),
                             ),
                             SizedBox(
                               width: 3,
@@ -97,24 +97,24 @@ class PayoutHistory extends StatelessWidget {
                                   child: Text(
                                     " Done ",
                                     style: AppTextStyles.kCaption12RegularTextStyle
-                                        .copyWith(color: AppColors.white),
+                                        .copyWith(color: AppColors.white20),
                                   )),
                             ),
                             Spacer(),
                             Text(
                               "₹12",
-                              style: AppTextStyles.kBody15RegularTextStyle
-                                  .copyWith(color: AppColors.white100),
+                              style: AppTextStyles.kBody17RegularTextStyle
+                                  .copyWith(color: AppColors.white20),
                             ),
                             Icon(
                               Icons.arrow_forward_ios_sharp,
-                              color: AppColors.white100,
+                              color: AppColors.white20,
                               size: 15,
                             )
                           ],
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 15,
                         ),
                       ],
                     ),

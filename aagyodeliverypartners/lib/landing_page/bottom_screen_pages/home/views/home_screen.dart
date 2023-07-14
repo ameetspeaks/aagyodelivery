@@ -23,6 +23,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  bool ispressed = false;
+  var textValue = '🤨';
+
+  void toggleSwitch(bool value) {
+    if (ispressed == false) {
+      setState(() {
+        ispressed = true;
+        textValue = '😎';
+      });
+    } else {
+      setState(() {
+        ispressed = false;
+        textValue = '🤨';
+      });
+    }
+  }
+
   String selectedValue1 = "Today";
   String selectedValue2 = "Choose Date";
   final _numPages = 3;
@@ -35,7 +53,29 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           backgroundColor: AppColors.primary,
           automaticallyImplyLeading: true,
-          title: ConstSwitch(),
+          title:Row(
+            children: [
+              Text('$textValue', style: AppTextStyles.kHeading1TextStyle),
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                      toggleSwitch(true);
+                    });
+                  },
+                  child: ConstantContainer(
+                      height: 30,
+                      width: 50,
+                      color: !ispressed ? AppColors.secondary1 : AppColors.sucess100,
+                      borderColor: AppColors.white,
+                      radiusBorder: 5,
+                      child: Center(
+                          child: Text(
+                            !ispressed ? "Offline" : "Online",
+                            style: AppTextStyles.kCaption12SemiboldTextStyle
+                                .copyWith(color: AppColors.white),
+                          ))))
+            ],
+          ),
           actions: [
             IconButton(onPressed: (){
               Utils.goTo(context, SOS());
@@ -67,185 +107,198 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        body: SingleChildScrollView(
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  Container(
-                    height: size.height * 0.36,
-                    width: size.width,
-                    decoration: BoxDecoration(
-                        color: AppColors.primary1,
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(400),
-                            bottomRight: Radius.circular(400))),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+        body:  NotificationListener<OverscrollIndicatorNotification>(
+          onNotification: (notification){
+            notification.disallowIndicator();
+            return true;
+          },
+          child: SingleChildScrollView(
+            child: Stack(
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      height: size.height * 0.34,
+                      width: size.width,
+                      decoration: BoxDecoration(
+                          color: AppColors.primary1,
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(400),
+                              bottomRight: Radius.circular(400))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              currentlocation,
+                              height: 25,
+                              width: 25,
+                              color: AppColors.white,
+                            ),
+                            Text(
+                              "Jankipuram Tedhi Puliya,\nLucknow",
+                              style: AppTextStyles.kBody15RegularTextStyle
+                                  .copyWith(color: AppColors.white),
+                            ),
+                            Spacer(),
+                            InkWell(
+                              onTap: (){
+                                Utils.goTo(context, UpdateLocation());
+                              },
+                              child: ConstantContainer(
+                                height: size.height * .05,
+                                width: size.width * .3,
+                                color: AppColors.secondary2,
+                                radiusBorder: 10,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Image.asset(
+                                      updatelocation,
+                                      height: 25,
+                                      width: 25,
+                                      color: AppColors.white,
+                                    ),
+                                    Text(
+                                      "Update\nLocation",
+                                      style: AppTextStyles.kBody15RegularTextStyle
+                                          .copyWith(color: AppColors.white),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50,
+                    ),
+                    ConstantContainer(
+                      height: size.height * 0.05,
+                      color: AppColors.primary1,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              "Overview",
+                              style: AppTextStyles.kBody15SemiboldTextStyle
+                                  .copyWith(color: AppColors.white),
+                            ),
+                            Spacer(),
+                            ConstantDropdown(
+                              dropdownColor: AppColors.primary1,
+                              textColor: AppColors.white,
+                              iconColor: AppColors.white,
+                              options: ['Today', 'Yesterday', 'Choose Date'],
+                              selectedOption: selectedValue1,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  selectedValue1 = newValue;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        balanceWigets(
+                            "Remaining\nBalance", "₹ 2000.88", "Recharge"),
+                        balanceWigets("Today's\nEarning", "₹ 2000.88", "Payout"),
+                        balanceWigets("Cash\nCollected", "₹ 200.88", "Orders"),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          "Recent Orders",
+                          style: AppTextStyles.kBody15SemiboldTextStyle
+                              .copyWith(color: AppColors.white100),
+                        ),
+                        ConstantDropdown(
+                          dropdownColor: AppColors.white,
+                          textColor: AppColors.white70,
+                          iconColor: AppColors.white70,
+                          options: ['Today', 'Yesterday', 'Choose Date'],
+                          selectedOption: selectedValue2,
+                          onChanged: (newValue) {
+                            setState(() {
+                              selectedValue2 = newValue;
+                            });
+                          },
+                        ),
+                        Text(
+                          "View All",
+                          style: AppTextStyles.kBody15SemiboldTextStyle
+                              .copyWith(color: AppColors.white70),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 15,
+                        ),
+                      ],
+                    ),
+                    Container(height: size.height, child: ConstTabBar())
+                  ],
+                ),
+                Positioned(
+                    left: 40,
+                    top: 60,
+                    child: ConstantContainer(
+                      height: size.height * .28,
+                      width: size.width * .8,
+                      color: AppColors.white,
+                      shadowColor: AppColors.white60,
+                      radiusBorder: 10,
+                      child: !ispressed?Column(
                         children: [
-                          Image.asset(
-                            currentlocation,
-                            height: 25,
-                            width: 25,
-                            color: AppColors.white,
-                          ),
-                          Text(
-                            "Jankipuram Tedhi Puliya,\nLucknow",
-                            style: AppTextStyles.kBody15RegularTextStyle
-                                .copyWith(color: AppColors.white),
-                          ),
-                          Spacer(),
-                          InkWell(
-                            onTap: (){
-                              Utils.goTo(context, UpdateLocation());
-                            },
-                            child: ConstantContainer(
-                              height: size.height * .05,
-                              width: size.width * .3,
-                              color: AppColors.secondary2,
-                              radiusBorder: 10,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          Expanded(
+                            child: NotificationListener<OverscrollIndicatorNotification>(
+                              onNotification: (notification){
+                                notification.disallowIndicator();
+                                return true;
+                              },
+                              child: PageView(
+                                controller: _pageController,
+                                onPageChanged: (int page) {
+                                  setState(() {
+                                    _currentPage = page.toDouble();
+                                  });
+                                },
                                 children: [
-                                  Image.asset(
-                                    updatelocation,
-                                    height: 25,
-                                    width: 25,
-                                    color: AppColors.white,
-                                  ),
-                                  Text(
-                                    "Update\nLocation",
-                                    style: AppTextStyles.kBody15RegularTextStyle
-                                        .copyWith(color: AppColors.white),
-                                  )
+                                  AcceptRejectOrder(),
+                                  AcceptRejectOrder(),
+                                  AcceptRejectOrder(),
                                 ],
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  ConstantContainer(
-                    height: size.height * 0.05,
-                    color: AppColors.primary1,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            "Overview",
-                            style: AppTextStyles.kBody15SemiboldTextStyle
-                                .copyWith(color: AppColors.white),
-                          ),
-                          Spacer(),
-                          ConstantDropdown(
-                            dropdownColor: AppColors.primary1,
-                            textColor: AppColors.white,
-                            iconColor: AppColors.white,
-                            options: ['Today', 'Yesterday', 'Choose Date'],
-                            selectedOption: selectedValue1,
-                            onChanged: (newValue) {
-                              setState(() {
-                                selectedValue1 = newValue;
-                              });
-                            },
+                          DotsIndicator(
+                            dotsCount: _numPages,
+                            position: _currentPage,
+                            decorator: DotsDecorator(
+                              color: Colors.grey, // Inactive dot color
+                              activeColor: Colors.blue, // Active dot color
+                            ),
                           ),
                         ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      balanceWigets(
-                          "Remaining\nBalance", "₹ 2000.88", "Recharge"),
-                      balanceWigets("Today's\nEarning", "₹ 2000.88", "Payout"),
-                      balanceWigets("Cash\nCollected", "₹ 200.88", "Orders"),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        "Recent Orders",
-                        style: AppTextStyles.kBody15SemiboldTextStyle
-                            .copyWith(color: AppColors.white100),
-                      ),
-                      ConstantDropdown(
-                        dropdownColor: AppColors.white,
-                        textColor: AppColors.white70,
-                        iconColor: AppColors.white70,
-                        options: ['Today', 'Yesterday', 'Choose Date'],
-                        selectedOption: selectedValue2,
-                        onChanged: (newValue) {
-                          setState(() {
-                            selectedValue2 = newValue;
-                          });
-                        },
-                      ),
-                      Text(
-                        "View All",
-                        style: AppTextStyles.kBody15SemiboldTextStyle
-                            .copyWith(color: AppColors.white70),
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        size: 15,
-                      ),
-                    ],
-                  ),
-                  Container(height: size.height, child: ConstTabBar())
-                ],
-              ),
-              Positioned(
-                  left: 40,
-                  top: 60,
-                  child: ConstantContainer(
-                    height: size.height * .28,
-                    width: size.width * .8,
-                    color: AppColors.white,
-                    shadowColor: AppColors.white80,
-                    radiusBorder: 10,
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: PageView(
-                            controller: _pageController,
-                            onPageChanged: (int page) {
-                              setState(() {
-                                _currentPage = page.toDouble();
-                              });
-                            },
-                            children: [
-                              AcceptRejectOrder(),
-                              AcceptRejectOrder(),
-                              AcceptRejectOrder(),
-                            ],
-                          ),
-                        ),
-                        DotsIndicator(
-                          dotsCount: _numPages,
-                          position: _currentPage,
-                          decorator: DotsDecorator(
-                            color: Colors.grey, // Inactive dot color
-                            activeColor: Colors.blue, // Active dot color
-                          ),
-                        ),
-                      ],
-                    ),
-                  )),
-            ],
+                      ):Center(child: Text("You are Offline",style:AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.error100),))
+                    )
+                ),
+              ],
+            ),
           ),
         ));
   }
@@ -256,7 +309,7 @@ class _HomeScreenState extends State<HomeScreen> {
       height: size.height * .15,
       width: size.width * .3,
       color: AppColors.white,
-      shadowColor: AppColors.white80,
+      shadowColor: AppColors.white60,
       radiusBorder: 10,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

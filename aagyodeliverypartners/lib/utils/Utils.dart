@@ -1,7 +1,13 @@
+import 'package:aagyodeliverypartners/colors/colors_const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
+import '../styles/textstyle_const.dart';
+
 class Utils{
+
+  //for online offline button
+  static bool pressed = false;
 
   static void  goTo(BuildContext context, Widget nextScreen) {
     Navigator.push(
@@ -15,4 +21,21 @@ class Utils{
 
     await FlutterPhoneDirectCaller.callNumber(number);
   }
+
+  static DialogBox(BuildContext context ,String title,String content,Widget widget){
+    showDialog(context: context, builder: (context)=>AlertDialog(
+      title: Text(title),
+      content: Text(content),
+      actions: [
+        TextButton(
+          child: Text('Cancel',style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white100),),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        widget,
+      ],
+    ));
+  }
+
 }

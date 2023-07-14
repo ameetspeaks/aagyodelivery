@@ -25,94 +25,104 @@ class _OrderScreenState extends State<OrderScreen>
         centerTitle: true,
         title: Text("Order",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),),
       ),
-      body: Column(
-        children: [
-          SizedBox(height: 10,),
-          TabBar(
-            indicatorSize: TabBarIndicatorSize.label,
-            indicator: BoxDecoration(
-              border: Border.all(color: AppColors.sucess100,width: 2),
-                borderRadius: BorderRadius.circular(10)
-            ),
-            indicatorColor: Colors.black,
-            isScrollable: true,
-            controller: tabController,
-            tabs: [
-              ConstantContainer(
-                height: size.height * .035,
+      body: NotificationListener<OverscrollIndicatorNotification>(
+        onNotification: (notification){
+          notification.disallowIndicator();
+          return true;
+        },
+        child: Column(
+          children: [
+            SizedBox(height: 10,),
+            TabBar(
+              indicatorSize: TabBarIndicatorSize.label,
+              indicator: BoxDecoration(
                 color: AppColors.primary1,
-                radiusBorder: 10,
-                child: Center(
-                  child: Tab(
-                    child: Text(
-                      "  20 | All  ",
-                      style: AppTextStyles.kBody15SemiboldTextStyle
-                          .copyWith(color: AppColors.white),
-                    ),
-                  ),
-                ),
+                  borderRadius: BorderRadius.circular(10)
               ),
-              ConstantContainer(
-                // width: size.width*.2,
-                height: size.height * .035,
-                color: AppColors.primary1,
-                radiusBorder: 10,
-                child: Center(
-                  child: Tab(
-                    child: Text(
-                      " 07 | Ready to Pick ",
-                      style: AppTextStyles.kBody15SemiboldTextStyle
-                          .copyWith(color: AppColors.white),
-                    ),
-                  ),
-                ),
-              ),
-              ConstantContainer(
-                // width: size.width*.2,
-                height: size.height * .035,
-                color: AppColors.primary1,
-                radiusBorder: 10,
-                child: Center(
-                  child: Tab(
-                    child: Text(
-                      " 07 | On the Way ",
-                      style: AppTextStyles.kBody15SemiboldTextStyle
-                          .copyWith(color: AppColors.white),
-                    ),
-                  ),
-                ),
-              ),
-              ConstantContainer(
-                // width: size.width*.2,
-                height: size.height * .035,
-                color: AppColors.primary1,
-                radiusBorder: 10,
-                child: Center(
-                  child: Tab(
-                    child: Text(
-                      " 07 | Delivered ",
-                      style: AppTextStyles.kBody15SemiboldTextStyle
-                          .copyWith(color: AppColors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Expanded(
-            child: TabBarView(
-              physics:  ScrollPhysics(),
+              indicatorColor: Colors.black,
+              isScrollable: true,
               controller: tabController,
-              children: [
-                AllOrder(),
-                ReadyToPickOrder(),
-                OnTheWayOrder(),
-                DeliveredOrder(),
-
+              tabs: [
+                ConstantContainer(
+                  height: size.height * .035,
+                  borderWidth: 1,
+                  borderColor: AppColors.primary1,
+                  radiusBorder: 10,
+                  child: Center(
+                    child: Tab(
+                      child: Text(
+                        "  20 | All  ",
+                        style: AppTextStyles.kBody15SemiboldTextStyle
+                            .copyWith(color: AppColors.white80),
+                      ),
+                    ),
+                  ),
+                ),
+                ConstantContainer(
+                  // width: size.width*.2,
+                  height: size.height * .035,
+                  borderWidth: 1,
+                  borderColor: AppColors.primary1,
+                  radiusBorder: 10,
+                  child: Center(
+                    child: Tab(
+                      child: Text(
+                        " 07 | Ready to Pick ",
+                        style: AppTextStyles.kBody15SemiboldTextStyle
+                            .copyWith(color: AppColors.white80),
+                      ),
+                    ),
+                  ),
+                ),
+                ConstantContainer(
+                  // width: size.width*.2,
+                  height: size.height * .035,
+                  borderWidth: 1,
+                  borderColor: AppColors.primary1,
+                  radiusBorder: 10,
+                  child: Center(
+                    child: Tab(
+                      child: Text(
+                        " 07 | On the Way ",
+                        style: AppTextStyles.kBody15SemiboldTextStyle
+                            .copyWith(color: AppColors.white80),
+                      ),
+                    ),
+                  ),
+                ),
+                ConstantContainer(
+                  // width: size.width*.2,
+                  height: size.height * .035,
+                  borderWidth: 1,
+                  borderColor: AppColors.primary1,
+                  radiusBorder: 10,
+                  child: Center(
+                    child: Tab(
+                      child: Text(
+                        " 07 | Delivered ",
+                        style: AppTextStyles.kBody15SemiboldTextStyle
+                            .copyWith(color: AppColors.white80),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
-          )
-        ],
+            Expanded(
+              child: TabBarView(
+                physics:  ScrollPhysics(),
+                controller: tabController,
+                children: [
+                  AllOrder(),
+                  ReadyToPickOrder(),
+                  OnTheWayOrder(),
+                  DeliveredOrder(),
+
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -124,9 +134,9 @@ class AllOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List name =[
-      "Ready to Pick",
-      "On the Way",
-      "Delivered",
+    ReadyToPickOrder(),
+      OnTheWayOrder(),
+      DeliveredOrder(),
     ];
     List color = [
       AppColors.sucess100,
@@ -139,7 +149,7 @@ class AllOrder extends StatelessWidget {
         shrinkWrap: true,
         physics: ScrollPhysics(),
         itemBuilder: (context, index) {
-          return ConstOrderContainer(color: color[index],text: name[index],textColor: AppColors.white,);
+          return name[index];
         });
   }
 }
@@ -150,11 +160,11 @@ class ReadyToPickOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 8,
+        itemCount: 3,
         shrinkWrap: true,
         physics: ScrollPhysics(),
         itemBuilder: (context, index) {
-          return ConstOrderContainer(color: AppColors.sucess100,text: "Ready to Pick",textColor: AppColors.white,);
+          return ConstOrderContainer(color: AppColors.sucess100,text: "Ready to Pick",textColor: AppColors.white, messagealert: 'Mark as Ready to PickUp',);
         });
   }
 }
@@ -165,11 +175,11 @@ class OnTheWayOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 8,
+        itemCount: 3,
         shrinkWrap: true,
         physics: ScrollPhysics(),
         itemBuilder: (context, index) {
-          return ConstOrderContainer(color: AppColors.sucess100,text: "On the Way",textColor: AppColors.white,);
+          return ConstOrderContainer(color: AppColors.sucess100,text: "On the Way",textColor: AppColors.white, messagealert: 'Mark as On the way',);
         });
   }
 }
@@ -180,11 +190,11 @@ class DeliveredOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 8,
+        itemCount: 3,
         shrinkWrap: true,
         physics: ScrollPhysics(),
         itemBuilder: (context, index) {
-          return ConstOrderContainer(color: AppColors.white50,text: "Delivered",textColor: AppColors.white,);
+          return ConstOrderContainer(color: AppColors.white50,text: "Delivered",textColor: AppColors.white, messagealert: 'Mark as Delivered',);
         });
   }
 }

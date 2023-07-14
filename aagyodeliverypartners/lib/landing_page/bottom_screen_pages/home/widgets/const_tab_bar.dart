@@ -23,65 +23,73 @@ class _ConstTabBarState extends State<ConstTabBar>
     return Column(
       children: [
         TabBar(
-          indicatorColor: Colors.transparent,
+         indicatorSize: TabBarIndicatorSize.label,
+          indicator: BoxDecoration(
+              color: AppColors.primary1,
+              borderRadius: BorderRadius.circular(10)
+          ),
           isScrollable: true,
           controller: tabController,
           tabs: [
             ConstantContainer(
-              height: size.height * .035,
-              color: AppColors.primary1,
-              radiusBorder: 10,
+             height: size.height * .035,
+                borderWidth: 1,
+                borderColor: AppColors.primary1,
+                radiusBorder: 10,
               child: Center(
                 child: Tab(
                   child: Text(
                     "  20 | All  ",
                     style: AppTextStyles.kBody15SemiboldTextStyle
-                        .copyWith(color: AppColors.white),
+                        .copyWith(color: AppColors.white80),
                   ),
                 ),
               ),
             ),
             ConstantContainer(
               // width: size.width*.2,
-              height: size.height * .035,
-              color: AppColors.primary1,
-              radiusBorder: 10,
+             height: size.height * .035,
+                borderWidth: 1,
+                borderColor: AppColors.primary1,
+                radiusBorder: 10,
               child: Center(
                 child: Tab(
                   child: Text(
                     " 07 | Ready to Pick ",
                     style: AppTextStyles.kBody15SemiboldTextStyle
-                        .copyWith(color: AppColors.white),
+                        .copyWith(color: AppColors.white80),
                   ),
                 ),
               ),
             ),
             ConstantContainer(
               // width: size.width*.2,
-              height: size.height * .035,
-              color: AppColors.primary1,
-              radiusBorder: 10,
+             height: size.height * .035,
+                borderWidth: 1,
+                borderColor: AppColors.primary1,
+                radiusBorder: 10,
               child: Center(
                 child: Tab(
                   child: Text(
                     " 07 | On the Way ",
                     style: AppTextStyles.kBody15SemiboldTextStyle
-                        .copyWith(color: AppColors.white),
+                        .copyWith(color: AppColors.white80),
                   ),
                 ),
               ),
             ),
             ConstantContainer(
               // width: size.width*.2,
-              height: size.height * .035,
-              color: AppColors.primary1,
-              radiusBorder: 10,
+             height: size.height * .035,
+                borderWidth: 1,
+                borderColor: AppColors.primary1,
+                radiusBorder: 10,
               child: Center(
                 child: Tab(
                   child: Text(
                     " 07 | Delivered ",
                     style: AppTextStyles.kBody15SemiboldTextStyle
-                        .copyWith(color: AppColors.white),
+                        .copyWith(color: AppColors.white80),
                   ),
                 ),
               ),
@@ -90,7 +98,7 @@ class _ConstTabBarState extends State<ConstTabBar>
         ),
         Expanded(
           child: TabBarView(
-            physics: const NeverScrollableScrollPhysics(),
+            physics: ScrollPhysics(),
             controller: tabController,
             children: [
               All(),
@@ -112,9 +120,9 @@ class All extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List name =[
-      "Ready to Pick",
-      "On the Way",
-      "Delivered",
+      ReadyToPick(),
+      OnTheWay(),
+      Delivered(),
     ];
     List color = [
       AppColors.sucess100,
@@ -123,11 +131,11 @@ class All extends StatelessWidget {
     ];
     Size size = MediaQuery.of(context).size;
     return ListView.builder(
-        itemCount: 3,
+        itemCount: name.length,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          return ConstOrderContainer(color: color[index],text: name[index],textColor: AppColors.white,);
+        return name[index];
         });
   }
 }
@@ -138,11 +146,11 @@ class ReadyToPick extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 3,
+        itemCount: 1,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          return ConstOrderContainer(color: AppColors.sucess100,text: "Ready to Pick",textColor: AppColors.white,);
+          return ConstOrderContainer(color: AppColors.sucess100,text: "Ready to Pick",textColor: AppColors.white, messagealert: 'Mark as Ready to PickUp',);
         });
   }
 }
@@ -153,11 +161,11 @@ class OnTheWay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 3,
+        itemCount: 2,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          return ConstOrderContainer(color: AppColors.sucess100,text: "On the Way",textColor: AppColors.white,);
+          return ConstOrderContainer(color: AppColors.sucess100,text: "On the Way",textColor: AppColors.white, messagealert: 'Mark as One the Way',);
         });
   }
 }
@@ -172,7 +180,7 @@ class Delivered extends StatelessWidget {
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          return ConstOrderContainer(color: AppColors.white50,text: "Delivered",textColor: AppColors.white,);
+          return ConstOrderContainer(color: AppColors.white50,text: "Delivered",textColor: AppColors.white, messagealert: 'Mark as Delivered',);
         });
   }
 }

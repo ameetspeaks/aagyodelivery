@@ -76,6 +76,7 @@ flutter:
     - assets/auth/
     - assets/bottom_nav_bar/
 #    - assets/menu/
+    - assets/profile/
     - assets/profile/Icons/
 #    - assets/add/icons/
 

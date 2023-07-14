@@ -3,8 +3,8 @@ import 'package:aagyodeliverypartners/styles/textstyle_const.dart';
 import 'package:flutter/material.dart';
 import '../../../../colors/colors_const.dart';
 
-class WeekEarning extends StatelessWidget {
-  const WeekEarning({Key? key}) : super(key: key);
+class EarningScreen extends StatelessWidget {
+  const EarningScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class WeekEarning extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.primary,
         centerTitle: true,
-        title: Text("This Week's Earning",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),),
+        title: Text("Earning",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),),
       ),
       body: NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (notification){
@@ -28,14 +28,12 @@ class WeekEarning extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: ConstantContainer(
                 height: size.height*.4,
-                // width: size.width*.8,
                 color: AppColors.primary1,
                 borderColor: AppColors.white80,
                 radiusBorder: 5,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-
                     children: [
                       Text("Total Earnings",style: AppTextStyles.kHeading3TextStyle.copyWith(color: AppColors.white),),
                       Text("26 Jun 02 Jul",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white50),),

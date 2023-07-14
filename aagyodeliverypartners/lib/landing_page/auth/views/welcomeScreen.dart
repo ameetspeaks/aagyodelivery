@@ -123,7 +123,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ),
               ),
               SignInUpButtonWidget(
-                text:  !_isloading?'Get Otp':'circular',
+                text:  !_isloading?'Get OTP':'circular',
                 onpressed: () async {
                   setState(() {
                     _isloading = true;
