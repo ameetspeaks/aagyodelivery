@@ -20,7 +20,7 @@ class ConstOrderContainer extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: ConstantContainer(
         color: AppColors.white,
-        shadowColor: AppColors.white80,
+        shadowColor: AppColors.white60,
         radiusBorder: 15,
         child: Padding(
           padding: const EdgeInsets.all(8.0),

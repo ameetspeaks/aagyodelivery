@@ -1,8 +1,12 @@
 import 'dart:io';
-
 import 'package:aagyodeliverypartners/const/constContainer.dart';
-import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/payout.dart';
+import 'package:aagyodeliverypartners/landing_page/auth/views/login_screen.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/earning/views/wallet.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/aagyo_id.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/insurance_details.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/personal_details.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/personal_saving_account.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/qr.dart';
 import 'package:aagyodeliverypartners/utils/Utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +16,6 @@ import 'package:image_picker/image_picker.dart';
 import '../../../../../colors/colors_const.dart';
 import '../../../../../const/constString.dart';
 import '../../../../../styles/textstyle_const.dart';
-import '../../../../auth/views/welcomeScreen.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -42,7 +45,7 @@ class _ProfileState extends State<Profile> {
         backgroundColor: AppColors.primary,
         elevation: 0,
         title: Text(
-          "The Aagyo Store",
+          "Profile Details",
           style: AppTextStyles.kBody17SemiboldTextStyle
               .copyWith(color: AppColors.white10),
         ),
@@ -94,21 +97,26 @@ class _ProfileState extends State<Profile> {
           ConstantListTile("Personal Details",people,() {
             Utils.goTo(context, PersonalDetails());
           },),
-          ConstantListTile("Insurance Details",insurance,() {},),
+          ConstantListTile("Insurance Details",insurance,() {
+            Utils.goTo(context, InsuranceDetails());
+          },),
 
-          ConstantListTile("Personal Savings Account",bankaccount,() {},),
-          ConstantListTile("Aagyo ID and Permit Document",idcard,() {},),
-          ConstantListTile("Payout",payout,() {
-            Utils.goTo(context, WalletPageScreen());},),
-          ConstantListTile("Stop Reminder",stop,() {},),
-          ConstantListTile("QR Code for Aagyo ID",qr,() {},),
+          ConstantListTile("Personal Savings Account",bankaccount,() {
+            Utils.goTo(context, PersonalSavingAccount());
+          },),
+          ConstantListTile("Aagyo ID and Permit Document",idcard,() {
+            Utils.goTo(context, AagyoId());
+          },),
+          ConstantListTile("QR Code for Aagyo ID",qr,() {
+            Utils.goTo(context, QR());
+          },),
           ConstantListTile("Logout",logout,() {
             Utils.DialogBox(context,"Do you really want to Logout?", "",
               ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary1),
               child: Text('Confirm'),
               onPressed: () {
-                Get.offAll(WelcomeScreen());
+                Get.offAll(LoginPage());
               },
             ),
             );

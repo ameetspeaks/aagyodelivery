@@ -1,33 +1,35 @@
 import 'package:aagyodeliverypartners/const/constString.dart';
-import 'package:aagyodeliverypartners/landing_page/auth/controllers/auth_controller.dart';
-import 'package:aagyodeliverypartners/landing_page/auth/views/welcomeScreen.dart';
+import 'package:aagyodeliverypartners/notification_services/local_notifications.dart';
 import 'package:aagyodeliverypartners/styles/textstyle_const.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'colors/colors_const.dart';
-import 'landing_page/bottomnavbar.dart';
+import 'landing_page/auth/views/login_screen.dart';
 
 
-
+Future<void> backgroundHandler(RemoteMessage message) async {
+  print(message.data.toString());
+  print(message.notification!.title);
+}
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp();
-  Get.put(AuthControllerNew());
-  Get.put(AuthController());
+  FirebaseMessaging.onBackgroundMessage(backgroundHandler);
+  LocalNotificationService.initialize();
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Bottom_Page(),
+      home:  SplashScreen(),
     );
   }
 }
@@ -44,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => WelcomeScreen()),
+        MaterialPageRoute(builder: (context) => LoginPage()),
       );
     });
   }
@@ -66,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
             SizedBox(height: 40,),
-            ClipOval(child: Image.asset(splashgif,height: 400,width: 400,)),
+            Center(child: ClipOval(child: Image.asset(splashgif,height: 400,width: 400,))),
           ],
         ),
       ),

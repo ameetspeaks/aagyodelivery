@@ -131,11 +131,12 @@ class All extends StatelessWidget {
     ];
     Size size = MediaQuery.of(context).size;
     return ListView.builder(
-        itemCount: name.length,
+        itemCount: name.length+1,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-        return name[index];
+          var length= name.length;
+          return index<length?name[index]:SizedBox(height: size.height*.25,);
         });
   }
 }
@@ -161,7 +162,7 @@ class OnTheWay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 2,
+        itemCount: 1,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {

@@ -1,3 +1,4 @@
+import 'package:aagyodeliverypartners/const/const_dropdown.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/widgets/const_order_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class OrderScreen extends StatefulWidget {
 
 class _OrderScreenState extends State<OrderScreen>
     with TickerProviderStateMixin {
+  String selectedValue2 = "Choose Date";
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -23,7 +25,24 @@ class _OrderScreenState extends State<OrderScreen>
       appBar: AppBar(
         backgroundColor: AppColors.primary,
         centerTitle: true,
-        title: Text("Order",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),),
+        title: Text("All Order",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ConstantDropdown(
+            dropdownColor: AppColors.primary,
+            textColor: AppColors.white,
+            iconColor: AppColors.white,
+            options: ['Today', 'Yesterday', 'Choose Date'],
+            selectedOption: selectedValue2,
+            onChanged: (newValue) {
+              setState(() {
+                selectedValue2 = newValue;
+              });
+            },
+          ),
+        ),
+      ],
       ),
       body: NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (notification){
@@ -145,11 +164,12 @@ class AllOrder extends StatelessWidget {
     ];
     Size size = MediaQuery.of(context).size;
     return ListView.builder(
-        itemCount: 3,
+        itemCount: name.length+1,
         shrinkWrap: true,
         physics: ScrollPhysics(),
         itemBuilder: (context, index) {
-          return name[index];
+         var length= name.length;
+          return index<length?name[index]:SizedBox(height: size.height*.25,);
         });
   }
 }
@@ -160,7 +180,7 @@ class ReadyToPickOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 3,
+        itemCount: 1,
         shrinkWrap: true,
         physics: ScrollPhysics(),
         itemBuilder: (context, index) {
@@ -175,7 +195,7 @@ class OnTheWayOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 3,
+        itemCount: 1,
         shrinkWrap: true,
         physics: ScrollPhysics(),
         itemBuilder: (context, index) {

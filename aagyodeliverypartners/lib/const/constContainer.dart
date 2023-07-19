@@ -31,8 +31,8 @@ class ConstantContainer extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 color: shadowColor?? Colors.transparent,
-                blurRadius: 12.0,
-                  offset: Offset(4, 4)
+                blurRadius: 1.0,
+                  offset: Offset(2, 2)
               ),
             ],
             borderRadius: BorderRadius.circular(radiusBorder ?? 0),

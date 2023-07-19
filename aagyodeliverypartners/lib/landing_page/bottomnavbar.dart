@@ -6,6 +6,7 @@ import '../../colors/colors_const.dart';
 import '../const/constString.dart';
 import 'bottom_screen_pages/earning/views/earning.dart';
 import 'bottom_screen_pages/more/more.dart';
+import 'bottom_screen_pages/more/profile/view/profile.dart';
 import 'bottom_screen_pages/payout/views/payout.dart';
 
 class Bottom_Page extends StatefulWidget {
@@ -16,14 +17,14 @@ class Bottom_Page extends StatefulWidget {
 }
 
 class _Bottom_PageState extends State<Bottom_Page> {
+  bool pressed = false;
   int _currentindex = 0;
   final Screen = [
     const HomeScreen(),
     const PayoutScreen(),
     const OrderScreen(),
     const EarningScreen(),
-    const MoreScreen(),
-
+    const Profile(),
   ];
 
   @override
@@ -66,6 +67,7 @@ class _Bottom_PageState extends State<Bottom_Page> {
         {
           setState(() {
             _currentindex = index;
+            pressed = true;
           })
         },
       ),

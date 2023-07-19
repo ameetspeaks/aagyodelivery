@@ -4,7 +4,7 @@ import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/view
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/views/action_screens/notifications.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/views/action_screens/sos.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/views/update_location.dart';
-import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/widgets/const_switch.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/order/views/order_screen.dart';
 import 'package:aagyodeliverypartners/styles/textstyle_const.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
@@ -118,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Column(
                   children: [
                     Container(
-                      height: size.height * 0.34,
+                      height: size.height * 0.28,
                       width: size.width,
                       decoration: BoxDecoration(
                           color: AppColors.primary1,
@@ -175,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 50,
+                      height: 100,
                     ),
                     ConstantContainer(
                       height: size.height * 0.05,
@@ -191,18 +191,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                   .copyWith(color: AppColors.white),
                             ),
                             Spacer(),
-                            ConstantDropdown(
-                              dropdownColor: AppColors.primary1,
-                              textColor: AppColors.white,
-                              iconColor: AppColors.white,
-                              options: ['Today', 'Yesterday', 'Choose Date'],
-                              selectedOption: selectedValue1,
-                              onChanged: (newValue) {
-                                setState(() {
-                                  selectedValue1 = newValue;
-                                });
-                              },
-                            ),
+                            // ConstantDropdown(
+                            //   dropdownColor: AppColors.primary1,
+                            //   textColor: AppColors.white,
+                            //   iconColor: AppColors.white,
+                            //   options: ['Today', 'Yesterday', 'Choose Date'],
+                            //   selectedOption: selectedValue1,
+                            //   onChanged: (newValue) {
+                            //     setState(() {
+                            //       selectedValue1 = newValue;
+                            //     });
+                            //   },
+                            // ),
                           ],
                         ),
                       ),
@@ -219,36 +219,31 @@ class _HomeScreenState extends State<HomeScreen> {
                         balanceWigets("Cash\nCollected", "₹ 200.88", "Orders"),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          "Recent Orders",
-                          style: AppTextStyles.kBody15SemiboldTextStyle
-                              .copyWith(color: AppColors.white100),
-                        ),
-                        ConstantDropdown(
-                          dropdownColor: AppColors.white,
-                          textColor: AppColors.white70,
-                          iconColor: AppColors.white70,
-                          options: ['Today', 'Yesterday', 'Choose Date'],
-                          selectedOption: selectedValue2,
-                          onChanged: (newValue) {
-                            setState(() {
-                              selectedValue2 = newValue;
-                            });
-                          },
-                        ),
-                        Text(
-                          "View All",
-                          style: AppTextStyles.kBody15SemiboldTextStyle
-                              .copyWith(color: AppColors.white70),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 15,
-                        ),
-                      ],
+                    Divider(color: AppColors.white100,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              "Recent Orders",
+                              style: AppTextStyles.kBody15SemiboldTextStyle
+                                  .copyWith(color: AppColors.white100),
+                            ),
+                          ),
+                          TextButton(onPressed: (){
+                            Utils.goTo(context, OrderScreen());
+                          }, child:  Text(
+                            "View All",
+                            style: AppTextStyles.kBody15SemiboldTextStyle
+                                .copyWith(color: AppColors.white70),
+                          ),),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 15,
+                          ),
+                        ],
+                      ),
                     ),
                     Container(height: size.height, child: ConstTabBar())
                   ],
@@ -256,47 +251,73 @@ class _HomeScreenState extends State<HomeScreen> {
                 Positioned(
                     left: 40,
                     top: 60,
-                    child: ConstantContainer(
-                      height: size.height * .28,
-                      width: size.width * .8,
-                      color: AppColors.white,
-                      shadowColor: AppColors.white60,
-                      radiusBorder: 10,
-                      child: !ispressed?Column(
-                        children: [
-                          Expanded(
-                            child: NotificationListener<OverscrollIndicatorNotification>(
-                              onNotification: (notification){
-                                notification.disallowIndicator();
-                                return true;
-                              },
-                              child: PageView(
-                                controller: _pageController,
-                                onPageChanged: (int page) {
-                                  setState(() {
-                                    _currentPage = page.toDouble();
-                                  });
-                                },
-                                children: [
-                                  AcceptRejectOrder(),
-                                  AcceptRejectOrder(),
-                                  AcceptRejectOrder(),
-                                ],
+                    child: ispressed?Stack(
+                      children: [
+                    ConstantContainer(
+                          height: size.height * .28,
+                          width: size.width * .8,
+                          color: Colors.transparent,
+                          radiusBorder: 10,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: NotificationListener<OverscrollIndicatorNotification>(
+                                  onNotification: (notification){
+                                    notification.disallowIndicator();
+                                    return true;
+                                  },
+                                  child: PageView(
+                                    controller: _pageController,
+                                    onPageChanged: (int page) {
+                                      setState(() {
+                                        _currentPage = page.toDouble();
+                                      });
+                                    },
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                                        child: AcceptRejectOrder(),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                                        child: AcceptRejectOrder(),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                                        child: AcceptRejectOrder(),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
+                          )
+                        ),
+                        Positioned(
+                          left: size.width*.32,
+                          bottom: 10,
+                          child:DotsIndicator(
+                          dotsCount: _numPages,
+                          position: _currentPage,
+                          decorator: DotsDecorator(
+                            color: Colors.grey, // Inactive dot color
+                            activeColor: AppColors.primary, // Active dot color
                           ),
-                          DotsIndicator(
-                            dotsCount: _numPages,
-                            position: _currentPage,
-                            decorator: DotsDecorator(
-                              color: Colors.grey, // Inactive dot color
-                              activeColor: Colors.blue, // Active dot color
-                            ),
-                          ),
-                        ],
-                      ):Center(child: Text("You are Offline",style:AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.error100),))
-                    )
-                ),
+                        ),)
+                      ],
+                    ):ConstantContainer(
+                        height: size.height * .28,
+                        width: size.width * .8,
+                        color: AppColors.white,
+                        radiusBorder: 10,
+                        child: Column(
+                          children: [
+                            SizedBox(height: 20,),
+                            Text("🤨",style:TextStyle(fontSize: 100),),
+                            Text("You are Offline",style:AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.error100),),
+                          ],
+                        )),
+                )
               ],
             ),
           ),
