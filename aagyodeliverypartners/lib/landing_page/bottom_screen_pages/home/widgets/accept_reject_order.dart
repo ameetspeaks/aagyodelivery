@@ -11,10 +11,12 @@ class AcceptRejectOrder extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return ConstantContainer(
-      height: size.height * .28,
-      width: size.width * .8,
+      height: size.height * .25,
+      width: size.width * .9,
       color: AppColors.white,
-      shadowColor: AppColors.white60,
+      shadowColor: AppColors.white50,
+      offset: Offset(3,3),
+      blurradius: 1,
       radiusBorder: 10,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -23,18 +25,21 @@ class AcceptRejectOrder extends StatelessWidget {
           children: [
             Row(
               children: [
-                Expanded(child: Text("Store Name",style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white100),)),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Store Name",style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white100),),
+                    Text("Store Address",style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white100),),
+                  ],
+                ),
                 Spacer(),
-                Expanded(child: Text("Order Number",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white100),)),
-
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(child: Text("Store Address",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white100),)),
-                Spacer(),
-                Expanded(child: Text("123456",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white100),)),
-
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Order Number",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white100),),
+                    Text("123456",style: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color: AppColors.white100),),
+                  ],
+                ),
               ],
             ),
             SizedBox(height: 10,),
@@ -59,7 +64,7 @@ class AcceptRejectOrder extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("Customer Name",style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white100)),
-                    Text("Customer Address",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white100),),
+                    Text("Customer Address",style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white100),),
                   ],
                 ),
                 Spacer(),

@@ -1,4 +1,5 @@
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/widgets/const_order_container.dart';
+import 'package:aagyodeliverypartners/utils/Utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../colors/colors_const.dart';
@@ -14,7 +15,7 @@ class ConstTabBar extends StatefulWidget {
 
 class _ConstTabBarState extends State<ConstTabBar>
     with TickerProviderStateMixin {
-  // int currentIndex=1;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -29,6 +30,8 @@ class _ConstTabBarState extends State<ConstTabBar>
               borderRadius: BorderRadius.circular(10)
           ),
           isScrollable: true,
+          unselectedLabelColor: AppColors.white100,
+          unselectedLabelStyle: AppTextStyles.kBody15SemiboldTextStyle,
           controller: tabController,
           tabs: [
             ConstantContainer(
@@ -40,8 +43,6 @@ class _ConstTabBarState extends State<ConstTabBar>
                 child: Tab(
                   child: Text(
                     "  20 | All  ",
-                    style: AppTextStyles.kBody15SemiboldTextStyle
-                        .copyWith(color: AppColors.white80),
                   ),
                 ),
               ),
@@ -56,14 +57,11 @@ class _ConstTabBarState extends State<ConstTabBar>
                 child: Tab(
                   child: Text(
                     " 07 | Ready to Pick ",
-                    style: AppTextStyles.kBody15SemiboldTextStyle
-                        .copyWith(color: AppColors.white80),
                   ),
                 ),
               ),
             ),
             ConstantContainer(
-              // width: size.width*.2,
              height: size.height * .035,
                 borderWidth: 1,
                 borderColor: AppColors.primary1,
@@ -72,14 +70,11 @@ class _ConstTabBarState extends State<ConstTabBar>
                 child: Tab(
                   child: Text(
                     " 07 | On the Way ",
-                    style: AppTextStyles.kBody15SemiboldTextStyle
-                        .copyWith(color: AppColors.white80),
                   ),
                 ),
               ),
             ),
             ConstantContainer(
-              // width: size.width*.2,
              height: size.height * .035,
                 borderWidth: 1,
                 borderColor: AppColors.primary1,
@@ -88,8 +83,6 @@ class _ConstTabBarState extends State<ConstTabBar>
                 child: Tab(
                   child: Text(
                     " 07 | Delivered ",
-                    style: AppTextStyles.kBody15SemiboldTextStyle
-                        .copyWith(color: AppColors.white80),
                   ),
                 ),
               ),
@@ -105,7 +98,6 @@ class _ConstTabBarState extends State<ConstTabBar>
               ReadyToPick(),
               OnTheWay(),
               Delivered(),
-
             ],
           ),
         )
@@ -124,19 +116,19 @@ class All extends StatelessWidget {
       OnTheWay(),
       Delivered(),
     ];
-    List color = [
-      AppColors.sucess100,
-      AppColors.sucess100,
-      AppColors.white50,
-    ];
+
     Size size = MediaQuery.of(context).size;
     return ListView.builder(
-        itemCount: name.length+1,
+        itemCount: name.length,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          var length= name.length;
-          return index<length?name[index]:SizedBox(height: size.height*.25,);
+          var length = name.length;
+          return index < length
+              ? name[index]
+              : SizedBox(
+            height: size.height * .25,
+          );
         });
   }
 }
@@ -151,7 +143,7 @@ class ReadyToPick extends StatelessWidget {
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          return ConstOrderContainer(color: AppColors.sucess100,text: "Ready to Pick",textColor: AppColors.white, messagealert: 'Mark as Ready to PickUp',);
+          return ConstOrderContainer(color: AppColors.sucess100,text: "Ready to Pick",textColor: AppColors.white, messagealert: 'Mark as Ready to PickUp', ontapCalltoStore: (){  Utils.callNumber("198");}, ontapCalltoCustomer: () {Utils.callNumber("555");  },);
         });
   }
 }
@@ -166,7 +158,7 @@ class OnTheWay extends StatelessWidget {
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          return ConstOrderContainer(color: AppColors.sucess100,text: "On the Way",textColor: AppColors.white, messagealert: 'Mark as One the Way',);
+          return ConstOrderContainer(color: AppColors.sucess100,text: "On the Way",textColor: AppColors.white, messagealert: 'Mark as One the Way', ontapCalltoStore: () { Utils.callNumber("121"); }, ontapCalltoCustomer: () { Utils.callNumber("555"); },);
         });
   }
 }
@@ -181,7 +173,7 @@ class Delivered extends StatelessWidget {
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          return ConstOrderContainer(color: AppColors.white50,text: "Delivered",textColor: AppColors.white, messagealert: 'Mark as Delivered',);
+          return ConstOrderContainer(color: AppColors.white50,text: "Delivered",textColor: AppColors.white, messagealert: 'Mark as Delivered', ontapCalltoStore: () { Utils.callNumber("198"); }, ontapCalltoCustomer: () { Utils.callNumber("555"); },);
         });
   }
 }

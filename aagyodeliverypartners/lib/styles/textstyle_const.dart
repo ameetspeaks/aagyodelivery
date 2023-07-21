@@ -51,6 +51,9 @@ class AppTextStyles {
   static const TextStyle kCaption12RegularTextStyle = TextStyle(
     fontSize: 12,
   );
+  static const TextStyle kCaption14RegularTextStyle = TextStyle(
+    fontSize: 14,
+  );
 
   static const TextStyle kCaption12SemiboldTextStyle = TextStyle(
     fontWeight: FontWeight.w600,

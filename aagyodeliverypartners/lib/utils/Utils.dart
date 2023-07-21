@@ -2,6 +2,7 @@ import 'package:aagyodeliverypartners/colors/colors_const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../styles/textstyle_const.dart';
 
 class Utils{
@@ -60,6 +61,22 @@ class Utils{
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 5);
+  }
+
+  static Future<void> openMap(String location) async {
+
+    String googleUrl = "https://www.google.com/maps/search/$location";
+    final Uri _url = Uri.parse(googleUrl);
+
+
+    try{
+
+      if (!await launchUrl(_url)) {
+        throw Exception('Could not launch $_url');
+      }
+    }catch(e){
+      Utils.showToastMsg("Something went wrong");
+    }
   }
 
 }

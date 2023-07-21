@@ -1,18 +1,18 @@
-import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/earning/views/recentactivity.dart';
-import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/earning/views/viewall.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/wallet/views/recentactivity.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/wallet/views/viewall.dart';
 import 'package:flutter/material.dart';
 import '../../../../colors/colors_const.dart';
 import '../../../../const/constString.dart';
 import '../../../../styles/textstyle_const.dart';
 
-class WalletPageScreen extends StatefulWidget {
-  const WalletPageScreen({super.key});
+class WalletScreen extends StatefulWidget {
+  const WalletScreen({super.key});
 
   @override
-  State<WalletPageScreen> createState() => _WalletPageScreenState();
+  State<WalletScreen> createState() => _WalletScreenState();
 }
 
-class _WalletPageScreenState extends State<WalletPageScreen> {
+class _WalletScreenState extends State<WalletScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -23,10 +23,7 @@ class _WalletPageScreenState extends State<WalletPageScreen> {
         centerTitle: true,
         title: Text(
           'Wallet',
-          style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(
-            color: AppColors.white,
           ),
-        ),
         actions: [
           IconButton(
               onPressed: () {},

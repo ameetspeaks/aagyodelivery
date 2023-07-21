@@ -1,4 +1,4 @@
-import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/earning/views/wallet.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/wallet/views/wallet.dart';
 import 'package:aagyodeliverypartners/utils/Utils.dart';
 import 'package:flutter/material.dart';
 import '../../../../../../colors/colors_const.dart';
@@ -72,7 +72,7 @@ class _RechargeWalletState extends State<RechargeWallet> {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primary),
                   onPressed: () {
-                    Utils.goTo(context, WalletPageScreen());
+                    // Utils.goTo(context, WalletScreen());
                   },
                   child: Text(
                     'Recharge Your Wallet',

@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   String selectedValue1 = "Today";
   String selectedValue2 = "Choose Date";
-  final _numPages = 3;
+  final _numPages = 5;
    PageController _pageController = PageController();
   double _currentPage = 0;
   @override
@@ -145,7 +145,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             Spacer(),
                             InkWell(
                               onTap: (){
-                                Utils.goTo(context, UpdateLocation());
+                                Utils.openMap("Train near me");
+                                // Utils.goTo(context, UpdateLocation());
                               },
                               child: ConstantContainer(
                                 height: size.height * .05,
@@ -175,7 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 100,
+                      height: 60,
                     ),
                     ConstantContainer(
                       height: size.height * 0.05,
@@ -183,26 +184,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
                               "Overview",
                               style: AppTextStyles.kBody15SemiboldTextStyle
                                   .copyWith(color: AppColors.white),
                             ),
-                            Spacer(),
-                            // ConstantDropdown(
-                            //   dropdownColor: AppColors.primary1,
-                            //   textColor: AppColors.white,
-                            //   iconColor: AppColors.white,
-                            //   options: ['Today', 'Yesterday', 'Choose Date'],
-                            //   selectedOption: selectedValue1,
-                            //   onChanged: (newValue) {
-                            //     setState(() {
-                            //       selectedValue1 = newValue;
-                            //     });
-                            //   },
-                            // ),
                           ],
                         ),
                       ),
@@ -214,9 +201,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         balanceWigets(
-                            "Remaining\nBalance", "₹ 2000.88", "Recharge"),
-                        balanceWigets("Today's\nEarning", "₹ 2000.88", "Payout"),
-                        balanceWigets("Cash\nCollected", "₹ 200.88", "Orders"),
+                            "Remaining", "Balance", "₹ 20020.88", "Recharge"),
+                        balanceWigets("Today's", "Earning", "₹ 20100.88", "Payout"),
+                        balanceWigets("Cash" ,"Collected", "₹ 2020.88", "Orders"),
                       ],
                     ),
                     Divider(color: AppColors.white100,),
@@ -249,14 +236,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 Positioned(
-                    left: 40,
+                    left:size.width * .05,
                     top: 60,
                     child: ispressed?Stack(
                       children: [
                     ConstantContainer(
-                          height: size.height * .28,
-                          width: size.width * .8,
-                          color: Colors.transparent,
+                          height: size.height * .25,
+                          width: size.width * .9,
+                          // color: Colors.red,
                           radiusBorder: 10,
                           child: Column(
                             children: [
@@ -268,6 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   },
                                   child: PageView(
                                     controller: _pageController,
+                                    clipBehavior:Clip.none ,
                                     onPageChanged: (int page) {
                                       setState(() {
                                         _currentPage = page.toDouble();
@@ -286,6 +274,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         padding: const EdgeInsets.symmetric(horizontal: 5.0),
                                         child: AcceptRejectOrder(),
                                       ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                                        child: AcceptRejectOrder(),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                                        child: AcceptRejectOrder(),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -294,29 +290,40 @@ class _HomeScreenState extends State<HomeScreen> {
                           )
                         ),
                         Positioned(
-                          left: size.width*.32,
+                          left: size.width*.28,
                           bottom: 10,
                           child:DotsIndicator(
                           dotsCount: _numPages,
                           position: _currentPage,
                           decorator: DotsDecorator(
+                            size:  Size.square(13.0),
+                            activeSize: const Size(13.0, 13.0),
+
+                            activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                             color: Colors.grey, // Inactive dot color
                             activeColor: AppColors.primary, // Active dot color
                           ),
                         ),)
                       ],
-                    ):ConstantContainer(
-                        height: size.height * .28,
-                        width: size.width * .8,
-                        color: AppColors.white,
-                        radiusBorder: 10,
-                        child: Column(
-                          children: [
-                            SizedBox(height: 20,),
-                            Text("🤨",style:TextStyle(fontSize: 100),),
-                            Text("You are Offline",style:AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.error100),),
-                          ],
-                        )),
+                    ):Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                      child: ConstantContainer(
+                          height: size.height * .25,
+                          width: size.width * .88,
+                          color: AppColors.white,
+                          shadowColor: AppColors.white50,
+                          offset: Offset(0,1),
+                          spreadradius: 1,
+                          blurradius: 2,
+                          radiusBorder: 10,
+                          child: Column(
+                            children: [
+                              SizedBox(height: 20,),
+                              Text("🤨",style:TextStyle(fontSize: 100),),
+                              Text("You are Offline",style:AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.error100),),
+                            ],
+                          )),
+                    ),
                 )
               ],
             ),
@@ -324,23 +331,28 @@ class _HomeScreenState extends State<HomeScreen> {
         ));
   }
 
-  Widget balanceWigets(heading, money, subhead) {
+  Widget balanceWigets(heading,heading2, money, subhead) {
     Size size = MediaQuery.of(context).size;
     return ConstantContainer(
-      height: size.height * .15,
+      height: size.height * .13,
       width: size.width * .3,
       color: AppColors.white,
-      shadowColor: AppColors.white60,
+      shadowColor: AppColors.white40.withOpacity(0.9),
+      blurradius: 1,
+      spreadradius: 3,
+      offset: Offset(0, 3),
       radiusBorder: 10,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
-            height: 5,
-          ),
           Text(
             heading,
+            style: AppTextStyles.kBody17SemiboldTextStyle
+                .copyWith(color: AppColors.primary1),
+          ),
+          Text(
+            heading2,
             style: AppTextStyles.kBody17SemiboldTextStyle
                 .copyWith(color: AppColors.primary1),
           ),
@@ -349,12 +361,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Text(
             money,
-            style: AppTextStyles.kBody20SemiboldTextStyle
+            style: AppTextStyles.kBody17SemiboldTextStyle
                 .copyWith(color: AppColors.white100),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+
               Text(
                 subhead,
                 style: AppTextStyles.kBody17RegularTextStyle
@@ -367,9 +380,9 @@ class _HomeScreenState extends State<HomeScreen> {
               )
             ],
           ),
-          SizedBox(
-            height: 10,
-          ),
+          // SizedBox(
+          //   height: 10,
+          // ),
         ],
       ),
     );

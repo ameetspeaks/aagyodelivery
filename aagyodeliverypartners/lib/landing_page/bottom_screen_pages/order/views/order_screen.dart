@@ -1,10 +1,13 @@
 import 'package:aagyodeliverypartners/const/const_dropdown.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/widgets/const_order_container.dart';
+import 'package:aagyodeliverypartners/utils/Utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../../../colors/colors_const.dart';
 import '../../../../const/constContainer.dart';
 import '../../../../styles/textstyle_const.dart';
+import '../../../auth/widgets/const_text_field.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({Key? key}) : super(key: key);
@@ -15,9 +18,27 @@ class OrderScreen extends StatefulWidget {
 
 class _OrderScreenState extends State<OrderScreen>
     with TickerProviderStateMixin {
-  String selectedValue2 = "Choose Date";
+  String selectedValue = "Today";
+  TextEditingController _dateController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    DateTime? selectedDate;
+
+    Future<void> _selectDate(BuildContext context,) async {
+      final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate ??DateTime.now(),
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2100),
+      );
+      if (picked != null && picked != selectedDate) {
+        setState(() {
+          selectedDate = picked;
+          selectedValue=
+              DateFormat('dd/MM/yyyy').format(selectedDate!);
+        });
+      }
+    }
     Size size = MediaQuery.of(context).size;
     TabController tabController = TabController(length: 4, vsync: this);
 
@@ -25,39 +46,63 @@ class _OrderScreenState extends State<OrderScreen>
       appBar: AppBar(
         backgroundColor: AppColors.primary,
         centerTitle: true,
-        title: Text("All Order",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),),
-      actions: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ConstantDropdown(
-            dropdownColor: AppColors.primary,
-            textColor: AppColors.white,
-            iconColor: AppColors.white,
-            options: ['Today', 'Yesterday', 'Choose Date'],
-            selectedOption: selectedValue2,
-            onChanged: (newValue) {
-              setState(() {
-                selectedValue2 = newValue;
-              });
-            },
-          ),
+        title: Text(
+          "All Orders",
         ),
-      ],
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ConstantDropdown(
+              dropdownColor: AppColors.primary,
+              textColor: AppColors.white,
+              iconColor: AppColors.white,
+              options: ['Today', 'Yesterday', 'Choose Date'],
+              selectedOption: selectedValue,
+              onChanged: (newValue) {
+                setState(() {
+                  selectedValue = newValue;
+                  if(selectedValue=='Choose Date'){
+                    ConstTextfield(
+                      controller: _dateController,
+                      validator: (number) {
+                        if (number.isEmpty && selectedDate==null ) {
+                          return "Please Select Date";}
+                        else{
+                          return null;
+                        }
+                      },
+                      inputtype: TextInputType.datetime,
+                      hinttext:"Enter Your DOB(same as in Aadhar)",
+                      suffixicon: IconButton(
+                          onPressed: () {
+                            _selectDate(context);
+                          },
+                          icon: Icon(Icons.calendar_month_outlined)),
+                    );
+                  }
+                });
+              },
+            ),
+          ),
+        ],
       ),
       body: NotificationListener<OverscrollIndicatorNotification>(
-        onNotification: (notification){
+        onNotification: (notification) {
           notification.disallowIndicator();
           return true;
         },
         child: Column(
           children: [
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             TabBar(
               indicatorSize: TabBarIndicatorSize.label,
+              unselectedLabelColor: AppColors.white100,
+              unselectedLabelStyle: AppTextStyles.kBody15SemiboldTextStyle,
               indicator: BoxDecoration(
-                color: AppColors.primary1,
-                  borderRadius: BorderRadius.circular(10)
-              ),
+                  color: AppColors.primary1,
+                  borderRadius: BorderRadius.circular(10)),
               indicatorColor: Colors.black,
               isScrollable: true,
               controller: tabController,
@@ -71,14 +116,11 @@ class _OrderScreenState extends State<OrderScreen>
                     child: Tab(
                       child: Text(
                         "  20 | All  ",
-                        style: AppTextStyles.kBody15SemiboldTextStyle
-                            .copyWith(color: AppColors.white80),
                       ),
                     ),
                   ),
                 ),
                 ConstantContainer(
-                  // width: size.width*.2,
                   height: size.height * .035,
                   borderWidth: 1,
                   borderColor: AppColors.primary1,
@@ -87,14 +129,11 @@ class _OrderScreenState extends State<OrderScreen>
                     child: Tab(
                       child: Text(
                         " 07 | Ready to Pick ",
-                        style: AppTextStyles.kBody15SemiboldTextStyle
-                            .copyWith(color: AppColors.white80),
                       ),
                     ),
                   ),
                 ),
                 ConstantContainer(
-                  // width: size.width*.2,
                   height: size.height * .035,
                   borderWidth: 1,
                   borderColor: AppColors.primary1,
@@ -103,14 +142,11 @@ class _OrderScreenState extends State<OrderScreen>
                     child: Tab(
                       child: Text(
                         " 07 | On the Way ",
-                        style: AppTextStyles.kBody15SemiboldTextStyle
-                            .copyWith(color: AppColors.white80),
                       ),
                     ),
                   ),
                 ),
                 ConstantContainer(
-                  // width: size.width*.2,
                   height: size.height * .035,
                   borderWidth: 1,
                   borderColor: AppColors.primary1,
@@ -119,8 +155,6 @@ class _OrderScreenState extends State<OrderScreen>
                     child: Tab(
                       child: Text(
                         " 07 | Delivered ",
-                        style: AppTextStyles.kBody15SemiboldTextStyle
-                            .copyWith(color: AppColors.white80),
                       ),
                     ),
                   ),
@@ -129,14 +163,13 @@ class _OrderScreenState extends State<OrderScreen>
             ),
             Expanded(
               child: TabBarView(
-                physics:  ScrollPhysics(),
+                physics: ScrollPhysics(),
                 controller: tabController,
                 children: [
                   AllOrder(),
                   ReadyToPickOrder(),
                   OnTheWayOrder(),
                   DeliveredOrder(),
-
                 ],
               ),
             )
@@ -152,8 +185,8 @@ class AllOrder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List name =[
-    ReadyToPickOrder(),
+    List name = [
+      ReadyToPickOrder(),
       OnTheWayOrder(),
       DeliveredOrder(),
     ];
@@ -164,12 +197,16 @@ class AllOrder extends StatelessWidget {
     ];
     Size size = MediaQuery.of(context).size;
     return ListView.builder(
-        itemCount: name.length+1,
+        itemCount: name.length + 1,
         shrinkWrap: true,
         physics: ScrollPhysics(),
         itemBuilder: (context, index) {
-         var length= name.length;
-          return index<length?name[index]:SizedBox(height: size.height*.25,);
+          var length = name.length;
+          return index < length
+              ? name[index]
+              : SizedBox(
+                  height: size.height * .25,
+                );
         });
   }
 }
@@ -184,7 +221,12 @@ class ReadyToPickOrder extends StatelessWidget {
         shrinkWrap: true,
         physics: ScrollPhysics(),
         itemBuilder: (context, index) {
-          return ConstOrderContainer(color: AppColors.sucess100,text: "Ready to Pick",textColor: AppColors.white, messagealert: 'Mark as Ready to PickUp',);
+          return ConstOrderContainer(
+            color: AppColors.sucess100,
+            text: "Ready to Pick",
+            textColor: AppColors.white,
+            messagealert: 'Mark as Ready to PickUp', ontapCalltoStore: () { Utils.callNumber("198"); }, ontapCalltoCustomer: () { Utils.callNumber("555"); },
+          );
         });
   }
 }
@@ -199,7 +241,12 @@ class OnTheWayOrder extends StatelessWidget {
         shrinkWrap: true,
         physics: ScrollPhysics(),
         itemBuilder: (context, index) {
-          return ConstOrderContainer(color: AppColors.sucess100,text: "On the Way",textColor: AppColors.white, messagealert: 'Mark as On the way',);
+          return ConstOrderContainer(
+            color: AppColors.sucess100,
+            text: "On the Way",
+            textColor: AppColors.white,
+            messagealert: 'Mark as On the way', ontapCalltoStore: () { Utils.callNumber("198"); }, ontapCalltoCustomer: () { Utils.callNumber("555"); },
+          );
         });
   }
 }
@@ -214,8 +261,12 @@ class DeliveredOrder extends StatelessWidget {
         shrinkWrap: true,
         physics: ScrollPhysics(),
         itemBuilder: (context, index) {
-          return ConstOrderContainer(color: AppColors.white50,text: "Delivered",textColor: AppColors.white, messagealert: 'Mark as Delivered',);
+          return ConstOrderContainer(
+            color: AppColors.white50,
+            text: "Delivered",
+            textColor: AppColors.white,
+            messagealert: 'Mark as Delivered', ontapCalltoStore: () { Utils.callNumber("198"); }, ontapCalltoCustomer: () { Utils.callNumber("555"); },
+          );
         });
   }
 }
-

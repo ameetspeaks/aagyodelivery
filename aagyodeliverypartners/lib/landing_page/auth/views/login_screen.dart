@@ -5,6 +5,7 @@ import 'package:aagyodeliverypartners/landing_page/auth/widgets/const_pinput.dar
 import 'package:aagyodeliverypartners/landing_page/bottomnavbar.dart';
 import 'package:aagyodeliverypartners/styles/textstyle_const.dart';
 import 'package:aagyodeliverypartners/utils/Utils.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import '../../../const/constString.dart';
 import '../widgets/const_button.dart';
@@ -19,12 +20,28 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _obscureText = true;
+  String ntoken = " ";
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getToken();
+  }
   @override
+
+  void getToken() async{
+    await FirebaseMessaging.instance.getToken().then((token){
+      setState(() {
+        ntoken=token!;
+        print("my token is $ntoken");
+      });
+
+    } );
+  }
   final formGlobalKey = GlobalKey<FormState>();
 
-  Widget build(BuildContext context) {
-
-    return Scaffold(
+  Widget build(BuildContext context) {return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
@@ -65,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                         .copyWith(color: AppColors.white100),
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height: 10),
                 ConstTextfield(
                   hinttext: "Enter Your Mobile Number",
                   maxlength: 10,
@@ -81,15 +98,45 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 10,
                 ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Enter Your PIN",
-                    style: AppTextStyles.kBody15SemiboldTextStyle
-                        .copyWith(color: AppColors.white100),
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      "Enter Your PIN",
+                      style: AppTextStyles.kBody15SemiboldTextStyle
+                          .copyWith(color: AppColors.white100),
+                    ),
+                    Spacer(),
+                    GestureDetector(
+                      onTap: (){
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                      child: Container(
+                        height: 20,
+                        width: 100,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              !_obscureText ? Icons.visibility : Icons.visibility_off,
+                              color: Colors.grey,
+                            ),
+                            SizedBox(width: 8),
+                            Text(
+                              !_obscureText ?"Hide":'Show',
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(height: 5,),
+                SizedBox(height:10 ),
                 ConstPinPut(
                   obsure: _obscureText,
                   totallength: 6,  validator: (number) {
@@ -99,38 +146,7 @@ class _LoginPageState extends State<LoginPage> {
                     return null;
                   }
                 },),
-                SizedBox(height: 10,),
-                InkWell(
-                  onTap: (){
-                    setState(() {
-                      _obscureText = !_obscureText;
-                    });
-                  },
-                  child: Container(
-                    height: 20,
-                    width: 180,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                         Icon(
-                            !_obscureText ? Icons.visibility : Icons.visibility_off,
-                            color: Colors.grey,
-                          ),
-                        SizedBox(width: 8),
-                        Text(
-                          !_obscureText ?"Hide Password":'Show Password',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
+                SizedBox(height: 15),
                 InkWell(
                     onTap: () {
                       if (formGlobalKey.currentState!.validate()) {

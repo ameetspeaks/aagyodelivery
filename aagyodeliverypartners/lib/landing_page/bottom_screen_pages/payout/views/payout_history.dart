@@ -49,7 +49,7 @@ class PayoutHistory extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  constRow("Floating cash deduction", "()   ₹4152"),
+                  constRow("Floating cash deduction", "₹4152"),
                   SizedBox(
                     height: 40,
                   )

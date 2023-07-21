@@ -4,6 +4,7 @@ import '../../../styles/textstyle_const.dart';
 
 class ConstTextfield extends StatelessWidget {
   final TextEditingController ?controller;
+  final Widget? suffix;
   final TextInputType? inputtype;
   final int? maxlength;
   final int? maxline;
@@ -22,7 +23,7 @@ class ConstTextfield extends StatelessWidget {
         required this.hinttext,
         this.suffixicon,
         this.validator,
-         this.obscure, this.contentPadding, this.maxline, this.readyonly, })
+         this.obscure, this.contentPadding, this.maxline, this.readyonly, this.suffix, })
       : super(key: key);
 
   @override
@@ -33,15 +34,18 @@ class ConstTextfield extends StatelessWidget {
         controller: controller,
         keyboardType: inputtype,
         obscureText: obscure??false,
+        cursorColor: AppColors.primary,
         maxLength: maxlength,
         maxLines: maxline,
         cursorHeight: 20,
-        style: AppTextStyles.kBody15RegularTextStyle
-            .copyWith(color: AppColors.white100),
+        style: AppTextStyles.kBody17SemiboldTextStyle
+            .copyWith(color: AppColors.primary),
         decoration: InputDecoration(
           contentPadding: contentPadding,
           hintStyle: AppTextStyles.kCaption12RegularTextStyle
               .copyWith(color: AppColors.white80),
+          suffix: suffix,
+
           suffixIcon: suffixicon,
           counterText: "",
           enabledBorder: OutlineInputBorder(

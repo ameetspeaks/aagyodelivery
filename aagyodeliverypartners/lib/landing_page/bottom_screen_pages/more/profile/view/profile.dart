@@ -1,11 +1,10 @@
 import 'dart:io';
 import 'package:aagyodeliverypartners/const/constContainer.dart';
 import 'package:aagyodeliverypartners/landing_page/auth/views/login_screen.dart';
-import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/earning/views/wallet.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/aagyo_id.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/insurance_details.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/personal_details.dart';
-import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/personal_saving_account.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/account_details.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/qr.dart';
 import 'package:aagyodeliverypartners/utils/Utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,17 +24,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  bool _toggleValue = false;
-  File? imageFile;
-  Future<void> _selectImage(ImageSource source) async {
-    final pickedFile = await ImagePicker().pickImage(source: source);
 
-    if (pickedFile != null) {
-      setState(() {
-        imageFile = File(pickedFile.path);
-      });
-    }
-  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -59,7 +48,7 @@ class _ProfileState extends State<Profile> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    _showImagePicker(context);
+                    // _showImagePicker(context);
                   },
                   child: CircleAvatar(
                     radius: 52,
@@ -67,9 +56,8 @@ class _ProfileState extends State<Profile> {
                     child: CircleAvatar(
                       radius: 50,
                       backgroundColor: AppColors.white50,
-                      backgroundImage: imageFile != null
-                          ? FileImage(imageFile!)
-                          : AssetImage(splash) as ImageProvider,
+                      backgroundImage:
+                           AssetImage(splash),
                     ),
                   ),
                 ),
@@ -100,9 +88,8 @@ class _ProfileState extends State<Profile> {
           ConstantListTile("Insurance Details",insurance,() {
             Utils.goTo(context, InsuranceDetails());
           },),
-
-          ConstantListTile("Personal Savings Account",bankaccount,() {
-            Utils.goTo(context, PersonalSavingAccount());
+          ConstantListTile("Account Details",bankaccount,() {
+            Utils.goTo(context, AccountDetails());
           },),
           ConstantListTile("Aagyo ID and Permit Document",idcard,() {
             Utils.goTo(context, AagyoId());
@@ -131,56 +118,33 @@ class _ProfileState extends State<Profile> {
     final String leading,
     final VoidCallback ontap,
   ) {
-    return InkWell(
-      onTap: ontap,
-      child: ListTile(
-        leading: CircleAvatar(
-            backgroundColor: AppColors.neutral20,
-            child: Image.asset(
-              leading,height: 20,width: 20,
-            )),
-        title: Text(
-          title,
-          style: AppTextStyles.kBody17RegularTextStyle
-              .copyWith(color: AppColors.neutralDark),
-        ),
-        trailing: Icon(
-          Icons.arrow_forward_ios,
-          color: AppColors.neutral50,
-          size: 20,
-        ),
-      ),
-    );
-  }
-
-  void _showImagePicker(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          child: Wrap(
-            children: [
-              ListTile(
-                leading: Icon(Icons.photo_library),
-                title: Text('Choose from Gallery'),
-                onTap: () {
-                  _selectImage(ImageSource.gallery);
-                  Navigator.of(context).pop();
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.photo_camera),
-                title: Text('Take a Photo'),
-                onTap: () {
-                  _selectImage(ImageSource.camera);
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
+    return Column(
+      children: [
+        InkWell(
+          onTap: ontap,
+          child: ListTile(
+            leading: CircleAvatar(
+                backgroundColor: AppColors.neutral20,
+                child: Image.asset(
+                  leading,height: 20,width: 20,
+                )),
+            title: Text(
+              title,
+              style: AppTextStyles.kBody17RegularTextStyle
+                  .copyWith(color: AppColors.neutralDark),
+            ),
+            trailing: Icon(
+              Icons.arrow_forward_ios,
+              color: AppColors.neutral50,
+              size: 20,
+            ),
           ),
-        );
-      },
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal:20.0),
+          child: ConstantContainer(height: .5,color: AppColors.white50,),
+        )
+      ],
     );
   }
-
 }

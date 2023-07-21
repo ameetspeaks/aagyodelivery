@@ -50,6 +50,10 @@ dependencies:
   fluttertoast: ^8.2.1
   firebase_messaging: ^14.6.5
   flutter_local_notifications: ^15.1.0+1
+  geolocator: ^9.0.2
+  url_launcher: ^6.1.11
+  geocoding: ^2.1.0
+
 
 
 

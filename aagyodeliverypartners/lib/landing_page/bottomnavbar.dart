@@ -1,13 +1,13 @@
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/views/home_screen.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/order/views/order_screen.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/payout/widgets/const_payout_earning.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/wallet/views/wallet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../colors/colors_const.dart';
 import '../const/constString.dart';
-import 'bottom_screen_pages/earning/views/earning.dart';
-import 'bottom_screen_pages/more/more.dart';
 import 'bottom_screen_pages/more/profile/view/profile.dart';
-import 'bottom_screen_pages/payout/views/payout.dart';
+
 
 class Bottom_Page extends StatefulWidget {
   const Bottom_Page({Key? key}) : super(key: key);
@@ -21,18 +21,15 @@ class _Bottom_PageState extends State<Bottom_Page> {
   int _currentindex = 0;
   final Screen = [
     const HomeScreen(),
-    const PayoutScreen(),
+    const ConstpayoutEarningScreen(),
     const OrderScreen(),
-    const EarningScreen(),
+    const WalletScreen(),
     const Profile(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: Text("ss"),
-      ),
       body: Screen[_currentindex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentindex,
@@ -56,7 +53,7 @@ class _Bottom_PageState extends State<Bottom_Page> {
           ),
           BottomNavigationBarItem(
             icon: Image.asset(wallet,height: 25,width: 25,),
-            label: 'Earning',
+            label: 'Wallet',
           ),
           BottomNavigationBarItem(
             icon: Image.asset(moreicon,height: 25,width: 25,),
@@ -71,7 +68,6 @@ class _Bottom_PageState extends State<Bottom_Page> {
           })
         },
       ),
-
     );
   }
 }
