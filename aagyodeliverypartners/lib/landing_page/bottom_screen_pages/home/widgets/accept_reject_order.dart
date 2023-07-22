@@ -11,7 +11,7 @@ class AcceptRejectOrder extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return ConstantContainer(
-      height: size.height * .25,
+      height: size.height * .2,
       width: size.width * .9,
       color: AppColors.white,
       shadowColor: AppColors.white50,
@@ -28,32 +28,32 @@ class AcceptRejectOrder extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Store Name",style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white100),),
-                    Text("Store Address",style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white100),),
+                    Text("Store Name",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white100),),
+                    Text("Store Address",style: AppTextStyles.kSmall10RegularTextStyle.copyWith(color: AppColors.white60),),
                   ],
                 ),
                 Spacer(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Order Number",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white100),),
+                    Text("Order Number",style: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color: AppColors.white100),),
                     Text("123456",style: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color: AppColors.white100),),
                   ],
                 ),
               ],
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: size.height*.005,),
             Row(
               children: [
                 Expanded(child: ConstantContainer(height: 1,color: AppColors.sucess100,)),
                 InkWell(
                   onTap: (){},
                   child: ConstantContainer(
-                    height: size.height*.03,
-                    width: size.width*.2,
+                    height: size.height*.022,
+                    width: size.width*.18,
                     color: AppColors.sucess100,
-                    radiusBorder: 8,
-                    child:Center(child: Text("Accept",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),))
+                    radiusBorder: 6,
+                    child:Center(child: Text("Accept",style: AppTextStyles.kBody13SemiboldTextStyle.copyWith(color: AppColors.white),))
                   ),
                 )
               ],
@@ -63,8 +63,8 @@ class AcceptRejectOrder extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Customer Name",style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white100)),
-                    Text("Customer Address",style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white100),),
+                    Text("Customer Name",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white100)),
+                    Text("Customer Address",style: AppTextStyles.kSmall10RegularTextStyle.copyWith(color: AppColors.white60),),
                   ],
                 ),
                 Spacer(),
@@ -80,21 +80,21 @@ class AcceptRejectOrder extends StatelessWidget {
                     );
                   },
                   child: ConstantContainer(
-                      height: size.height*.03,
-                      width: size.width*.2,
+                      height: size.height*.022,
+                      width: size.width*.18,
                       color: AppColors.secondary2,
-                      radiusBorder: 8,
-                      child:Center(child: Text("Reject",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),))
+                      radiusBorder: 6,
+                      child:Center(child: Text("Reject",style: AppTextStyles.kBody13SemiboldTextStyle.copyWith(color: AppColors.white),))
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20,),
+            SizedBox(height: size.height*0.008,),
             Row(
               children: [
                 Column(
                   children: [
-                    ConstantContainer(height: size.height*.048,width: 2,color: AppColors.white100,),
+                    ConstantContainer(height: size.height*.038,width: 1.5,color: AppColors.white100,),
                   ],
                 ),
                 SizedBox(width: 5,),
@@ -102,14 +102,14 @@ class AcceptRejectOrder extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("₹180.80",style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white100)),
-                    Text("COD",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white100),),
+                    Text("COD",style: AppTextStyles.kBody13RegularTextStyle.copyWith(color: AppColors.white100),),
                   ],
                 ),
                 Spacer(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("10 Jul,2023",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white100)),
+                    Text("10 Jul,2023",style: AppTextStyles.kBody13SemiboldTextStyle.copyWith(color: AppColors.white100)),
                     Text("08:55 PM",style: AppTextStyles.kCaption12RegularTextStyle.copyWith(color: AppColors.white100),),
                   ],
                 ),

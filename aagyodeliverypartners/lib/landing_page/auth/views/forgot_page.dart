@@ -2,6 +2,7 @@ import 'package:aagyodeliverypartners/landing_page/auth/widgets/const_text_field
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../colors/colors_const.dart';
+import '../../../const/constString.dart';
 import '../../../styles/textstyle_const.dart';
 import '../../../utils/Utils.dart';
 import '../widgets/const_button.dart';
@@ -49,92 +50,98 @@ class _ForgotPageState extends State<ForgotPage> {
               .copyWith(color: AppColors.white),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Form(
-          key: formGlobalKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: Text(
-                  "Forgot Your Pin",
-                  style: AppTextStyles.kHeading3TextStyle
-                      .copyWith(color: AppColors.white70),
+      body:  Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage(background),fit: BoxFit.cover
+            )
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Form(
+            key: formGlobalKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 20,
                 ),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              constText("Mobile"),
-              ConstTextfield(
-                hinttext: "Enter Mobile Number",
-                maxlength: 10,
-                inputtype: TextInputType.phone,
-                validator: (number) {
-                  if (number!.isEmpty || number.length < 9) {
-                    return "Mobile must contain 10 digits";
-                  } else {
-                    return null;
-                  }
-                },
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              constText("Last 4 Digits of DL"),
-              ConstTextfield(
-                hinttext: "Enter Last 4 digits of Driving Licence(DL)",
-                maxlength: 4,
-                inputtype: TextInputType.phone,
-                validator: (number) {
-                  if (number!.isEmpty) {
-                    return "Enter valid data";
-                  } else {
-                    return null;
-                  }
-                },
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              constText("Date of Birth"),
-              ConstTextfield(
-                controller: _dateController,
-                validator: (number) {
-                  if (number.isEmpty && selectedDate==null ) {
-                    return "Please Select Date";}
-                  else{
-                    return null;
-                  }
-                },
-                inputtype: TextInputType.datetime,
-                hinttext:"Enter Your DOB(same as in Aadhar)",
-                suffixicon: IconButton(
-                    onPressed: () {
-                      _selectDate(context);
-                    },
-                    icon: Icon(Icons.calendar_month_outlined)),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: InkWell(
-                    onTap: () {
-                      if (formGlobalKey.currentState!.validate()) {
-                        Utils.goTo(context, GengeratePin());
-                        Utils.showToastMsg("Reset Your Pin");
-                      }
-                    },
-                    child: ConstButton(
-                      text: "Submit",
-                    )),
-              )
-            ],
+                Center(
+                  child: Text(
+                    "Forgot Your Pin",
+                    style: AppTextStyles.kHeading3TextStyle
+                        .copyWith(color: AppColors.white70),
+                  ),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                constText("Mobile"),
+                ConstTextfield(
+                  hinttext: "Enter Mobile Number",
+                  maxlength: 10,
+                  inputtype: TextInputType.phone,
+                  validator: (number) {
+                    if (number!.isEmpty || number.length < 9) {
+                      return "Mobile must contain 10 digits";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                constText("Last 4 Digits of DL"),
+                ConstTextfield(
+                  hinttext: "Enter Last 4 digits of Driving Licence(DL)",
+                  maxlength: 4,
+                  inputtype: TextInputType.phone,
+                  validator: (number) {
+                    if (number!.isEmpty) {
+                      return "Enter valid data";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                constText("Date of Birth"),
+                ConstTextfield(
+                  controller: _dateController,
+                  validator: (number) {
+                    if (number.isEmpty && selectedDate==null ) {
+                      return "Please Select Date";}
+                    else{
+                      return null;
+                    }
+                  },
+                  inputtype: TextInputType.datetime,
+                  hinttext:"Enter Your DOB(same as in Aadhar)",
+                  suffixicon: IconButton(
+                      onPressed: () {
+                        _selectDate(context);
+                      },
+                      icon: Icon(Icons.calendar_month_outlined)),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                  child: InkWell(
+                      onTap: () {
+                        if (formGlobalKey.currentState!.validate()) {
+                          Utils.goTo(context, GengeratePin());
+                          Utils.showToastMsg("Reset Your Pin");
+                        }
+                      },
+                      child: ConstButton(
+                        text: "Submit",
+                      )),
+                )
+              ],
+            ),
           ),
         ),
       ),

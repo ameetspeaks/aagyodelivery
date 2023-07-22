@@ -2,6 +2,7 @@
 //home
 const String pending = "assets/home/pending.png";
 const String ruppess = "assets/home/ruppess.png";
+const String offline = "assets/home/offline.png";
 
 //bottom nav bar
 const String home = "assets/bottom_nav_bar/home.png";
@@ -55,6 +56,8 @@ const String productStory = "assets/add/icons/productstory.png";
 const String welcome = "assets/auth/Welcomepic.png";
 const String login = "assets/auth/loginscreenpic.png";
 const String google = "assets/auth/google.png";
+const String background = "assets/auth/bckgroundimg.png";
+const String background1 = "assets/auth/background.png";
 
 //splash
 const String splash = "assets/splash/splash.png";

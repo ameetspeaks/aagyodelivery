@@ -91,12 +91,12 @@ class _ProfileState extends State<Profile> {
           ConstantListTile("Account Details",bankaccount,() {
             Utils.goTo(context, AccountDetails());
           },),
-          ConstantListTile("Aagyo ID and Permit Document",idcard,() {
+          ConstantListTile("Aagyo ID",idcard,() {
             Utils.goTo(context, AagyoId());
           },),
-          ConstantListTile("QR Code for Aagyo ID",qr,() {
-            Utils.goTo(context, QR());
-          },),
+          // ConstantListTile("QR Code for Aagyo ID",qr,() {
+          //   Utils.goTo(context, QR());
+          // },),
           ConstantListTile("Logout",logout,() {
             Utils.DialogBox(context,"Do you really want to Logout?", "",
               ElevatedButton(

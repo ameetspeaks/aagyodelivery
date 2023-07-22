@@ -41,15 +41,20 @@ class _LoginPageState extends State<LoginPage> {
   }
   final formGlobalKey = GlobalKey<FormState>();
 
-  Widget build(BuildContext context) {return Scaffold(
+  Widget build(BuildContext context) {
+    return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage(background),fit: BoxFit.cover)
+        ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Form(
             key: formGlobalKey,
             child: Column(
               children: [
+                SizedBox(height: 20,),
                 Image.asset(
                   applogo,
                   height: 150,

@@ -24,10 +24,11 @@ class _ConstTabBarState extends State<ConstTabBar>
     return Column(
       children: [
         TabBar(
-         indicatorSize: TabBarIndicatorSize.label,
+          labelPadding: EdgeInsets.symmetric(horizontal: 5.0),
+          indicatorSize: TabBarIndicatorSize.label,
           indicator: BoxDecoration(
               color: AppColors.primary1,
-              borderRadius: BorderRadius.circular(10)
+              borderRadius: BorderRadius.circular(6)
           ),
           isScrollable: true,
           unselectedLabelColor: AppColors.white100,
@@ -35,54 +36,65 @@ class _ConstTabBarState extends State<ConstTabBar>
           controller: tabController,
           tabs: [
             ConstantContainer(
-             height: size.height * .035,
+             height: size.height * .03,
                 borderWidth: 1,
                 borderColor: AppColors.primary1,
-                radiusBorder: 10,
+                radiusBorder: 6,
               child: Center(
                 child: Tab(
-                  child: Text(
-                    "  20 | All  ",
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Text(
+                      "20 | All",style: AppTextStyles.kCaption12SemiboldTextStyle,
+                    ),
                   ),
                 ),
               ),
             ),
             ConstantContainer(
-              // width: size.width*.2,
-             height: size.height * .035,
-                borderWidth: 1,
-                borderColor: AppColors.primary1,
-                radiusBorder: 10,
+              height: size.height * .03,
+              borderWidth: 1,
+              borderColor: AppColors.primary1,
+              radiusBorder: 6,
               child: Center(
                 child: Tab(
-                  child: Text(
-                    " 07 | Ready to Pick ",
+                  child:  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Text(
+                      " 07 | Ready to Pick ",style: AppTextStyles.kCaption12SemiboldTextStyle,
+                    ),
                   ),
                 ),
               ),
             ),
             ConstantContainer(
-             height: size.height * .035,
-                borderWidth: 1,
-                borderColor: AppColors.primary1,
-                radiusBorder: 10,
+              height: size.height * .03,
+              borderWidth: 1,
+              borderColor: AppColors.primary1,
+              radiusBorder: 6,
               child: Center(
                 child: Tab(
-                  child: Text(
-                    " 07 | On the Way ",
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Text(
+                      " 07 | On the Way ",style: AppTextStyles.kCaption12SemiboldTextStyle,
+                    ),
                   ),
                 ),
               ),
             ),
             ConstantContainer(
-             height: size.height * .035,
-                borderWidth: 1,
-                borderColor: AppColors.primary1,
-                radiusBorder: 10,
+              height: size.height * .03,
+              borderWidth: 1,
+              borderColor: AppColors.primary1,
+              radiusBorder: 6,
               child: Center(
                 child: Tab(
-                  child: Text(
-                    " 07 | Delivered ",
+                  child:  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Text(
+                      " 07 | Delivered ",style: AppTextStyles.kCaption12SemiboldTextStyle,
+                    ),
                   ),
                 ),
               ),
@@ -119,7 +131,7 @@ class All extends StatelessWidget {
 
     Size size = MediaQuery.of(context).size;
     return ListView.builder(
-        itemCount: name.length,
+        itemCount: name.length+1,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {

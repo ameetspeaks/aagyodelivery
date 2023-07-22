@@ -47,13 +47,26 @@ class AppTextStyles {
     fontWeight: FontWeight.w600,
     fontSize: 15,
   );
+  static const TextStyle kBody14SemiboldTextStyle = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
+  static const TextStyle kBody14RegularTextStyle = TextStyle(
+    fontSize: 14,
 
+  );
+  static const TextStyle kBody13SemiboldTextStyle = TextStyle(
+    fontSize: 13,
+    fontWeight: FontWeight.w600,
+  );
+  static const TextStyle kBody13RegularTextStyle = TextStyle(
+    fontSize: 13,
+
+  );
   static const TextStyle kCaption12RegularTextStyle = TextStyle(
     fontSize: 12,
   );
-  static const TextStyle kCaption14RegularTextStyle = TextStyle(
-    fontSize: 14,
-  );
+
 
   static const TextStyle kCaption12SemiboldTextStyle = TextStyle(
     fontWeight: FontWeight.w600,
