@@ -113,7 +113,7 @@ class ConstOrderContainer extends StatelessWidget {
                   ),
                   GestureDetector(
                       onTap: ontapCalltoStore,
-                      child: Icon(Icons.phone_in_talk_outlined,size: 30,color: AppColors.white60,)),
+                      child: Icon(Icons.phone_in_talk_outlined,size: 30,color: AppColors.white70,)),
                   Spacer(),
                   InkWell(
                     onTap: (){
@@ -128,7 +128,7 @@ class ConstOrderContainer extends StatelessWidget {
                   ),
                   GestureDetector(
                       onTap: ontapCalltoCustomer,
-                      child: Icon(Icons.phone_in_talk_outlined,size: 30,color: AppColors.white60,)),
+                      child: Icon(Icons.phone_in_talk_outlined,size: 30,color: AppColors.white70,)),
                 ],
               ),
               Row(

@@ -2,7 +2,6 @@ import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/prof
 import 'package:aagyodeliverypartners/utils/Utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../../colors/colors_const.dart';
 import '../../../styles/textstyle_const.dart';
 

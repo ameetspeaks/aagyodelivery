@@ -30,15 +30,14 @@ class _ForgotPageState extends State<ForgotPage> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
-        _dateController.text='${DateFormat('dd/MM/yyyy').format(selectedDate!)}';
+        // _dateController.text='${DateFormat('dd/MM/yyyy').format(selectedDate!)}';
       });
     }
   }
 
+    final formGlobalKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final formGlobalKey = GlobalKey<FormState>();
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -109,7 +108,7 @@ class _ForgotPageState extends State<ForgotPage> {
                 ),
                 constText("Date of Birth"),
                 ConstTextfield(
-                  controller: _dateController,
+                  controller: _dateController..text=DateFormat('dd/MM/yyyy').format(selectedDate??DateTime(DateTime.saturday)),
                   validator: (number) {
                     if (number.isEmpty && selectedDate==null ) {
                       return "Please Select Date";}
@@ -118,7 +117,7 @@ class _ForgotPageState extends State<ForgotPage> {
                     }
                   },
                   inputtype: TextInputType.datetime,
-                  hinttext:"Enter Your DOB(same as in Aadhar)",
+                  hinttext:selectedDate==null?"Enter Your DOB(same as in Aadhar)":_dateController.text,
                   suffixicon: IconButton(
                       onPressed: () {
                         _selectDate(context);

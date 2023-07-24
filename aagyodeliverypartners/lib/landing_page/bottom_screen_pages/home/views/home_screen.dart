@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           backgroundColor: AppColors.primary,
           automaticallyImplyLeading: true,
-          title:InkWell(
+          title: InkWell(
               onTap: () {
                 setState(() {
                   toggleSwitch(true);
@@ -59,21 +59,21 @@ class _HomeScreenState extends State<HomeScreen> {
               child: ConstantContainer(
                   height: 30,
                   width: 90,
-                  color: !ispressed
-                      ? AppColors.secondary1
-                      : AppColors.sucess100,
+                  color:
+                      !ispressed ? AppColors.secondary1 : AppColors.sucess100,
                   radiusBorder: 20,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(!ispressed ? "🤨" : "", style: AppTextStyles.kBody20SemiboldTextStyle),
+                      Text(!ispressed ? "🤨" : "",
+                          style: AppTextStyles.kBody20SemiboldTextStyle),
                       Text(
                         !ispressed ? "Offline" : "Online",
                         style: AppTextStyles.kCaption12SemiboldTextStyle
                             .copyWith(color: AppColors.white),
                       ),
-                      Text(ispressed ? "😎" : "", style: AppTextStyles.kBody20SemiboldTextStyle),
-
+                      Text(ispressed ? "😎" : "",
+                          style: AppTextStyles.kBody20SemiboldTextStyle),
                     ],
                   ))),
           actions: [
@@ -132,7 +132,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: AppColors.primary1,
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(size.height * 0.08),
-                              bottomRight: Radius.circular(size.height * 0.08))),
+                              bottomRight:
+                                  Radius.circular(size.height * 0.08))),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
@@ -140,7 +141,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 2.0),
                               child: Image.asset(
                                 currentlocation,
                                 height: 25,
@@ -171,7 +173,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8.0),
                                       child: Image.asset(
                                         updatelocation,
                                         height: 25,
@@ -196,14 +199,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: size.height*.11,
+                      height: size.height * .11,
                     ),
                     ConstantContainer(
                       height: size.height * 0.035,
                       width: size.width,
                       color: AppColors.primary1,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 12),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 12),
                         child: Text(
                           "Overview",
                           style: AppTextStyles.kCaption12SemiboldTextStyle
@@ -287,8 +291,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     },
                                     children: const [
                                       Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 5),
+                                        padding:
+                                            EdgeInsets.symmetric(horizontal: 5),
                                         child: AcceptRejectOrder(),
                                       ),
                                       Padding(
@@ -315,48 +319,71 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: size.height*.005,),
+                              SizedBox(
+                                height: size.height * .005,
+                              ),
                               DotsIndicator(
                                 dotsCount: _numPages,
                                 position: _currentPage,
                                 decorator: DotsDecorator(
-                                  size:  Size.square(6.0),
+                                  size: Size.square(6.0),
                                   // activeSize: const Size(10.0, 10.0),
-                                  activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                  activeShape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
                                   color: Colors.grey, // Inactive dot color
-                                  activeColor: AppColors.primary, // Active dot color
+                                  activeColor:
+                                      AppColors.primary, // Active dot color
                                 ),
                               )
                             ],
                           ))
                       : Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                          child: ConstantContainer(
-                              height: size.height * .17,
-                              width: size.width * .75,
-                              color: AppColors.white,
-                              shadowColor: AppColors.white50,
-                              offset: Offset(0, 1),
-                              spreadradius: 1,
-                              blurradius: 2,
-                              radiusBorder: 10,
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Text(
-                                    "🤨",
-                                    style: TextStyle(fontSize: 60),
-                                  ),
-                                  Text(
-                                    "You are Offline",
-                                    style: AppTextStyles
-                                        .kBody17SemiboldTextStyle
-                                        .copyWith(color: AppColors.error100),
+                          child: Container(
+                            height: size.height * .17,
+                            width: size.width * .75,
+                            decoration: BoxDecoration(
+                                color: AppColors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.white60,
+                                    blurRadius: 2,
+                                    spreadRadius: 1,
+                                    offset: Offset(0, 1),
                                   ),
                                 ],
-                              )),
+                                image: DecorationImage(
+                                    image: AssetImage(offline),
+                                    fit: BoxFit.fill)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                // mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Go Online to Earn More",
+                                    style: AppTextStyles
+                                        .kCaption12SemiboldTextStyle
+                                        .copyWith(color: AppColors.white60),
+                                  ),
+                                  SizedBox(
+                                    height: size.height * .1,
+                                  ),
+                                  Text(
+                                    "You are Offline !",
+                                    style: AppTextStyles
+                                        .kBody20SemiboldTextStyle
+                                        .copyWith(
+                                            color: AppColors.secondary1,
+                                            decoration:
+                                                TextDecoration.underline),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
                 )
               ],
@@ -390,13 +417,17 @@ class _HomeScreenState extends State<HomeScreen> {
             style: AppTextStyles.kCaption12SemiboldTextStyle
                 .copyWith(color: AppColors.primary1),
           ),
-          SizedBox(height: size.height*.01,),
+          SizedBox(
+            height: size.height * .01,
+          ),
           Text(
             money,
             style: AppTextStyles.kBody14SemiboldTextStyle
                 .copyWith(color: AppColors.white100),
           ),
-          SizedBox(height: size.height*.005,),
+          SizedBox(
+            height: size.height * .005,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

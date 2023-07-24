@@ -19,14 +19,13 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen>
     with TickerProviderStateMixin {
   String selectedValue = "Today";
-  TextEditingController _dateController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     DateTime? selectedDate;
 
-    Future<void> _selectDate(BuildContext context,) async {
+    Future<void> _selectDate(BuildContext ?context,) async {
       final DateTime? picked = await showDatePicker(
-        context: context,
+        context: context!,
         initialDate: selectedDate ??DateTime.now(),
         firstDate: DateTime(2000),
         lastDate: DateTime(2100),
@@ -56,31 +55,15 @@ class _OrderScreenState extends State<OrderScreen>
               dropdownColor: AppColors.primary,
               textColor: AppColors.white,
               iconColor: AppColors.white,
-              options: ['Today', 'Yesterday', 'Choose Date'],
+              options: const ['Today', 'Yesterday', 'This Week','This Month'],
               selectedOption: selectedValue,
               onChanged: (newValue) {
                 setState(() {
                   selectedValue = newValue;
-                  if(selectedValue=='Choose Date'){
-                    ConstTextfield(
-                      controller: _dateController,
-                      validator: (number) {
-                        if (number.isEmpty && selectedDate==null ) {
-                          return "Please Select Date";}
-                        else{
-                          return null;
-                        }
-                      },
-                      inputtype: TextInputType.datetime,
-                      hinttext:"Enter Your DOB(same as in Aadhar)",
-                      suffixicon: IconButton(
-                          onPressed: () {
-                            _selectDate(context);
-                          },
-                          icon: Icon(Icons.calendar_month_outlined)),
-                    );
-                  }
                 });
+                // if(selectedValue=='Choose Date'){
+                //   _selectDate(context);
+                // }
               },
             ),
           ),
@@ -97,64 +80,77 @@ class _OrderScreenState extends State<OrderScreen>
               height: 10,
             ),
             TabBar(
+              labelPadding: EdgeInsets.symmetric(horizontal: 5.0),
               indicatorSize: TabBarIndicatorSize.label,
               unselectedLabelColor: AppColors.white100,
               unselectedLabelStyle: AppTextStyles.kBody15SemiboldTextStyle,
               indicator: BoxDecoration(
                   color: AppColors.primary1,
-                  borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(6)),
               indicatorColor: Colors.black,
               isScrollable: true,
               controller: tabController,
               tabs: [
                 ConstantContainer(
-                  height: size.height * .035,
+                  height: size.height * .03,
                   borderWidth: 1,
                   borderColor: AppColors.primary1,
-                  radiusBorder: 10,
+                  radiusBorder: 6,
                   child: Center(
                     child: Tab(
-                      child: Text(
-                        "  20 | All  ",
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          "20 | All",style: AppTextStyles.kCaption12SemiboldTextStyle,
+                        ),
                       ),
                     ),
                   ),
                 ),
                 ConstantContainer(
-                  height: size.height * .035,
+                  height: size.height * .03,
                   borderWidth: 1,
                   borderColor: AppColors.primary1,
-                  radiusBorder: 10,
+                  radiusBorder: 6,
                   child: Center(
                     child: Tab(
-                      child: Text(
-                        " 07 | Ready to Pick ",
+                      child:  Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          " 07 | Ready to Pick ",style: AppTextStyles.kCaption12SemiboldTextStyle,
+                        ),
                       ),
                     ),
                   ),
                 ),
                 ConstantContainer(
-                  height: size.height * .035,
+                  height: size.height * .03,
                   borderWidth: 1,
                   borderColor: AppColors.primary1,
-                  radiusBorder: 10,
+                  radiusBorder: 6,
                   child: Center(
                     child: Tab(
-                      child: Text(
-                        " 07 | On the Way ",
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          " 07 | On the Way ",style: AppTextStyles.kCaption12SemiboldTextStyle,
+                        ),
                       ),
                     ),
                   ),
                 ),
                 ConstantContainer(
-                  height: size.height * .035,
+                  height: size.height * .03,
                   borderWidth: 1,
                   borderColor: AppColors.primary1,
-                  radiusBorder: 10,
+                  radiusBorder: 6,
                   child: Center(
                     child: Tab(
-                      child: Text(
-                        " 07 | Delivered ",
+                      child:  Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          " 07 | Delivered ",style: AppTextStyles.kCaption12SemiboldTextStyle,
+                        ),
                       ),
                     ),
                   ),

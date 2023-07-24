@@ -39,7 +39,7 @@ class _ProfileState extends State<Profile> {
               .copyWith(color: AppColors.white10),
         ),
       ),
-      body: Column(
+      body:  Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),

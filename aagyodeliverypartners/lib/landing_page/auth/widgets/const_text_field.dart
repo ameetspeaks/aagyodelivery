@@ -41,39 +41,36 @@ class ConstTextfield extends StatelessWidget {
         style: AppTextStyles.kBody17SemiboldTextStyle
             .copyWith(color: AppColors.primary),
         decoration: InputDecoration(
-          contentPadding: contentPadding,
-          hintStyle: AppTextStyles.kCaption12RegularTextStyle
-              .copyWith(color: AppColors.white80),
           suffix: suffix,
-
           suffixIcon: suffixicon,
-          counterText: "",
+          hintText: hinttext,
+          hintStyle:  AppTextStyles.kCaption12RegularTextStyle
+              .copyWith(color: AppColors.white50),
+          counter: Offstage(),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(
-                color: AppColors.white50
-            ),
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            borderSide: BorderSide(color: AppColors.white60, width: 1),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(
-              color: AppColors.primary,
-            ),
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            borderSide: BorderSide(color: AppColors.primary, width: 1),
           ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(
-              color: Colors.red,
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.white60),
+            borderRadius: BorderRadius.all(
+              Radius.circular(10.0),
             ),
           ),
           focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(
-              color: Colors.red,
-            ),
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            borderSide: BorderSide(color: Color(0xFFF65054)),
           ),
-          border: const OutlineInputBorder(),
-          hintText: hinttext,
-        ));
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            borderSide: BorderSide(color: Color(0xFFF65054)),
+          ),
+          contentPadding: EdgeInsets.only(left: 10,right: 8),
+        ),
+    );
   }
 }

@@ -255,7 +255,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     constText("Location"),
                     ConstTextfield(
                       hinttext: "Enter Your Location",
-                      maxline: 2,
+                      maxline: 3,
                       validator: (value) =>
                           value!.isEmpty ? 'This Field cannot be null' : null,
                     ),

@@ -10,12 +10,13 @@ class ConstpayoutEarningScreen extends StatefulWidget {
   const ConstpayoutEarningScreen({Key? key}) : super(key: key);
 
   @override
-  State<ConstpayoutEarningScreen> createState() => _ConstpayoutEarningScreenState();
+  State<ConstpayoutEarningScreen> createState() =>
+      _ConstpayoutEarningScreenState();
 }
 
 class _ConstpayoutEarningScreenState extends State<ConstpayoutEarningScreen>
     with TickerProviderStateMixin {
-  // int currentIndex=1;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -35,15 +36,14 @@ class _ConstpayoutEarningScreenState extends State<ConstpayoutEarningScreen>
               indicatorSize: TabBarIndicatorSize.label,
               indicator: BoxDecoration(
                   color: AppColors.primary1,
-                  borderRadius: BorderRadius.circular(10)
-              ),
+                  borderRadius: BorderRadius.circular(10)),
               // isScrollable: true,
               unselectedLabelColor: AppColors.white100,
               unselectedLabelStyle: AppTextStyles.kBody15SemiboldTextStyle,
               controller: tabController,
               tabs: [
                 ConstantContainer(
-                  width: size.width/2,
+                  width: size.width / 2,
                   borderWidth: 1,
                   borderColor: AppColors.primary1,
                   radiusBorder: 10,
@@ -56,7 +56,7 @@ class _ConstpayoutEarningScreenState extends State<ConstpayoutEarningScreen>
                   ),
                 ),
                 ConstantContainer(
-                  width: size.width/2,
+                  width: size.width / 2,
                   borderWidth: 1,
                   borderColor: AppColors.primary1,
                   radiusBorder: 10,
@@ -93,120 +93,192 @@ class Earning extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return
-      NotificationListener<OverscrollIndicatorNotification>(
-        onNotification: (notification){
-          notification.disallowIndicator();
-          return true;
-        },
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ConstantContainer(
-                  height: size.height*.4,
-                  color: AppColors.primary1,
-                  borderColor: AppColors.white80,
-                  radiusBorder: 5,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Text("Total Earnings",style: AppTextStyles.kHeading3TextStyle.copyWith(color: AppColors.white),),
-                        Text("26 Jun 02 Jul",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white50),),
-                        SizedBox(height: 10,),
-                        Text("₹5863",style: AppTextStyles.kHeading1TextStyle.copyWith(color: AppColors.white),),
-                        Text("67h 37m on duty",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white50),),
-                        SizedBox(height: 20,),
-                        Row(
-                          children: [
-                            Expanded(child: ConstantContainer(height: 1,color: AppColors.white20,)),
-                            Text(" EARNING BREAKUP ",style: AppTextStyles.kBody17RegularTextStyle.copyWith(color: AppColors.white50),),
-                            Expanded(child: ConstantContainer(height: 1,color: AppColors.white20,)),
-                          ],
-                        ),
-                        constRow("Order Earning","₹3233"),
-                        constRow("Incentives","₹323"),
-                        constRow("Customer Tips","₹32"),
-                        constRow("Bonus","₹1201"),
-                        constRow("Adjustments","₹12"),
-                      ],
-                    ),
+    return NotificationListener<OverscrollIndicatorNotification>(
+      onNotification: (notification) {
+        notification.disallowIndicator();
+        return true;
+      },
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ConstantContainer(
+                height: size.height * .4,
+                color: AppColors.primary,
+                radiusBorder: 5,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      ConstantContainer(
+                          color: AppColors.white,
+                          radiusBorder: 8,
+                          child:Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0, vertical: 5),
+                            child: Text(
+                              "Total Earnings",
+                              style: AppTextStyles.kHeading3TextStyle
+                                  .copyWith(color: AppColors.primary,),),
+                            ),
+                          ),
+                      Text(
+                        "26 Jun 02 Jul",
+                        style: AppTextStyles.kBody15RegularTextStyle
+                            .copyWith(color: AppColors.white50),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "₹ 5863",
+                        style: AppTextStyles.kLargeTitleTextStyle
+                            .copyWith(color: AppColors.white),
+                      ),
+                      Text(
+                        "67h 37m on duty",
+                        style: AppTextStyles.kBody15RegularTextStyle
+                            .copyWith(color: AppColors.white50),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                              child: ConstantContainer(
+                            height: 1,
+                            color: AppColors.white20,
+                          )),
+                          Text(
+                            " EARNING BREAKUP ",
+                            style: AppTextStyles.kBody17RegularTextStyle
+                                .copyWith(color: AppColors.white50),
+                          ),
+                          Expanded(
+                              child: ConstantContainer(
+                            height: 1,
+                            color: AppColors.white20,
+                          )),
+                        ],
+                      ),
+                      constRow("Order Earning", "₹3233"),
+                      constRow("Incentives", "₹323"),
+                      constRow("Customer Tips", "₹32"),
+                      constRow("Bonus", "₹1201"),
+                      constRow("Adjustments", "₹12"),
+                    ],
                   ),
                 ),
-                SizedBox(height: 5,),
-                Text("DAYWISE EARNINGS",style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white90),),
-                ListView.builder(
-                    itemCount: 5,
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (context,index){
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 8.0,bottom: 8),
-                        child: InkWell(
-                          onTap: (){
-                            Utils.goTo(context, DayWiseEarning());
-                          },
-                          child: ConstantContainer(
-                            color: AppColors.primary1,
-                            radiusBorder: 5,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: [
-                                  SizedBox(height: 20,),
-                                  Row(
-                                    children: [
-                                      Expanded(child: Text("Sat, 01 Jul",style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white),)),
-                                      Text("₹1281",style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white),),
-                                      Icon(
-                                        Icons.arrow_forward_ios_sharp,
-                                        color: AppColors.white,
-                                        size: 15,
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Icon(
-                                        Icons.access_time_rounded,
-                                        color: AppColors.white,
-                                        size: 15,
-                                      ),
-                                      Text("12h15m",
-                                          style: AppTextStyles.kCaption12RegularTextStyle
-                                              .copyWith(color: AppColors.white)),
-                                    ],
-                                  ),
-                                  SizedBox(height: 20,),
-                                ],
-                              ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                "DAYWISE EARNINGS",
+                style: AppTextStyles.kBody17SemiboldTextStyle
+                    .copyWith(color: AppColors.white90),
+              ),
+              ListView.builder(
+                  itemCount: 5,
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 8.0, bottom: 8),
+                      child: InkWell(
+                        onTap: () {
+                          Utils.goTo(context, DayWiseEarning());
+                        },
+                        child: ConstantContainer(
+                          color: AppColors.primary1,
+                          radiusBorder: 5,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                        child: Text(
+                                      "Sat, 01 Jul",
+                                      style: AppTextStyles
+                                          .kBody17SemiboldTextStyle
+                                          .copyWith(color: AppColors.white30),
+                                    )),
+                                    Text(
+                                      "₹1281",
+                                      style: AppTextStyles
+                                          .kBody17SemiboldTextStyle
+                                          .copyWith(color: AppColors.white30),
+                                    ),
+                                    Icon(
+                                      Icons.arrow_forward_ios_sharp,
+                                      color: AppColors.white,
+                                      size: 15,
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Icon(
+                                      Icons.access_time_rounded,
+                                      color: AppColors.white,
+                                      size: 15,
+                                    ),
+                                    Text("12h15m",
+                                        style: AppTextStyles
+                                            .kCaption12RegularTextStyle
+                                            .copyWith(color: AppColors.white)),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                      );
-                    }),
-                SizedBox(height: 20,)
-              ],
-            ),
+                      ),
+                    );
+                  }),
+              SizedBox(
+                height: 20,
+              )
+            ],
           ),
         ),
-      );
+      ),
+    );
   }
-  Widget constRow(leftText,rightText){
-    return  Column(
+
+  Widget constRow(leftText, rightText) {
+    return Column(
       children: [
         Row(
           children: [
-            Text(leftText,style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),),
+            Text(
+              leftText,
+              style: AppTextStyles.kBody15SemiboldTextStyle
+                  .copyWith(color: AppColors.white40),
+            ),
             Spacer(),
-            Text(rightText,style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.white),),
+            Text(
+              rightText,
+              style: AppTextStyles.kBody15RegularTextStyle
+                  .copyWith(color: AppColors.white30),
+            ),
           ],
         ),
-        SizedBox(height: 10,),
+        SizedBox(
+          height: 10,
+        ),
       ],
     );
   }
@@ -217,21 +289,21 @@ class PayoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   NotificationListener<OverscrollIndicatorNotification>(
-      onNotification: (notification){
+    return NotificationListener<OverscrollIndicatorNotification>(
+      onNotification: (notification) {
         notification.disallowIndicator();
         return true;
       },
       child: ListView.builder(
           itemCount: 5,
           itemBuilder: (context, index) {
-            return  Padding(
+            return Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: ConstPayoutContainer(
-                ontap1: (){
+                ontap1: () {
                   // Utils.goTo(context, WeekEarning());
                 },
-                ontap2: (){
+                ontap2: () {
                   Utils.goTo(context, PayoutHistory());
                 },
                 color1: AppColors.primary,
@@ -264,20 +336,23 @@ class ConstPayoutContainer extends StatelessWidget {
   final VoidCallback ontap2;
   const ConstPayoutContainer(
       {Key? key,
-        required this.color1,
-        required this.color2,
-        required this.date,
-        required this.price,
-        required this.time,
-        required this.contText,
-        required this.color3,
-        required this.subTextColor, required this.subText, required this.ontap1, required this.ontap2})
+      required this.color1,
+      required this.color2,
+      required this.date,
+      required this.price,
+      required this.time,
+      required this.contText,
+      required this.color3,
+      required this.subTextColor,
+      required this.subText,
+      required this.ontap1,
+      required this.ontap2})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return  ConstantContainer(
+    return ConstantContainer(
       // height: size.height*.162,
       width: size.width,
       color: color1,
@@ -299,12 +374,12 @@ class ConstPayoutContainer extends StatelessWidget {
                         Text(
                           date,
                           style: AppTextStyles.kBody20SemiboldTextStyle
-                              .copyWith(color: AppColors.white),
+                              .copyWith(color: AppColors.white40),
                         ),
                         Spacer(),
                         Text(price,
                             style: AppTextStyles.kBody20SemiboldTextStyle
-                                .copyWith(color: AppColors.white)),
+                                .copyWith(color: AppColors.white40)),
                         Icon(
                           Icons.arrow_forward_ios_sharp,
                           color: AppColors.white,
@@ -312,7 +387,9 @@ class ConstPayoutContainer extends StatelessWidget {
                         )
                       ],
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Row(
                       children: [
                         Text(
@@ -344,9 +421,12 @@ class ConstPayoutContainer extends StatelessWidget {
             child: Container(
               width: size.width,
               decoration: BoxDecoration(
-              color: color2,
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15),bottomRight: Radius.circular(10),bottomLeft: Radius.circular(10) )
-              ),
+                  color: color2,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15),
+                      bottomRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10))),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -369,10 +449,10 @@ class ConstPayoutContainer extends StatelessWidget {
                           radiusBorder: 2,
                           child: Center(
                               child: Text(
-                                contText,
-                                style: AppTextStyles.kCaption12RegularTextStyle
-                                    .copyWith(color: AppColors.white),
-                              )),
+                            contText,
+                            style: AppTextStyles.kCaption12RegularTextStyle
+                                .copyWith(color: AppColors.white),
+                          )),
                         ),
                         Spacer(),
                         Icon(

@@ -1,6 +1,7 @@
 import 'package:aagyodeliverypartners/const/constContainer.dart';
 import 'package:flutter/material.dart';
   import '../../../../../colors/colors_const.dart';
+import '../../../../../const/constString.dart';
 import '../../../../../styles/textstyle_const.dart';
 
 class AccountDetails extends StatefulWidget {
@@ -16,7 +17,7 @@ class _AccountDetailsState extends State<AccountDetails> {
   Widget build(BuildContext context) {
 Size size =MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: AppColors.primary1,
+      backgroundColor: AppColors.white40,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
@@ -24,39 +25,44 @@ Size size =MediaQuery.of(context).size;
         title: Text("Account Details",style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "BANK DETAILS",
-              style: AppTextStyles.kBody13SemiboldTextStyle
-                  .copyWith(color: AppColors.white),
-            ),
-            SizedBox(height: 10,),
-            ConstantContainer(
-              width: size.width,
-              color: Colors.blueGrey,
-              borderColor: AppColors.white20,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 10,),
-                    ConstDetails( 'ACCOUNT HOLDER NAME',  'Amit Pandey',),
-                    ConstDetails( 'ACCOUNT NUMBER',  '000000000',),
-                    ConstDetails( 'BANK NAME',  'CENTRAL BANK OF INDIA',),
-                    ConstDetails( 'BANK IFSC',  'SBIN0012910',),
-                    ConstDetails( 'EMAIL',  'abc@gmail.com',),
-                    ConstDetails( 'AADHAR NUMBER',  '123456789',),
-                    ConstDetails( 'Address ',  'Lucknow',),
-                  ],
+      body:  Container(
+        decoration: BoxDecoration(
+            // image: DecorationImage(image: AssetImage(background),fit: BoxFit.cover)
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "BANK DETAILS",
+                style: AppTextStyles.kBody13SemiboldTextStyle
+                    .copyWith(color: AppColors.white80),
+              ),
+              SizedBox(height: 10,),
+              ConstantContainer(
+                width: size.width,
+                color: AppColors.primary1,
+                borderColor: AppColors.white20,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 10,),
+                      ConstDetails( 'ACCOUNT HOLDER NAME',  'Amit Pandey',),
+                      ConstDetails( 'ACCOUNT NUMBER',  '000000000',),
+                      ConstDetails( 'BANK NAME',  'CENTRAL BANK OF INDIA',),
+                      ConstDetails( 'BANK IFSC',  'SBIN0012910',),
+                      ConstDetails( 'EMAIL',  'abc@gmail.com',),
+                      ConstDetails( 'AADHAR NUMBER',  '123456789',),
+                      ConstDetails( 'Address ',  'Lucknow',),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

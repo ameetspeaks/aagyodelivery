@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../../colors/colors_const.dart';
+import '../../../../../const/constString.dart';
 import '../../../../../styles/textstyle_const.dart';
 
 class PersonalDetails extends StatefulWidget {

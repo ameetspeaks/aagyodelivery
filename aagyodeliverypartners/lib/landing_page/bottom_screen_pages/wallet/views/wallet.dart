@@ -97,10 +97,10 @@ class _WalletScreenState extends State<WalletScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: 1,
+                    itemCount: 3,
                     itemBuilder: (BuildContext contex,index){
                   return Container(
-                    color: Colors.white,
+                    color: AppColors.white20,
                     child: Column(
                       children: [
                         ListTile(
@@ -123,7 +123,7 @@ class _WalletScreenState extends State<WalletScreen> {
                             style: AppTextStyles.kBody15SemiboldTextStyle,
                           ),
                         ),
-
+                        (index<2)? Divider(color: AppColors.white40,):SizedBox(height: 0,)
                       ],
                     ),
                   );

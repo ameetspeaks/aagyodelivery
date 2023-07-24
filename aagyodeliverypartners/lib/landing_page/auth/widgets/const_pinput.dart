@@ -12,8 +12,8 @@ class ConstPinPut extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
-      width: 56,
-      height: 56,
+      width: 46,
+      height: 46,
       textStyle: const TextStyle(
           fontSize: 30, color: AppColors.primary, fontWeight: FontWeight.w600),
       decoration: BoxDecoration(

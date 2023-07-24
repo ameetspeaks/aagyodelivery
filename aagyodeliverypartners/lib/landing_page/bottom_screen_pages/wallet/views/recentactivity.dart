@@ -20,7 +20,7 @@ class _RechargeWalletState extends State<RechargeWallet> {
       height: size.height * 0.25,
       width: size.width * 0.9,
       decoration: BoxDecoration(
-          color: AppColors.white,
+          color: AppColors.white30,
           borderRadius: BorderRadius.circular(10),
           ),
       child: Padding(
