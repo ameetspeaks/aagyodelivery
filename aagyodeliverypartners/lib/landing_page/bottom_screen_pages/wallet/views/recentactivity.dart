@@ -1,15 +1,17 @@
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/wallet/views/wallet.dart';
+import 'package:aagyodeliverypartners/utils/Utils.dart';
 import 'package:flutter/material.dart';
-import '../../../../../../../colors/colors_const.dart';
-import '../../../../../styles/textstyle_const.dart';
+import '../../../../../../colors/colors_const.dart';
+import '../../../../styles/textstyle_const.dart';
 
-class RecentActivity extends StatefulWidget {
-  const RecentActivity({Key? key}) : super(key: key);
+class RechargeWallet extends StatefulWidget {
+  const RechargeWallet({Key? key}) : super(key: key);
 
   @override
-  State<RecentActivity> createState() => _RecentActivityState();
+  State<RechargeWallet> createState() => _RechargeWalletState();
 }
 
-class _RecentActivityState extends State<RecentActivity> {
+class _RechargeWalletState extends State<RechargeWallet> {
   final TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -18,15 +20,9 @@ class _RecentActivityState extends State<RecentActivity> {
       height: size.height * 0.25,
       width: size.width * 0.9,
       decoration: BoxDecoration(
-          color: AppColors.white,
+          color: AppColors.white30,
           borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-                color: AppColors.white40.withOpacity(0.6),
-                blurRadius: 100,
-                spreadRadius: 2,
-                offset: const Offset(0, 70))
-          ]),
+          ),
       child: Padding(
         padding:
         const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
@@ -39,14 +35,9 @@ class _RecentActivityState extends State<RecentActivity> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                  Text(
-                      'Withdrawalable amount',
-                      style: AppTextStyles.kBody15RegularTextStyle,
+                      'Amount',
+                      style: AppTextStyles.kBody17SemiboldTextStyle,
                     ),
-                    Text(
-                      'view details',
-                      style: AppTextStyles.kSmall10RegularTextStyle,
-                    ),
-
                   ],
                 ),
                 Spacer(),
@@ -80,9 +71,11 @@ class _RecentActivityState extends State<RecentActivity> {
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primary),
-                  onPressed: () {},
+                  onPressed: () {
+                    // Utils.goTo(context, WalletScreen());
+                  },
                   child: Text(
-                    'Withdraw',
+                    'Recharge Your Wallet',
                     style: AppTextStyles.kBody15SemiboldTextStyle
                         .copyWith(color: AppColors.white),
                   )),

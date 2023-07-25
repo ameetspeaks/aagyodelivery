@@ -30,7 +30,7 @@ class _ConstantDropdownState extends State<ConstantDropdown> {
         dropdownColor: widget.dropdownColor,
         value: widget.selectedOption,
         onChanged: widget.onChanged,
-        icon: Icon(CupertinoIcons.chevron_down),
+        icon: const Icon(CupertinoIcons.chevron_down),
         iconSize: 15,
         iconEnabledColor: widget.iconColor,
         items: widget.options.map<DropdownMenuItem<String>>((String value) {

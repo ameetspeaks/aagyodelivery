@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../../colors/colors_const.dart';
-import '../../../../../const/constString.dart';
-import '../../../../../styles/textstyle_const.dart';
-import '../widgets/ConstDropDown.dart';
+import '../../../../colors/colors_const.dart';
+import '../../../../const/constString.dart';
+import '../../../../styles/textstyle_const.dart';
+import '../../more/profile/widgets/ConstDropDown.dart';
 
 class ViewAll extends StatefulWidget {
   const ViewAll({Key? key}) : super(key: key);
@@ -15,21 +15,12 @@ class _ViewAllState extends State<ViewAll> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {
-            // Get.back();
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            color: AppColors.white100,
-          ),
-        ),
+        backgroundColor: AppColors.primary,
         centerTitle: true,
         title: Text(
           'Activity',
           style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(
-            color: AppColors.white100,
+            color: AppColors.white,
           ),
         ),
         actions: [

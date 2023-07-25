@@ -1,9 +1,7 @@
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/profile.dart';
-import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/payout/views/payout.dart';
 import 'package:aagyodeliverypartners/utils/Utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../../colors/colors_const.dart';
 import '../../../styles/textstyle_const.dart';
 
@@ -24,10 +22,11 @@ class MoreScreen extends StatelessWidget {
             Utils.goTo(context, Profile());
           }),
           ConstantListTile(CupertinoIcons.money_dollar, "Earnings", () {
-            Utils.goTo(context, PayoutScreen());
+            // Utils.goTo(context, PayoutScreen());
           }),
           ConstantListTile(Icons.money, "Way to Earn", () {}),
           ConstantListTile(Icons.message, "Message Center", () {}),
+          ConstantListTile(Icons.people_alt_outlined, "Refer a Friend", () {}),
           ConstantListTile(Icons.report, "Wrong Action Report", () {}),
         ],
       ),

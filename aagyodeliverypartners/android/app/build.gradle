@@ -24,8 +24,6 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
-//apply "com.google.gms.google-services"
-//apply plugin:  ("com.google.gms.google-services") version "4.3.15" apply false
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {

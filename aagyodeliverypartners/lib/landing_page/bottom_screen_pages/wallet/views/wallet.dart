@@ -1,20 +1,18 @@
-
-import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/recentactivity.dart';
-import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/more/profile/view/viewall.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/wallet/views/recentactivity.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/wallet/views/viewall.dart';
 import 'package:flutter/material.dart';
+import '../../../../colors/colors_const.dart';
+import '../../../../const/constString.dart';
+import '../../../../styles/textstyle_const.dart';
 
-import '../../../../../colors/colors_const.dart';
-import '../../../../../const/constString.dart';
-import '../../../../../styles/textstyle_const.dart';
-
-class WalletPageScreen extends StatefulWidget {
-  const WalletPageScreen({super.key});
+class WalletScreen extends StatefulWidget {
+  const WalletScreen({super.key});
 
   @override
-  State<WalletPageScreen> createState() => _WalletPageScreenState();
+  State<WalletScreen> createState() => _WalletScreenState();
 }
 
-class _WalletPageScreenState extends State<WalletPageScreen> {
+class _WalletScreenState extends State<WalletScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -22,22 +20,10 @@ class _WalletPageScreenState extends State<WalletPageScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: AppColors.primary,
-        leading: IconButton(
-          onPressed: () {
-            // Get.back();
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            color: AppColors.white,
-          ),
-        ),
         centerTitle: true,
         title: Text(
-          'Payout',
-          style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(
-            color: AppColors.white,
+          'Wallet',
           ),
-        ),
         actions: [
           IconButton(
               onPressed: () {},
@@ -111,10 +97,10 @@ class _WalletPageScreenState extends State<WalletPageScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: 1,
+                    itemCount: 3,
                     itemBuilder: (BuildContext contex,index){
                   return Container(
-                    color: Colors.white,
+                    color: AppColors.white20,
                     child: Column(
                       children: [
                         ListTile(
@@ -136,29 +122,8 @@ class _WalletPageScreenState extends State<WalletPageScreen> {
                             '₹500',
                             style: AppTextStyles.kBody15SemiboldTextStyle,
                           ),
-                        ),const Divider(
-                          color: AppColors.white40,
                         ),
-                        ListTile(
-                          leading: Image.asset(desposit),
-                          title: const Text(
-                            'Cash Deposit failed !',
-                            style: AppTextStyles.kCaption12RegularTextStyle,
-                          ),
-                          subtitle: Row(
-                            children: const [
-                              Text('25/01/23'),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text('09:30pm')
-                            ],
-                          ),
-                          trailing: const Text(
-                            '₹500',
-                            style: AppTextStyles.kBody15SemiboldTextStyle,
-                          ),
-                        ),
+                        (index<2)? Divider(color: AppColors.white40,):SizedBox(height: 0,)
                       ],
                     ),
                   );
@@ -168,7 +133,7 @@ class _WalletPageScreenState extends State<WalletPageScreen> {
             Positioned(
               top: size.height * 0.11,
               left: size.width * 0.05,
-              child: const RecentActivity(),
+              child: const RechargeWallet(),
             )
           ],
         ),

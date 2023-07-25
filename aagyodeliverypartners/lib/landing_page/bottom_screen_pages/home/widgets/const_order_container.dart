@@ -1,15 +1,20 @@
+import 'package:aagyodeliverypartners/landing_page/auth/views/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../colors/colors_const.dart';
 import '../../../../const/constContainer.dart';
 import '../../../../const/constString.dart';
 import '../../../../styles/textstyle_const.dart';
+import '../../../../utils/Utils.dart';
 
 class ConstOrderContainer extends StatelessWidget {
+  final VoidCallback ontapCalltoStore;
+  final VoidCallback ontapCalltoCustomer;
   final String text;
+  final String messagealert;
   final Color color;
   final Color textColor;
-  const ConstOrderContainer({Key? key, required this.text, required this.color, required this.textColor}) : super(key: key);
+  const ConstOrderContainer({Key? key, required this.text, required this.color, required this.textColor, required this.messagealert, required this.ontapCalltoStore, required this.ontapCalltoCustomer}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +23,10 @@ class ConstOrderContainer extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: ConstantContainer(
         color: AppColors.white,
-        shadowColor: AppColors.white80,
+        shadowColor: AppColors.white50,
+        offset: Offset(0,3),
+        spreadradius: 2,
+        blurradius: 3,
         radiusBorder: 15,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -33,7 +41,7 @@ class ConstOrderContainer extends StatelessWidget {
                   ),
                   Spacer(),
                   Icon(
-                    CupertinoIcons.calendar_today,
+                    CupertinoIcons.calendar_today,size: 15,
                   ),
                   Text(
                     "10 Jul 2023",
@@ -41,7 +49,7 @@ class ConstOrderContainer extends StatelessWidget {
                         .copyWith(color: AppColors.white100),
                   ),
                   Icon(
-                    CupertinoIcons.time,
+                    CupertinoIcons.time,size: 15,
                   ),
                   Text(
                     "08:55PM",
@@ -55,69 +63,100 @@ class ConstOrderContainer extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Expanded(
-                    child: Text(
-                      "Store Name",
-                      style: AppTextStyles.kBody15SemiboldTextStyle
-                          .copyWith(color: AppColors.white100),
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Store Name",
+                        style: AppTextStyles.kBody15SemiboldTextStyle
+                            .copyWith(color: AppColors.white100),
+                      ),
+                      Text(
+                        "Store Address",
+                        style: AppTextStyles.kSmall10RegularTextStyle
+                            .copyWith(color: AppColors.white60),
+                      ),
+                    ],
                   ),
                   Spacer(),
-                  Expanded(
-                    child: Text(
-                      "Customer Name",
-                      style: AppTextStyles.kBody15SemiboldTextStyle
-                          .copyWith(color: AppColors.white100),
-                    ),
+                  Column(
+                    children: [
+                      Text(
+                        "Customer Name",
+                        style: AppTextStyles.kBody15SemiboldTextStyle
+                            .copyWith(color: AppColors.white100),
+                      ),
+                      Align(
+                        alignment: AlignmentDirectional.centerEnd,
+                        child: Text(
+                          "Customer Address",
+                          style: AppTextStyles.kSmall10RegularTextStyle
+                              .copyWith(color: AppColors.white60),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
               Row(
                 children: [
-                  Text(
-                    "Store Address",
-                    style: AppTextStyles.kCaption12RegularTextStyle
-                        .copyWith(color: AppColors.white100),
+                  InkWell(
+                    onTap: (){
+                      Utils.openMap("Food near me");
+                    },
+                    child: Image.asset(
+                      orderlocation,
+                      height: 30,
+                      width: 30,
+                      color: AppColors.white60,
+                    ),
                   ),
+                  GestureDetector(
+                      onTap: ontapCalltoStore,
+                      child: Icon(Icons.phone_in_talk_outlined,size: 30,color: AppColors.white70,)),
                   Spacer(),
-                  Text(
-                    "Customer Address",
-                    style: AppTextStyles.kCaption12RegularTextStyle
-                        .copyWith(color: AppColors.white100),
+                  InkWell(
+                    onTap: (){
+                      Utils.openMap("Food near me");
+                    },
+                    child: Image.asset(
+                      orderlocation,
+                      height: 30,
+                      width: 30,
+                      color: AppColors.white60,
+                    ),
                   ),
-                ],
-              ),
-              Row(
-                children: [
-                  Image.asset(
-                    orderlocation,
-                    height: 20,
-                    width: 20,
-                  ),
-                  Icon(Icons.phone_in_talk_outlined),
-                  Spacer(),
-                  Image.asset(
-                    orderlocation,
-                    height: 20,
-                    width: 20,
-                  ),
-                  Icon(Icons.phone_in_talk_outlined),
+                  GestureDetector(
+                      onTap: ontapCalltoCustomer,
+                      child: Icon(Icons.phone_in_talk_outlined,size: 30,color: AppColors.white70,)),
                 ],
               ),
               Row(
                 children: [
                   Column(
                     children: [
-                      ConstantContainer(
-                        height: size.height * .035,
-                        width: size.width * .3,
-                        color: color,
-                        radiusBorder: 10,
-                        child: Center(
-                          child: Text(
-                            text,
-                            style: AppTextStyles.kBody15SemiboldTextStyle
-                                .copyWith(color:textColor),
+                      InkWell(
+                        onTap: (){
+                          Utils.DialogBox(context,messagealert, "",
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary1),
+                              child: Text('Confirm'),
+                              onPressed: () {
+                              },
+                            ),
+                          );
+                        },
+                        child: ConstantContainer(
+                          height: size.height * .028,
+                          width: size.width * .28,
+                          color: color,
+                          radiusBorder: 5,
+                          child: Center(
+                            child: Text(
+                              text,
+                              style: AppTextStyles.kBody13SemiboldTextStyle
+                                  .copyWith(color:textColor),
+                            ),
                           ),
                         ),
                       ),
@@ -126,27 +165,15 @@ class ConstOrderContainer extends StatelessWidget {
                   Spacer(),
                   Column(
                     children: [
-                      ConstantContainer(
-                        height: size.height * .048,
-                        width: 2,
-                        color: AppColors.white100,
-                      ),
+                      ConstantContainer(height: size.height*.038,width: 1.5,color: AppColors.white100,),
                     ],
                   ),
-                  SizedBox(
-                    width: 2,
-                  ),
+                  SizedBox(width: 5,),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("₹180.80",
-                          style: AppTextStyles.kBody17SemiboldTextStyle
-                              .copyWith(color: AppColors.white100)),
-                      Text(
-                        "COD",
-                        style: AppTextStyles.kBody15RegularTextStyle
-                            .copyWith(color: AppColors.white100),
-                      ),
+                      Text("₹180.80",style: AppTextStyles.kBody17SemiboldTextStyle.copyWith(color: AppColors.white100)),
+                      Text("COD",style: AppTextStyles.kBody13RegularTextStyle.copyWith(color: AppColors.white100),),
                     ],
                   ),
                 ],

@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get:
   image_picker: ^0.8.9
+  mime: ^1.0.0
   shared_preferences: ^2.1.2
   firebase_core: ^2.14.0
   firebase_auth: ^4.6.3
@@ -44,6 +45,17 @@ dependencies:
   google_sign_in: ^6.1.0
   dots_indicator: ^2.0.0
   flutter_phone_direct_caller: ^2.1.1
+  intl: ^0.17.0
+  http:
+  fluttertoast: ^8.2.1
+  firebase_messaging: ^14.6.5
+  flutter_local_notifications: ^15.1.0+1
+  geolocator: ^9.0.2
+  url_launcher: ^6.1.11
+  geocoding: ^2.1.0
+
+
+
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +88,7 @@ flutter:
     - assets/auth/
     - assets/bottom_nav_bar/
 #    - assets/menu/
+    - assets/profile/
     - assets/profile/Icons/
 #    - assets/add/icons/
 
