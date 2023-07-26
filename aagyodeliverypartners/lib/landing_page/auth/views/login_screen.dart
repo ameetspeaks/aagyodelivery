@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Container(
+      body: Utils.isloading?Utils().progressIndicator(context):Container(
         decoration: BoxDecoration(
           image: DecorationImage(image: AssetImage(background),fit: BoxFit.cover)
         ),
@@ -155,7 +155,14 @@ class _LoginPageState extends State<LoginPage> {
                 InkWell(
                     onTap: () {
                       if (formGlobalKey.currentState!.validate()) {
-                        Utils.nevergoTo(context, Bottom_Page());
+                        setState(() {
+                          Utils.isloading=true;
+                        });
+                        Future.delayed(Duration(seconds: 1), () {
+                          setState(() {
+                            Utils.isloading = false;
+                          });
+                          Utils.nevergoTo(context, Bottom_Page());                        });
                       }
                     },
                     child: ConstButton(

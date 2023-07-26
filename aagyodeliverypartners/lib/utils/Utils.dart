@@ -7,8 +7,8 @@ import '../styles/textstyle_const.dart';
 
 class Utils{
 
-  //for online offline button
-  static bool pressed = false;
+  //for circular indicator
+  static bool isloading = false;
 
   static void  goTo(BuildContext context, Widget nextScreen) {
     Navigator.push(
@@ -18,7 +18,7 @@ class Utils{
         ));
   }
 
-  static void  nevergoTo(BuildContext context, Widget nextScreen) {
+  static   nevergoTo(BuildContext context, Widget nextScreen) {
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -77,6 +77,13 @@ class Utils{
     }catch(e){
       Utils.showToastMsg("Something went wrong");
     }
+  }
+
+  Widget progressIndicator(BuildContext context){
+    return Center(child:CircularProgressIndicator(
+      backgroundColor: AppColors.primary,
+      color: Colors.white,
+    ));
   }
 
 }

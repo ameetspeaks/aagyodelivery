@@ -1,9 +1,11 @@
 import 'package:aagyodeliverypartners/colors/colors_const.dart';
 import 'package:aagyodeliverypartners/const/constContainer.dart';
+import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/utils/home_utils.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/views/action_screens/help.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/views/action_screens/notifications.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/views/action_screens/sos.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/order/views/order_screen.dart';
+import 'package:aagyodeliverypartners/landing_page/neworder/views/new_order.dart';
 import 'package:aagyodeliverypartners/styles/textstyle_const.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,9 +23,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool ispressed = true;
+  bool isBottomSheetShown = false;
+  bool ispressed = false;
   var textValue = '😎';
-
   void toggleSwitch(bool value) {
     if (ispressed == false) {
       setState(() {
@@ -43,8 +45,21 @@ class _HomeScreenState extends State<HomeScreen> {
   final _numPages = 5;
   PageController _pageController = PageController();
   double _currentPage = 0;
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      // Show the bottom sheet when the screen is opened
+      homeUtils.onlineofflineRemainder(context, () {Navigator.pop(context); }, () {
+        toggleSwitch(true);
+        Navigator.pop(context);
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
@@ -93,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             IconButton(
               onPressed: () {
-                Utils.goTo(context, Help());
+                Utils.goTo(context, NewOrder());
               },
               icon: Icon(
                 Icons.help_outline_outlined,
