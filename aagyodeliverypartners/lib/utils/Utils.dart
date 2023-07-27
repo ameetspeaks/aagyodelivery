@@ -2,6 +2,7 @@ import 'package:aagyodeliverypartners/colors/colors_const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../styles/textstyle_const.dart';
 
@@ -19,11 +20,7 @@ class Utils{
   }
 
   static   nevergoTo(BuildContext context, Widget nextScreen) {
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => nextScreen,
-        ));
+    Get.offAll(nextScreen);
   }
 
   static Future<void> callNumber(String number) async{

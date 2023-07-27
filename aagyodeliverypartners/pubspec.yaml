@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get:
   image_picker: ^0.8.9
-  mime: ^1.0.0
+#  mime: ^1.0.0
   shared_preferences: ^2.1.2
   firebase_core: ^2.14.0
   firebase_auth: ^4.6.3
@@ -54,6 +54,7 @@ dependencies:
   url_launcher: ^6.1.11
   geocoding: ^2.1.0
   slider_button:
+  flutter_rating_bar:
 
 
 

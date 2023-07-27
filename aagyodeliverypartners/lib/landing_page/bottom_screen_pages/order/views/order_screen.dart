@@ -19,22 +19,23 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen>
     with TickerProviderStateMixin {
   String selectedValue = "Today";
+  final TextEditingController _dateController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     DateTime? selectedDate;
 
-    Future<void> _selectDate(BuildContext ?context,) async {
+    Future<void> _selectDate(BuildContext context) async {
       final DateTime? picked = await showDatePicker(
-        context: context!,
-        initialDate: selectedDate ??DateTime.now(),
+        context: context,
+        initialDate: DateTime.now(),
         firstDate: DateTime(2000),
         lastDate: DateTime(2100),
       );
       if (picked != null && picked != selectedDate) {
         setState(() {
           selectedDate = picked;
-          selectedValue=
-              DateFormat('dd/MM/yyyy').format(selectedDate!);
+          _dateController.text =
+          '${DateFormat('dd/MM/yyyy').format(selectedDate!)}';
         });
       }
     }
@@ -50,22 +51,40 @@ class _OrderScreenState extends State<OrderScreen>
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ConstantDropdown(
-              dropdownColor: AppColors.primary,
-              textColor: AppColors.white,
-              iconColor: AppColors.white,
-              options: const ['Today', 'Yesterday', 'This Week','This Month'],
-              selectedOption: selectedValue,
-              onChanged: (newValue) {
-                setState(() {
-                  selectedValue = newValue;
-                });
-                // if(selectedValue=='Choose Date'){
-                //   _selectDate(context);
-                // }
-              },
+            padding: const EdgeInsets.fromLTRB(0,15,5,0),
+            child: ConstantContainer(
+              height: size.height*.06,
+              width: size.width*.3,
+              // color: Colors.red,
+              child: ConstTextfield(
+                ontap: (){
+                  _selectDate(context);
+                },
+                controller: _dateController,
+                readyonly: true,
+                enableBorderColor: AppColors.white,
+                hintstyle: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color: AppColors.white),
+                style: AppTextStyles.kBody15SemiboldTextStyle.copyWith(color: AppColors.white),
+                inputtype: TextInputType.datetime,
+                hinttext: "Choose Date",
+              ),
             ),
+
+            // ConstantDropdown(
+            //   dropdownColor: AppColors.primary,
+            //   textColor: AppColors.white,
+            //   iconColor: AppColors.white,
+            //   options: const ['Today', 'Yesterday', 'This Week','This Month'],
+            //   selectedOption: selectedValue,
+            //   onChanged: (newValue) {
+            //     setState(() {
+            //       selectedValue = newValue;
+            //     });
+            //     // if(selectedValue=='Choose Date'){
+            //     //   _selectDate(context);
+            //     // }
+            //   },
+            // ),
           ),
         ],
       ),
