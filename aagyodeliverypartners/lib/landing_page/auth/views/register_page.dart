@@ -28,6 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
       });
     }
   }
+
   File? _adhar;
   Future<void> _pickedAdhar() async {
     final picker = ImagePicker();
@@ -39,6 +40,7 @@ class _RegisterPageState extends State<RegisterPage> {
       });
     }
   }
+
   File? _dL;
   Future<void> _pickedDL() async {
     final picker = ImagePicker();
@@ -50,7 +52,8 @@ class _RegisterPageState extends State<RegisterPage> {
       });
     }
   }
-  DateTime ?selectedDate;
+
+  DateTime? selectedDate;
   TextEditingController _dateController = TextEditingController();
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -62,11 +65,11 @@ class _RegisterPageState extends State<RegisterPage> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
-        _dateController.text='${DateFormat('dd/MM/yyyy').format(selectedDate!)}';
+        _dateController.text =
+            '${DateFormat('dd/MM/yyyy').format(selectedDate!)}';
       });
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -81,16 +84,18 @@ class _RegisterPageState extends State<RegisterPage> {
               .copyWith(color: AppColors.white),
         ),
       ),
-      body: NotificationListener<OverscrollIndicatorNotification>(
+      body: Utils.isloading?Utils().progressIndicator(context): NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (notification) {
           notification.disallowIndicator();
           return true;
         },
         child: SingleChildScrollView(
-          child:  Container(
+          child: Container(
             decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage(background),fit: BoxFit.cover,)
-            ),
+                image: DecorationImage(
+              image: AssetImage(background),
+              fit: BoxFit.cover,
+            )),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Form(
@@ -101,7 +106,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     SizedBox(
                       height: 10,
                     ),
-                    Text("(*) All fields are Required",style: AppTextStyles.kBody15RegularTextStyle.copyWith(color: AppColors.error40),),
+                    Text(
+                      "(*) All fields are Required",
+                      style: AppTextStyles.kBody15RegularTextStyle
+                          .copyWith(color: AppColors.error40),
+                    ),
                     Center(
                       child: GestureDetector(
                         onTap: () {
@@ -176,32 +185,33 @@ class _RegisterPageState extends State<RegisterPage> {
                     ConstTextfield(
                       controller: _dateController,
                       validator: (number) {
-                        if (number.isEmpty && selectedDate==null ) {
-                          return "Please Select Date";}
-                        else{
+                        if (number.isEmpty && selectedDate == null) {
+                          return "Please Select Date";
+                        } else {
                           return null;
                         }
                       },
                       inputtype: TextInputType.datetime,
-                      hinttext:"Enter Your DOB(same as in Aadhar)",
+                      hinttext: "Enter Your DOB(same as in Aadhar)",
                       suffixicon: IconButton(
                           onPressed: () {
                             _selectDate(context);
                           },
                           icon: Icon(Icons.calendar_month_outlined)),
-                    ),  SizedBox(
+                    ),
+                    SizedBox(
                       height: 10,
                     ),
                     constText("Aadhar/PAN"),
                     ConstTextfield(
                       validator: (number) {
                         if (number!.isEmpty || number.length < 10) {
-                          return "Please Enter the Number";}
-                        if( _adhar==null) {
-                          return "Please select image";
+                          return "Please Enter the Number";
                         }
-                      else{
-                        return null;
+                        if (_adhar == null) {
+                          return "Please select image";
+                        } else {
+                          return null;
                         }
                       },
                       hinttext: "Enter Aadhar Number or PAN Number ",
@@ -209,7 +219,11 @@ class _RegisterPageState extends State<RegisterPage> {
                           onTap: () {
                             _pickedAdhar();
                           },
-                          child: Text("Upload",style: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color: Colors.blue),)),
+                          child: Text(
+                            "Upload",
+                            style: AppTextStyles.kCaption12SemiboldTextStyle
+                                .copyWith(color: Colors.blue),
+                          )),
                     ),
                     if (_adhar != null)
                       Padding(
@@ -226,11 +240,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     ConstTextfield(
                       validator: (number) {
                         if (number!.isEmpty || number.length < 10) {
-                          return "Please Enter the Number";}
-                        if( _dL==null) {
-                          return "Please select image";
+                          return "Please Enter the Number";
                         }
-                        else{
+                        if (_dL == null) {
+                          return "Please select image";
+                        } else {
                           return null;
                         }
                       },
@@ -239,7 +253,11 @@ class _RegisterPageState extends State<RegisterPage> {
                           onTap: () {
                             _pickedDL();
                           },
-                          child: Text("Upload",style: AppTextStyles.kCaption12SemiboldTextStyle.copyWith(color:  Colors.blue),)),
+                          child: Text(
+                            "Upload",
+                            style: AppTextStyles.kCaption12SemiboldTextStyle
+                                .copyWith(color: Colors.blue),
+                          )),
                     ),
                     if (_dL != null)
                       Padding(
@@ -265,16 +283,26 @@ class _RegisterPageState extends State<RegisterPage> {
                     Center(
                       child: InkWell(
                           onTap: () {
-                            if(imageFile==null){
-                              Utils.PopUP(context, "Please Select the Profile Picture");
+                            if (imageFile == null) {
+                              Utils.PopUP(
+                                  context, "Please Select the Profile Picture");
                             }
                             if (formGlobalKey.currentState!.validate()) {
-                              if(imageFile==null){
-                                Utils.PopUP(context, "Please Select the Profile Picture");
-                              }else{
-                                Utils.goTo(context, LoginPage());
+                              if (imageFile == null) {
                                 Utils.PopUP(context,
-                                    "You have registered successfully\nPlease wait Admin will verify your  data then you will be able to login");
+                                    "Please Select the Profile Picture");
+                              } else {
+                                setState(() {
+                                  Utils.isloading = true;
+                                });
+                                Future.delayed(Duration(seconds: 1), () {
+                                  setState(() {
+                                    Utils.isloading = false;
+                                  });
+                                  Utils.goTo(context, LoginPage());
+                                  Utils.PopUP(context,
+                                      "You have registered successfully\nPlease wait Admin will verify your  data then you will be able to login");
+                                });
                               }
                             }
                           },
@@ -324,9 +352,10 @@ class _RegisterPageState extends State<RegisterPage> {
       },
     );
   }
-  Widget constText(heading){
+
+  Widget constText(heading) {
     return Text(
-      heading+"*",
+      heading + "*",
       style: AppTextStyles.kBody15SemiboldTextStyle
           .copyWith(color: AppColors.white100),
     );

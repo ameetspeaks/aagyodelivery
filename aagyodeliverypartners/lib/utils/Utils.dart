@@ -2,13 +2,14 @@ import 'package:aagyodeliverypartners/colors/colors_const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../styles/textstyle_const.dart';
 
 class Utils{
 
-  //for online offline button
-  static bool pressed = false;
+  //for circular indicator
+  static bool isloading = false;
 
   static void  goTo(BuildContext context, Widget nextScreen) {
     Navigator.push(
@@ -18,12 +19,8 @@ class Utils{
         ));
   }
 
-  static void  nevergoTo(BuildContext context, Widget nextScreen) {
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => nextScreen,
-        ));
+  static   nevergoTo(BuildContext context, Widget nextScreen) {
+    Get.offAll(nextScreen);
   }
 
   static Future<void> callNumber(String number) async{
@@ -77,6 +74,13 @@ class Utils{
     }catch(e){
       Utils.showToastMsg("Something went wrong");
     }
+  }
+
+  Widget progressIndicator(BuildContext context){
+    return Center(child:CircularProgressIndicator(
+      backgroundColor: AppColors.primary,
+      color: Colors.white,
+    ));
   }
 
 }

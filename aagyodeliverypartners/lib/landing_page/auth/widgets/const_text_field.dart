@@ -3,6 +3,9 @@ import '../../../colors/colors_const.dart';
 import '../../../styles/textstyle_const.dart';
 
 class ConstTextfield extends StatelessWidget {
+  final TextStyle? style;
+  final TextStyle? hintstyle;
+  final Color? enableBorderColor;
   final TextEditingController ?controller;
   final Widget? suffix;
   final TextInputType? inputtype;
@@ -14,6 +17,7 @@ class ConstTextfield extends StatelessWidget {
   final IconButton? suffixicon;
   final FormFieldValidator? validator;
   final EdgeInsetsGeometry? contentPadding;
+  final VoidCallback ?ontap;
 
   const ConstTextfield(
       {Key? key,
@@ -23,12 +27,13 @@ class ConstTextfield extends StatelessWidget {
         required this.hinttext,
         this.suffixicon,
         this.validator,
-         this.obscure, this.contentPadding, this.maxline, this.readyonly, this.suffix, })
+         this.obscure, this.contentPadding, this.maxline, this.readyonly, this.suffix, this.ontap, this.style, this.enableBorderColor, this.hintstyle, })
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap: ontap,
       readOnly: readyonly??false,
         validator: validator,
         controller: controller,
@@ -38,18 +43,18 @@ class ConstTextfield extends StatelessWidget {
         maxLength: maxlength,
         maxLines: maxline,
         cursorHeight: 20,
-        style: AppTextStyles.kBody17SemiboldTextStyle
+        style:style ?? AppTextStyles.kBody17SemiboldTextStyle
             .copyWith(color: AppColors.primary),
         decoration: InputDecoration(
           suffix: suffix,
           suffixIcon: suffixicon,
           hintText: hinttext,
-          hintStyle:  AppTextStyles.kCaption12RegularTextStyle
+          hintStyle:  hintstyle??AppTextStyles.kCaption12RegularTextStyle
               .copyWith(color: AppColors.white50),
           counter: Offstage(),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            borderSide: BorderSide(color: AppColors.white60, width: 1),
+            borderSide: BorderSide(color:enableBorderColor??AppColors.white60 ,width: 1),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
