@@ -54,21 +54,21 @@ class _LoginPageState extends State<LoginPage> {
             key: formGlobalKey,
             child: Column(
               children: [
-                SizedBox(height: 20,),
+                const SizedBox(height: 20,),
                 Image.asset(
                   applogo,
                   height: 150,
                   width: 150,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Text(
-                  "Login to AAGYO Delivery Boy App!",
+                  "Login to Parcelpe Delivery App!",
                   style: AppTextStyles.kHeading3TextStyle
                       .copyWith(color: AppColors.primary),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 Text(
@@ -76,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: AppTextStyles.kBody17SemiboldTextStyle
                       .copyWith(color: AppColors.white70),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Align(
@@ -87,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                         .copyWith(color: AppColors.white100),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 ConstTextfield(
                   hinttext: "Enter Your Mobile Number",
                   maxlength: 10,
@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                     }
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -141,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-                SizedBox(height:10 ),
+                const SizedBox(height:10 ),
                 ConstPinPut(
                   obsure: _obscureText,
                   totallength: 6,  validator: (number) {
@@ -151,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                     return null;
                   }
                 },),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 InkWell(
                     onTap: () {
                       if (formGlobalKey.currentState!.validate()) {

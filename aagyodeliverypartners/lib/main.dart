@@ -35,18 +35,20 @@ class MyApp extends StatelessWidget {
 }
 
 class SplashScreen extends StatefulWidget {
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => LoginPage()),
+        MaterialPageRoute(builder: (context) => const LoginPage()),
       );
     });
   }
@@ -58,16 +60,16 @@ class _SplashScreenState extends State<SplashScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            SizedBox(height: 140,),
+            const SizedBox(height: 140,),
             Text(
               textAlign: TextAlign.center,
-              'AAGYO Delivery Partner!',
+              'Parcelpe Delivery Partner!',
               style: AppTextStyles.kHeading1TextStyle.copyWith(
                 color: AppColors.primary,
                 fontSize: 32,
               ),
             ),
-            SizedBox(height: 40,),
+            const SizedBox(height: 40,),
             Center(child: ClipOval(child: Image.asset(splashgif,height: 400,width: 400,))),
           ],
         ),

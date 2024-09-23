@@ -1,5 +1,6 @@
 import 'package:aagyodeliverypartners/colors/colors_const.dart';
 import 'package:aagyodeliverypartners/const/constContainer.dart';
+import 'package:aagyodeliverypartners/landing_page/auth/views/register_page.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/utils/home_utils.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/views/action_screens/notifications.dart';
 import 'package:aagyodeliverypartners/landing_page/bottom_screen_pages/home/views/action_screens/sos.dart';
@@ -23,6 +24,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool ispressed = false;
   var textValue = '😎';
+  final GlobalKey<ScaffoldState> drawerKey = new GlobalKey<ScaffoldState>();
   void toggleSwitch(bool value) {
     if (ispressed == false) {
       setState(() {
@@ -36,17 +38,20 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     }
   }
-
   String selectedValue1 = "Today";
   String selectedValue2 = "Choose Date";
   final _numPages = 5;
   PageController _pageController = PageController();
   double _currentPage = 0;
-@override
+
+  var h = 0.0;
+  var w = 0.0;
+
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       // Show the bottom sheet when the screen is opened
       homeUtils.onlineofflineRemainder(context, () {Navigator.pop(context); }, () {
         toggleSwitch(true);
@@ -54,12 +59,14 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     });
   }
+
   @override
   Widget build(BuildContext context) {
-
+    h = MediaQuery.of(context).size.height;
+    w = MediaQuery.of(context).size.width;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: AppBar(
+      /*  appBar: AppBar(
           backgroundColor: AppColors.primary,
           automaticallyImplyLeading: true,
           title: InkWell(
@@ -374,7 +381,65 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-        ));
+        ));*/
+      key: drawerKey,
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: (){
+            drawerKey.currentState!.isDrawerOpen ? drawerKey.currentState!.openDrawer() : drawerKey.currentState!.closeDrawer();
+          },
+          icon: Icon(Icons.menu, color: AppColors.white100),
+        ),
+        title: changeStatus(),
+        actions: [
+          IconButton(
+            onPressed: (){
+              Future.delayed(const Duration(seconds: 2), () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const RegisterPage()),
+                );
+              });
+            },
+            icon: const Icon(Icons.settings, color: AppColors.white100),
+          ),
+          IconButton(
+            onPressed: (){
+            },
+            icon: const Icon(Icons.add_alert_rounded, color: AppColors.white100),
+          ),
+        ],
+        elevation: 2,
+        surfaceTintColor: AppColors.white10,
+        shadowColor: AppColors.white20,
+      ),
+      body: SizedBox(
+        width: w,
+        height: h,
+        child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: w * 0.01),
+          child: Column(
+            children: [
+              SizedBox(
+                height: h * 0.02,
+              ),
+              earningContainer(),
+              SizedBox(
+                height: h * 0.02,
+              ),
+              Text('Go Online, to start earning',
+              style: TextStyle(
+                color: AppColors.success80,
+                fontSize: w * 0.05,
+                fontWeight: FontWeight.w500
+              ),)
+            ],
+          ),
+        ),
+      ),
+
+      bottomSheet: promotionContainer(),
+    );
   }
 
   Widget balanceWigets(heading, heading2, money, subhead) {
@@ -431,6 +496,106 @@ class _HomeScreenState extends State<HomeScreen> {
           // SizedBox(
           //   height: 10,
           // ),
+        ],
+      ),
+    );
+  }
+
+  Widget changeStatus(){
+    return Container(
+      //height: h * 0.04,
+      width: w/2.5,
+      padding: EdgeInsets.symmetric(vertical: h * 0.01),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(w * 0.04),
+        border: Border.all(color: Colors.black, width: 0.5)
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text( ispressed ? 'Online' : 'Offline',
+          style: TextStyle(
+            color: ispressed ? Colors.green.shade700 : Colors.red,
+            fontSize: w * 0.04,
+            fontWeight: FontWeight.w600
+          ),),
+          SizedBox(
+              height : 30,
+              child: Switch(
+                  value: ispressed,
+                  onChanged: toggleSwitch,
+              ))
+        ],
+      ),
+    );
+  }
+
+  Widget earningContainer () {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: w * 0.02, vertical: h * 0.02),
+      decoration: BoxDecoration(
+        color: AppColors.success90,
+        borderRadius: BorderRadius.circular(w * 0.03),
+      ),
+      width: w,
+     // height: h * 0.05,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text('Today\'s Earning : ',
+          style: TextStyle(
+            color: AppColors.white100,
+            fontWeight: FontWeight.w500,
+            fontSize: w * 0.045
+          ),),
+          Text('₹400',
+            style: TextStyle(
+                color: AppColors.white100,
+                fontWeight: FontWeight.w500,
+                fontSize: w * 0.045
+            ),)
+        ],
+      ),
+    );
+  }
+
+  Widget promotionContainer() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: w * 0.02, vertical: h * 0.01),
+      decoration: BoxDecoration(
+        color: AppColors.success90,
+        borderRadius: BorderRadius.circular(w * 0.03),
+      ),
+      width: w,
+     // height: h * 0.05,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('0',
+              style: TextStyle(
+                color: AppColors.white100,
+                fontWeight: FontWeight.w700,
+                fontSize: w * 0.1
+              ),),
+              const SizedBox(width: 10,),
+              Text('कमीशन\nसभी आर्डर पर',
+                style: TextStyle(
+                    color: AppColors.white100,
+                    fontWeight: FontWeight.w700,
+                    fontSize: w * 0.04
+                ),),
+            ],
+          ),
+          Text('Refer Now',
+            style: TextStyle(
+                color: AppColors.white100,
+                fontWeight: FontWeight.w500,
+                fontSize: w * 0.04
+            ),)
         ],
       ),
     );
